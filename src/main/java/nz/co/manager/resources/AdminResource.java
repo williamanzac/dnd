@@ -18,6 +18,7 @@ import nz.co.manager.api.AbilityScore;
 import nz.co.manager.api.Alignment;
 import nz.co.manager.api.Condition;
 import nz.co.manager.api.Duration;
+import nz.co.manager.api.Gear;
 import nz.co.manager.api.Language;
 import nz.co.manager.api.School;
 import nz.co.manager.core.AdminService;
@@ -296,5 +297,43 @@ public class AdminResource {
 	public void deleteLanguage(final @PathParam("id") int id) {
 		final Language score = adminService.readLanguage(id);
 		adminService.deleteLanguage(score);
+	}
+
+	@Path("/gear")
+	@POST
+	@UnitOfWork
+	public Gear createGear(final Gear score) {
+		return adminService.createGear(score);
+	}
+
+	@Path("/gear")
+	@PUT
+	@UnitOfWork
+	public Gear updateGear(final Gear score) {
+		return adminService.updateGear(score);
+	}
+
+	@Path("/gear/{id}")
+	@GET
+	@UnitOfWork
+	public Gear readGear(final @PathParam("id") int id) {
+		final Gear set = adminService.readGear(id);
+		return set;
+	}
+
+	@Path("/gear")
+	@GET
+	@UnitOfWork
+	public List<Gear> listGear() {
+		final List<Gear> listAll = adminService.listGear();
+		return listAll;
+	}
+
+	@Path("/gear/{id}")
+	@DELETE
+	@UnitOfWork
+	public void deleteGear(final @PathParam("id") int id) {
+		final Gear score = adminService.readGear(id);
+		adminService.deleteGear(score);
 	}
 }

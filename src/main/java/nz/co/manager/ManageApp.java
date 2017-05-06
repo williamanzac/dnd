@@ -6,22 +6,9 @@ import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
+import io.dropwizard.hibernate.ScanningHibernateBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import nz.co.manager.api.Ability;
-import nz.co.manager.api.AbilityScore;
-import nz.co.manager.api.Alignment;
-import nz.co.manager.api.Character;
-import nz.co.manager.api.CharacterClass;
-import nz.co.manager.api.ClassLevel;
-import nz.co.manager.api.Condition;
-import nz.co.manager.api.Duration;
-import nz.co.manager.api.HeightWeight;
-import nz.co.manager.api.Language;
-import nz.co.manager.api.NameSet;
-import nz.co.manager.api.Race;
-import nz.co.manager.api.School;
-import nz.co.manager.api.Spell;
 import nz.co.manager.core.AdminService;
 import nz.co.manager.core.DiceService;
 import nz.co.manager.core.HeightWeightService;
@@ -31,6 +18,7 @@ import nz.co.manager.jdbi.AbilityScoreDAO;
 import nz.co.manager.jdbi.AlignmentDAO;
 import nz.co.manager.jdbi.ConditionDAO;
 import nz.co.manager.jdbi.DurationDAO;
+import nz.co.manager.jdbi.GearDAO;
 import nz.co.manager.jdbi.HeightWeightDAO;
 import nz.co.manager.jdbi.LanguageDAO;
 import nz.co.manager.jdbi.NameSetDAO;
@@ -40,10 +28,8 @@ import nz.co.manager.resources.ToolResource;
 
 public class ManageApp extends Application<ManageAppConfiguration> {
 
-	private final HibernateBundle<ManageAppConfiguration> hibernate = new HibernateBundle<ManageAppConfiguration>(
-			Character.class, CharacterClass.class, Race.class, AbilityScore.class, NameSet.class, ClassLevel.class,
-			Ability.class, Spell.class, School.class, Duration.class, Condition.class, HeightWeight.class,
-			Alignment.class, Language.class) {
+	private final HibernateBundle<ManageAppConfiguration> hibernate = new ScanningHibernateBundle<ManageAppConfiguration>(
+			"nz.co.manager.api") {
 		@Override
 		public DataSourceFactory getDataSourceFactory(final ManageAppConfiguration configuration) {
 			return configuration.getDataSourceFactory();
@@ -76,10 +62,11 @@ public class ManageApp extends Application<ManageAppConfiguration> {
 		final HeightWeightDAO heightWeightDAO = new HeightWeightDAO(sessionFactory);
 		final AlignmentDAO alignmentDAO = new AlignmentDAO(sessionFactory);
 		final LanguageDAO languageDAO = new LanguageDAO(sessionFactory);
+		final GearDAO gearDAO = new GearDAO(sessionFactory);
 
 		final NameGenerator nameGenerator = new NameGenerator(nameSetDAO);
 		final AdminService adminService = new AdminService(abilityScoreDAO, abilityDAO, durationDAO, schoolDAO,
-				conditionDAO, alignmentDAO, languageDAO);
+				conditionDAO, alignmentDAO, languageDAO, gearDAO);
 		final DiceService diceService = new DiceService();
 		final HeightWeightService heightWeightService = new HeightWeightService(heightWeightDAO);
 

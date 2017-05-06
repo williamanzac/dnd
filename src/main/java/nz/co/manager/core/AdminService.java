@@ -7,6 +7,7 @@ import nz.co.manager.api.AbilityScore;
 import nz.co.manager.api.Alignment;
 import nz.co.manager.api.Condition;
 import nz.co.manager.api.Duration;
+import nz.co.manager.api.Gear;
 import nz.co.manager.api.Language;
 import nz.co.manager.api.School;
 import nz.co.manager.jdbi.AbilityDAO;
@@ -14,6 +15,7 @@ import nz.co.manager.jdbi.AbilityScoreDAO;
 import nz.co.manager.jdbi.AlignmentDAO;
 import nz.co.manager.jdbi.ConditionDAO;
 import nz.co.manager.jdbi.DurationDAO;
+import nz.co.manager.jdbi.GearDAO;
 import nz.co.manager.jdbi.LanguageDAO;
 import nz.co.manager.jdbi.SchoolDAO;
 
@@ -25,10 +27,11 @@ public class AdminService {
 	private final ConditionDAO conditionDAO;
 	private final AlignmentDAO alignmentDAO;
 	private final LanguageDAO languageDAO;
+	private final GearDAO gearDAO;
 
 	public AdminService(final AbilityScoreDAO abilityScoreDAO, final AbilityDAO abilityDAO,
 			final DurationDAO durationDAO, final SchoolDAO schoolDAO, final ConditionDAO conditionDAO,
-			final AlignmentDAO alignmentDAO, final LanguageDAO languageDAO) {
+			final AlignmentDAO alignmentDAO, final LanguageDAO languageDAO, final GearDAO gearDAO) {
 		this.abilityScoreDAO = abilityScoreDAO;
 		this.abilityDAO = abilityDAO;
 		this.durationDAO = durationDAO;
@@ -36,6 +39,7 @@ public class AdminService {
 		this.conditionDAO = conditionDAO;
 		this.alignmentDAO = alignmentDAO;
 		this.languageDAO = languageDAO;
+		this.gearDAO = gearDAO;
 	}
 
 	public AbilityScore createAbilityScore(final AbilityScore score) {
@@ -178,5 +182,25 @@ public class AdminService {
 
 	public void deleteAlignment(final Alignment score) {
 		alignmentDAO.delete(score);
+	}
+
+	public Gear createGear(final Gear score) {
+		return gearDAO.persist(score);
+	}
+
+	public Gear updateGear(final Gear score) {
+		return gearDAO.persist(score);
+	}
+
+	public Gear readGear(final int id) {
+		return gearDAO.get(id);
+	}
+
+	public List<Gear> listGear() {
+		return gearDAO.listAll();
+	}
+
+	public void deleteGear(final Gear score) {
+		gearDAO.delete(score);
 	}
 }

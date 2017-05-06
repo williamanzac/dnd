@@ -24,22 +24,22 @@
 <![endif]-->
 </head>
 <body>
-	<!-- Edit Spell Modal -->
+	<!-- Edit Ability Modal -->
 	<div
 		data-bind="modal: {
-	    visible: editSpellModalVisible,
-	    header: { data: { label: 'Edit Spell' } },
-	    body: { name: 'editSpellModalTemplate' },
-	    footer: { data: { action: updateSpell, closeLabel: 'Cancel', primaryLabel: 'Update' } }
+	    visible: editAbilityModalVisible,
+	    header: { data: { label: 'Edit Ability' } },
+	    body: { name: 'editAbilityModalTemplate' },
+	    footer: { data: { action: updateAbility, closeLabel: 'Cancel', primaryLabel: 'Update' } }
     }"></div>
 
-	<!-- New Spell Modal -->
+	<!-- New Ability Modal -->
 	<div
 		data-bind="modal: {
-	    visible: newSpellModalVisible,
-	    header: { data: { label: 'New Spell' } },
-	    body: { name: 'editSpellModalTemplate' },
-	    footer: { data: { action: createSpell, closeLabel: 'Cancel', primaryLabel: 'Create' } }
+	    visible: newAbilityModalVisible,
+	    header: { data: { label: 'New Ability' } },
+	    body: { name: 'editAbilityModalTemplate' },
+	    footer: { data: { action: createAbility, closeLabel: 'Cancel', primaryLabel: 'Create' } }
     }"></div>
 
 	<div class="container">
@@ -61,7 +61,7 @@
 						<th>
 							<div class="btn-group btn-group-xs" role="group">
 								<button class="btn btn-success"
-									data-bind="click: showNewSpellModal">
+									data-bind="click: showNewAbilityModal">
 									<i class="fa fa-plus"></i>
 								</button>
 							</div>
@@ -81,7 +81,7 @@
 						<td>
 							<div class="btn-group btn-group-xs" role="group">
 								<button class="btn btn-default"
-									data-bind="click: $root.showEditSpellModal.bind($data)">
+									data-bind="click: $root.showEditAbilityModal.bind($data)">
 									<i class="fa fa-pencil"></i>
 								</button>
 								<button class="btn btn-warning">
@@ -95,7 +95,7 @@
 		</div>
 	</div>
 
-	<script type="text/html" id="editSpellModalTemplate">
+	<script type="text/html" id="editAbilityModalTemplate">
 		<div class="clearfix">
 			<div class="input-group">
 				<input class="form-control" placeholder="Name" autofocus type="text" data-bind="value: $root.newScore().name" />
