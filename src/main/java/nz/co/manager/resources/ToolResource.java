@@ -2,6 +2,7 @@ package nz.co.manager.resources;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -33,6 +34,7 @@ public class ToolResource {
 	private final DiceService diceService;
 	private final HeightWeightService heightWeightService;
 
+	@Inject
 	public ToolResource(final NameGenerator nameGenerator, final DiceService diceService,
 			final HeightWeightService heightWeightService) {
 		this.nameGenerator = nameGenerator;

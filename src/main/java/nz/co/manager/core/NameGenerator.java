@@ -5,15 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
+import org.jvnet.hk2.annotations.Service;
+
 import nz.co.manager.api.NameSet;
 import nz.co.manager.jdbi.NameSetDAO;
 
+@Service
 public class NameGenerator {
 
 	private final NameSetDAO dao;
 
 	private final Map<String, Map<String, Map<String, Double>>> chainCache = new HashMap<>();
 
+	@Inject
 	public NameGenerator(final NameSetDAO dao) {
 		this.dao = dao;
 		// nameSet.put("dwarf_male",

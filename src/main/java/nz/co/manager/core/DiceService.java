@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.jvnet.hk2.annotations.Service;
+
 import nz.co.manager.api.Die;
 
+@Service
 public class DiceService {
 
 	public static final Pattern ROLL_PATTERN = Pattern.compile("(\\d+)d(\\d+)([\\+-]\\d+)?");

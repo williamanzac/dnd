@@ -2,6 +2,7 @@ package nz.co.manager.resources;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -29,6 +30,7 @@ import nz.co.manager.core.AdminService;
 public class AdminResource {
 	private final AdminService adminService;
 
+	@Inject
 	public AdminResource(final AdminService adminService) {
 		this.adminService = adminService;
 	}

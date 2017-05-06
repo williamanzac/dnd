@@ -2,6 +2,10 @@ package nz.co.manager.core;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.jvnet.hk2.annotations.Service;
+
 import nz.co.manager.api.Ability;
 import nz.co.manager.api.AbilityScore;
 import nz.co.manager.api.Alignment;
@@ -19,6 +23,7 @@ import nz.co.manager.jdbi.GearDAO;
 import nz.co.manager.jdbi.LanguageDAO;
 import nz.co.manager.jdbi.SchoolDAO;
 
+@Service
 public class AdminService {
 	private final AbilityScoreDAO abilityScoreDAO;
 	private final AbilityDAO abilityDAO;
@@ -29,6 +34,7 @@ public class AdminService {
 	private final LanguageDAO languageDAO;
 	private final GearDAO gearDAO;
 
+	@Inject
 	public AdminService(final AbilityScoreDAO abilityScoreDAO, final AbilityDAO abilityDAO,
 			final DurationDAO durationDAO, final SchoolDAO schoolDAO, final ConditionDAO conditionDAO,
 			final AlignmentDAO alignmentDAO, final LanguageDAO languageDAO, final GearDAO gearDAO) {

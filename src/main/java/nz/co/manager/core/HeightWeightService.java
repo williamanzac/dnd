@@ -3,13 +3,19 @@ package nz.co.manager.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.jvnet.hk2.annotations.Service;
+
 import nz.co.manager.api.HeightWeight;
 import nz.co.manager.jdbi.HeightWeightDAO;
 
+@Service
 public class HeightWeightService {
 
 	private final HeightWeightDAO heightWeightDAO;
 
+	@Inject
 	public HeightWeightService(final HeightWeightDAO heightWeightDAO) {
 		this.heightWeightDAO = heightWeightDAO;
 	}

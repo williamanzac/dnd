@@ -1,5 +1,6 @@
 package nz.co.manager;
 
+import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.hibernate.SessionFactory;
 
 import io.dropwizard.Application;
@@ -23,8 +24,6 @@ import nz.co.manager.jdbi.HeightWeightDAO;
 import nz.co.manager.jdbi.LanguageDAO;
 import nz.co.manager.jdbi.NameSetDAO;
 import nz.co.manager.jdbi.SchoolDAO;
-import nz.co.manager.resources.AdminResource;
-import nz.co.manager.resources.ToolResource;
 
 public class ManageApp extends Application<ManageAppConfiguration> {
 
@@ -53,27 +52,29 @@ public class ManageApp extends Application<ManageAppConfiguration> {
 	public void run(final ManageAppConfiguration configuration, final Environment environment) throws Exception {
 		final SessionFactory sessionFactory = hibernate.getSessionFactory();
 
-		final NameSetDAO nameSetDAO = new NameSetDAO(sessionFactory);
-		final AbilityScoreDAO abilityScoreDAO = new AbilityScoreDAO(sessionFactory);
-		final AbilityDAO abilityDAO = new AbilityDAO(sessionFactory);
-		final DurationDAO durationDAO = new DurationDAO(sessionFactory);
-		final SchoolDAO schoolDAO = new SchoolDAO(sessionFactory);
-		final ConditionDAO conditionDAO = new ConditionDAO(sessionFactory);
-		final HeightWeightDAO heightWeightDAO = new HeightWeightDAO(sessionFactory);
-		final AlignmentDAO alignmentDAO = new AlignmentDAO(sessionFactory);
-		final LanguageDAO languageDAO = new LanguageDAO(sessionFactory);
-		final GearDAO gearDAO = new GearDAO(sessionFactory);
+		environment.jersey().register(new AbstractBinder() {
+			@Override
+			protected void configure() {
+				bind(sessionFactory).to(SessionFactory.class);
 
-		final NameGenerator nameGenerator = new NameGenerator(nameSetDAO);
-		final AdminService adminService = new AdminService(abilityScoreDAO, abilityDAO, durationDAO, schoolDAO,
-				conditionDAO, alignmentDAO, languageDAO, gearDAO);
-		final DiceService diceService = new DiceService();
-		final HeightWeightService heightWeightService = new HeightWeightService(heightWeightDAO);
+				bind(NameSetDAO.class).to(NameSetDAO.class);
+				bind(AbilityScoreDAO.class).to(AbilityScoreDAO.class);
+				bind(AbilityDAO.class).to(AbilityDAO.class);
+				bind(DurationDAO.class).to(DurationDAO.class);
+				bind(SchoolDAO.class).to(SchoolDAO.class);
+				bind(ConditionDAO.class).to(ConditionDAO.class);
+				bind(HeightWeightDAO.class).to(HeightWeightDAO.class);
+				bind(AlignmentDAO.class).to(AlignmentDAO.class);
+				bind(LanguageDAO.class).to(LanguageDAO.class);
+				bind(GearDAO.class).to(GearDAO.class);
 
-		final ToolResource toolResource = new ToolResource(nameGenerator, diceService, heightWeightService);
-		final AdminResource adminResource = new AdminResource(adminService);
+				bind(NameGenerator.class).to(NameGenerator.class);
+				bind(AdminService.class).to(AdminService.class);
+				bind(DiceService.class).to(DiceService.class);
+				bind(HeightWeightService.class).to(HeightWeightService.class);
+			}
+		});
 
-		environment.jersey().register(toolResource);
-		environment.jersey().register(adminResource);
+		environment.jersey().packages("nz.co.manager.resources");
 	}
 }

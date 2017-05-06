@@ -3,15 +3,20 @@ package nz.co.manager.jdbi;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.jvnet.hk2.annotations.Service;
 
 import io.dropwizard.hibernate.AbstractDAO;
 import nz.co.manager.api.NameSet;
 
+@Service
 public class NameSetDAO extends AbstractDAO<NameSet> {
 
+	@Inject
 	public NameSetDAO(final SessionFactory sessionFactory) {
 		super(sessionFactory);
 	}
