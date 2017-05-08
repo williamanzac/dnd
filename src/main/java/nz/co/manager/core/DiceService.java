@@ -5,6 +5,7 @@ import static nz.co.manager.api.Die.getForSides;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,5 +37,15 @@ public class DiceService {
 			return values;
 		}
 		throw new ServiceException("Unable to process the dice data:" + data);
+	}
+
+	public List<Integer> roll(final int data, final int times) throws ServiceException {
+		final Random random = new Random();
+		final List<Integer> values = new ArrayList<>();
+		for (int t = 0; t < times; t++) {
+			final int value = random.nextInt(data) + 1;
+			values.add(value);
+		}
+		return values;
 	}
 }

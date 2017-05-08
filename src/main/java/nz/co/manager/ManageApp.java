@@ -14,16 +14,8 @@ import nz.co.manager.core.AdminService;
 import nz.co.manager.core.DiceService;
 import nz.co.manager.core.HeightWeightService;
 import nz.co.manager.core.NameGenerator;
-import nz.co.manager.jdbi.AbilityDAO;
-import nz.co.manager.jdbi.AbilityScoreDAO;
-import nz.co.manager.jdbi.AlignmentDAO;
-import nz.co.manager.jdbi.ConditionDAO;
-import nz.co.manager.jdbi.DurationDAO;
-import nz.co.manager.jdbi.GearDAO;
-import nz.co.manager.jdbi.HeightWeightDAO;
-import nz.co.manager.jdbi.LanguageDAO;
-import nz.co.manager.jdbi.NameSetDAO;
-import nz.co.manager.jdbi.SchoolDAO;
+import nz.co.manager.core.WorldHookService;
+import nz.co.manager.jdbi.*;
 
 public class ManageApp extends Application<ManageAppConfiguration> {
 
@@ -67,11 +59,14 @@ public class ManageApp extends Application<ManageAppConfiguration> {
 				bind(AlignmentDAO.class).to(AlignmentDAO.class);
 				bind(LanguageDAO.class).to(LanguageDAO.class);
 				bind(GearDAO.class).to(GearDAO.class);
+				bind(WorldHookCategoryDAO.class).to(WorldHookCategoryDAO.class);
+				bind(WorldHookDAO.class).to(WorldHookDAO.class);
 
 				bind(NameGenerator.class).to(NameGenerator.class);
 				bind(AdminService.class).to(AdminService.class);
 				bind(DiceService.class).to(DiceService.class);
 				bind(HeightWeightService.class).to(HeightWeightService.class);
+				bind(WorldHookService.class).to(WorldHookService.class);
 			}
 		});
 
