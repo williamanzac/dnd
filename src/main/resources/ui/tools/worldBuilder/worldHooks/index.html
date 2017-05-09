@@ -57,11 +57,18 @@
     }"></div>
 
 	<div class="container">
+        <div class="row">
+            <ol class="breadcrumb">
+                <li>tools</li>
+                <li>World Builder</li>
+                <li class="active">World Hooks</li>
+            </ol>
+        </div>
 		<div class="row">
 			<h1>World Hooks</h1>
 		</div>
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<div class="form-inline row">
 					<div class="form-group">
 						<button class="btn btn-success" data-bind="click: showNewCategoryModal">
@@ -75,10 +82,13 @@
 				</div>
 				<div class="row" data-bind="foreach: categories">
 					<div class="category col-md-12">
-						<div class="col-md-8">
+                        <div class="col-md-2">
+                            <div class="row" data-bind="text: $data.min() + '-' + $data.max()"></div>
+                        </div>
+						<div class="col-md-7">
 							<div class="row" data-bind="text: $data.name"></div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="btn-group btn-group-xs pull-right row" role="group">
                                 <button type="button" class="btn btn-success" data-bind="click: $root.showNewWorldHookModal.bind($data)">
                                     <i class="fa fa-plus"></i>
@@ -94,10 +104,10 @@
 					</div>
                     <!-- ko foreach: $data.worldHooks -->
                     <div class="worldHook col-md-12">
-                        <div class="col-md-8">
+                        <div class="col-md-offset-3 col-md-6">
                             <div class="row" data-bind="text: $data.name"></div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="btn-group btn-group-xs pull-right row" role="group">
                                 <button type="button" class="btn btn-default" data-bind="click: $root.showEditWorldHookModal.bind($data)">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>

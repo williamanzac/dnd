@@ -14,6 +14,7 @@ import nz.co.manager.core.AdminService;
 import nz.co.manager.core.DiceService;
 import nz.co.manager.core.HeightWeightService;
 import nz.co.manager.core.NameGenerator;
+import nz.co.manager.core.PlanetologyService;
 import nz.co.manager.core.WorldHookService;
 import nz.co.manager.jdbi.*;
 
@@ -61,12 +62,16 @@ public class ManageApp extends Application<ManageAppConfiguration> {
 				bind(GearDAO.class).to(GearDAO.class);
 				bind(WorldHookCategoryDAO.class).to(WorldHookCategoryDAO.class);
 				bind(WorldHookDAO.class).to(WorldHookDAO.class);
+				bind(WorldShapeDAO.class).to(WorldShapeDAO.class);
+				bind(WorldSizeDAO.class).to(WorldSizeDAO.class);
+				bind(WorldHydrographyDAO.class).to(WorldHydrographyDAO.class);
 
 				bind(NameGenerator.class).to(NameGenerator.class);
 				bind(AdminService.class).to(AdminService.class);
 				bind(DiceService.class).to(DiceService.class);
 				bind(HeightWeightService.class).to(HeightWeightService.class);
 				bind(WorldHookService.class).to(WorldHookService.class);
+				bind(PlanetologyService.class).to(PlanetologyService.class);
 			}
 		});
 
