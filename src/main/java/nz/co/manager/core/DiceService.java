@@ -26,6 +26,9 @@ public class DiceService {
 			final int dice = parseInt(matcher.group(2));
 			final int add = matcher.group(3) == null ? 0 : parseInt(matcher.group(3));
 			final Die die = getForSides(dice);
+			if (die == null) {
+				throw new ServiceException("Invalid number of sides: " + dice);
+			}
 			for (int t = 0; t < times; t++) {
 				int value = 0;
 				for (int i = 0; i < numDice; i++) {
