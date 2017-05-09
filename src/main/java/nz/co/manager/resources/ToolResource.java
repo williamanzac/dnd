@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import nz.co.manager.api.HeightWeight;
@@ -28,11 +27,15 @@ public class ToolResource {
 	class CategoryView {
 		private int id;
 		private String name;
+		private int min;
+		private int max;
 		private List<WorldHookView> worldHooks = new ArrayList<>();
 
 		public CategoryView(WorldHookCategory category) {
 			this.id = category.getId();
 			this.name = category.getName();
+			this.min = category.getMin();
+			this.max = category.getMax();
 			if (category.getWorldHooks() != null) {
 				category.getWorldHooks().forEach(h -> {
 					this.worldHooks.add(new WorldHookView(h));
@@ -62,6 +65,22 @@ public class ToolResource {
 
 		public void setWorldHooks(List<WorldHookView> worldHooks) {
 			this.worldHooks = worldHooks;
+		}
+
+		public int getMin() {
+			return min;
+		}
+
+		public void setMin(int min) {
+			this.min = min;
+		}
+
+		public int getMax() {
+			return max;
+		}
+
+		public void setMax(int max) {
+			this.max = max;
 		}
 	}
 
@@ -113,42 +132,43 @@ public class ToolResource {
 		return Response.ok(sets).build();
 	}
 
-	@Path("/names/{type}/generate")
+	@Path("/names/{id}/generate")
 	@POST
 	@UnitOfWork
-	public Response generateName(final @PathParam("type") String type, final @QueryParam("numOf") Integer numOf) {
-		return Response.ok(nameGenerator.nameList(type, numOf)).build();
+	public Response generateName(final @PathParam("id") int id, final @QueryParam("numOf") Integer numOf)
+			throws ServiceException {
+		return Response.ok(nameGenerator.nameList(id, numOf)).build();
 	}
 
-	@Path("/names/{type}")
+	@Path("/names")
 	@POST
 	@UnitOfWork
-	public Response createNameSet(final @PathParam("type") String type, final List<String> names) {
-		nameGenerator.createNameSet(type, names);
-		return Response.created(UriBuilder.fromMethod(getClass(), "readNameSet").build(type)).build();
+	public Response createNameSet(final NameSet set) {
+		final NameSet nameSet = nameGenerator.createNameSet(set);
+		return Response.ok(nameSet).build();
 	}
 
-	@Path("/names/{type}")
+	@Path("/names")
 	@PUT
 	@UnitOfWork
-	public Response updateNameSet(final @PathParam("type") String type, final List<String> names) {
-		nameGenerator.updateNameSet(type, names);
-		return Response.ok(names).build();
+	public Response updateNameSet(final NameSet set) {
+		final NameSet nameSet = nameGenerator.updateNameSet(set);
+		return Response.ok(nameSet).build();
 	}
 
-	@Path("/names/{type}")
+	@Path("/names/{id}")
 	@DELETE
 	@UnitOfWork
-	public Response deleteNameSet(final @PathParam("type") String type) {
-		nameGenerator.deleteNameSet(type);
+	public Response deleteNameSet(final @PathParam("id") int id) {
+		nameGenerator.deleteNameSet(id);
 		return Response.ok().build();
 	}
 
-	@Path("/names/{type}")
+	@Path("/names/{id}")
 	@GET
 	@UnitOfWork
-	public Response readNameSet(final @PathParam("type") String type) {
-		final NameSet set = nameGenerator.readNameSet(type);
+	public Response readNameSet(final @PathParam("id") int id) {
+		final NameSet set = nameGenerator.readNameSet(id);
 		return Response.ok(set).build();
 	}
 
@@ -168,12 +188,12 @@ public class ToolResource {
 		return Response.ok(sets).build();
 	}
 
-	@Path("/heightWeights/{type}/generate")
+	@Path("/heightWeights/{id}/generate")
 	@POST
 	@UnitOfWork
-	public Response generateHeightWeight(final @PathParam("type") String type, final @QueryParam("times") Integer numOf)
+	public Response generateHeightWeight(final @PathParam("id") int id, final @QueryParam("times") Integer numOf)
 			throws ServiceException {
-		return Response.ok(heightWeightService.generate(type, numOf)).build();
+		return Response.ok(heightWeightService.generate(id, numOf)).build();
 	}
 
 	@Path("/heightWeights")
@@ -192,19 +212,19 @@ public class ToolResource {
 		return Response.ok(names).build();
 	}
 
-	@Path("/heightWeights/{type}")
+	@Path("/heightWeights/{id}")
 	@DELETE
 	@UnitOfWork
-	public Response deleteHeightWeight(final @PathParam("type") String type) {
-		heightWeightService.deleteHeightWeight(type);
+	public Response deleteHeightWeight(final @PathParam("id") int id) {
+		heightWeightService.deleteHeightWeight(id);
 		return Response.ok().build();
 	}
 
-	@Path("/heightWeights/{type}")
+	@Path("/heightWeights/{id}")
 	@GET
 	@UnitOfWork
-	public Response readHeightWeight(final @PathParam("type") String type) {
-		final HeightWeight set = heightWeightService.readHeightWeight(type);
+	public Response readHeightWeight(final @PathParam("id") int id) {
+		final HeightWeight set = heightWeightService.readHeightWeight(id);
 		return Response.ok(set).build();
 	}
 
@@ -217,7 +237,7 @@ public class ToolResource {
 		hooks.forEach(h -> {
 			list.add(new WorldHookView(h));
 		});
-		return Response.ok(hooks).build();
+		return Response.ok(list).build();
 	}
 
 	@Path("/worldHooks")

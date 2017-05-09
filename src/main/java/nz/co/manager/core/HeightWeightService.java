@@ -20,8 +20,8 @@ public class HeightWeightService {
 		this.heightWeightDAO = heightWeightDAO;
 	}
 
-	public List<Integer> generate(final String type, final int times) throws ServiceException {
-		final HeightWeight heightWeight = heightWeightDAO.getByType(type);
+	public List<Integer> generate(final int id, final int times) throws ServiceException {
+		final HeightWeight heightWeight = readHeightWeight(id);
 		final int baseHeight = heightWeight.getBaseHeightInch();
 		final int baseWeight = heightWeight.getBaseWeightLB();
 		final DiceService diceService = new DiceService();
@@ -50,8 +50,8 @@ public class HeightWeightService {
 		return heightWeightDAO.persist(score);
 	}
 
-	public HeightWeight readHeightWeight(final String type) {
-		return heightWeightDAO.get(type);
+	public HeightWeight readHeightWeight(final int id) {
+		return heightWeightDAO.get(id);
 	}
 
 	public List<HeightWeight> listHeightWeights() {
@@ -62,8 +62,8 @@ public class HeightWeightService {
 		heightWeightDAO.delete(score);
 	}
 
-	public void deleteHeightWeight(final String type) {
-		final HeightWeight score = heightWeightDAO.getByType(type);
+	public void deleteHeightWeight(final int id) {
+		final HeightWeight score = readHeightWeight(id);
 		heightWeightDAO.delete(score);
 	}
 }

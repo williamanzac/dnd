@@ -1,6 +1,7 @@
 function NameSet(data) {
 	var self = this;
 	if (data != null) {
+		self.id = data.id;
 		self.type = ko.observable(data.type);
 		self.names = ko.observableArray(data.names);
 	} else {
@@ -43,10 +44,15 @@ function NamesViewModel() {
 	}
 	self.updateSet = function () {
 		self.hideEditNameSetModal();
+		var data = {
+			"id": parseInt(self.editSet().id),
+			"type": self.editSet().type(),
+			"names": self.editSet().names()
+		};
 		$.ajax({
 			method: "PUT",
-			data: JSON.stringify(self.editSet().names()),
-			url: "/tools/names/" + self.editSet().type(),
+			data: JSON.stringify(data),
+			url: "/tools/names",
 			contentType: "application/json",
 			dataType: "json"
 		}).done(function() {
@@ -55,10 +61,14 @@ function NamesViewModel() {
 	}
 	self.createSet = function () {
 		self.hideNewNameSetModal();
+		var data = {
+			"type": self.editSet().type(),
+			"names": self.editSet().names()
+		};
 		$.ajax({
 			method: "POST",
-			data: JSON.stringify(self.editSet().names()),
-			url: "/tools/names/" + self.editSet().type(),
+			data: JSON.stringify(data),
+			url: "/tools/names",
 			contentType: "application/json",
 			dataType: "json"
 		}).done(function() {
@@ -69,7 +79,7 @@ function NamesViewModel() {
 	self.generate = function (nameSet) {
 		$.ajax({
 			method: "POST",
-			url: "/tools/names/" + nameSet.type() + "/generate?numOf=" + self.numOf(),
+			url: "/tools/names/" + nameSet.id + "/generate?numOf=" + self.numOf(),
 			contentType: "application/json",
 			dataType: "json"
 		}).done(function (data) {
@@ -80,7 +90,7 @@ function NamesViewModel() {
 	self.remove = function (nameSet) {
 		$.ajax({
 			method: "DELETE",
-			url: "/tools/names/" + nameSet.type(),
+			url: "/tools/names/" + nameSet.id,
 			contentType: "application/json",
 			dataType: "json"
 		}).done(function (data) {

@@ -17,8 +17,6 @@ public class NameGenerator {
 
 	private final NameSetDAO dao;
 
-	private final Map<String, Map<String, Map<String, Double>>> chainCache = new HashMap<>();
-
 	@Inject
 	public NameGenerator(final NameSetDAO dao) {
 		this.dao = dao;
@@ -102,97 +100,92 @@ public class NameGenerator {
 		// Open, Poetry, Quest, Random, Reverence, Sorrow, Temerity, Torment, Weary
 	}
 
-	public String generateName(final String type) {
-		Map<String, Map<String, Double>> chain;
-		if ((chain = markovChain(type)) != null) {
-			// System.out.println(chain);
-			return markovName(chain);
+	public String generateName(final int id) throws ServiceException {
+		final Map<String, Map<String, Double>> chain = markovChain(id);
+		if (chain == null) {
+			throw new ServiceException("Unable to generate Name.");
 		}
-		return "";
+		return markovName(chain);
 	}
 
-	public List<String> nameList(final String type, final int numOf) {
+	public List<String> nameList(final int id, final int numOf) throws ServiceException {
 		final List<String> names = new ArrayList<>();
 		for (int i = 0; i < numOf; i++) {
-			names.add(generateName(type));
+			names.add(generateName(id));
 		}
 		return names;
 	}
 
-	protected Map<String, Map<String, Double>> markovChain(final String type) {
-		Map<String, Map<String, Double>> chain;
-		if ((chain = chainCache.get(type)) != null) {
-			return chain;
-		} else {
-			List<String> list;
-			if ((list = dao.getByType(type).getNames()) != null) {
-				if ((chain = constructChain(list)) != null) {
-					chainCache.put(type, chain);
-					return chain;
-				}
-			}
+	protected Map<String, Map<String, Double>> markovChain(final int id) throws ServiceException {
+		final List<String> list = readNameSet(id).getNames();
+		if (list == null) {
+			throw new ServiceException("No Names defined.");
 		}
-		return null;
+		final Map<String, Map<String, Double>> chain = constructChain(list);
+		if (chain == null) {
+			throw new ServiceException("Unable to process names.");
+		}
+		return chain;
 	}
 
 	protected Map<String, Map<String, Double>> constructChain(final List<String> list) {
-		Map<String, Map<String, Double>> chain = new HashMap<>();
+		final Map<String, Map<String, Double>> chain = new HashMap<>();
 
 		for (int i = 0; i < list.size(); i++) {
 			final String[] names = list.get(i).split("\\s+");
-			chain = incrChain(chain, "parts", String.valueOf(names.length));
+			incrChain(chain, "parts", String.valueOf(names.length));
 
 			for (final String name : names) {
-				chain = incrChain(chain, "nameLen", String.valueOf(name.length()));
+				incrChain(chain, "nameLen", String.valueOf(name.length()));
 
 				String c = name.substring(0, 1);
-				chain = incrChain(chain, "initial", c);
+				incrChain(chain, "initial", c);
 
 				String string = name.substring(1);
 				String lastC = c;
 
 				while (string.length() > 0) {
 					c = string.substring(0, 1);
-					chain = incrChain(chain, lastC, c);
+					incrChain(chain, lastC, c);
 
 					string = string.substring(1);
 					lastC = c;
 				}
 			}
 		}
-		return scaleChain(chain);
+		scaleChain(chain);
+		return chain;
 	}
 
-	private Map<String, Map<String, Double>> incrChain(final Map<String, Map<String, Double>> chain, final String key,
-			final String token) {
+	private void incrChain(final Map<String, Map<String, Double>> chain, final String key, final String token) {
 		if (chain.containsKey(key)) {
-			if (chain.get(key).containsKey(token)) {
-				chain.get(key).put(token, chain.get(key).get(token) + 1);
+			final Map<String, Double> map = chain.get(key);
+			if (map.containsKey(token)) {
+				map.put(token, chain.get(key).get(token) + 1);
 			} else {
-				chain.get(key).put(token, 1.0);
+				map.put(token, 1.0);
 			}
 		} else {
 			chain.put(key, new HashMap<>());
 			chain.get(key).put(token, 1.0);
 		}
-		return chain;
 	}
 
-	private Map<String, Map<String, Double>> scaleChain(final Map<String, Map<String, Double>> chain) {
+	private void scaleChain(final Map<String, Map<String, Double>> chain) {
 		final Map<String, Double> tableLen = new HashMap<>();
 
 		for (final String key : chain.keySet()) {
 			tableLen.put(key, 0.0);
-			for (final String token : chain.get(key).keySet()) {
-				final double count = chain.get(key).get(token);
+			final Map<String, Double> map = chain.get(key);
+			for (final String token : map.keySet()) {
+				final double count = map.get(token);
 				final double weighted = Math.floor(Math.pow(count, 1.3));
 
-				chain.get(key).put(token, weighted);
+				map.put(token, weighted);
 				tableLen.put(key, tableLen.get(key) + weighted);
 			}
 		}
 		chain.put("tableLen", tableLen);
-		return chain;
 	}
 
 	protected String markovName(final Map<String, Map<String, Double>> chain) {
@@ -229,23 +222,16 @@ public class NameGenerator {
 		return "-";
 	}
 
-	public NameSet createNameSet(final String type, final List<String> names) {
-		final NameSet set = new NameSet();
-		set.setNames(names);
-		set.setType(type);
+	public NameSet createNameSet(final NameSet set) {
 		return dao.persist(set);
 	}
 
-	public NameSet updateNameSet(final String type, final List<String> names) {
-		final NameSet set = dao.getByType(type);
-		set.getNames().clear();
-		set.getNames().addAll(names);
+	public NameSet updateNameSet(final NameSet set) {
 		return dao.persist(set);
 	}
 
-	public NameSet readNameSet(final String type) {
-		final NameSet set = dao.getByType(type);
-		return set;
+	public NameSet readNameSet(final int id) {
+		return dao.get(id);
 	}
 
 	public List<NameSet> listNameSets() {
@@ -253,8 +239,8 @@ public class NameGenerator {
 		return listAll;
 	}
 
-	public void deleteNameSet(final String type) {
-		final NameSet set = dao.getByType(type);
+	public void deleteNameSet(final int id) {
+		final NameSet set = readNameSet(id);
 		dao.delete(set);
 	}
 }

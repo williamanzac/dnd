@@ -7,7 +7,6 @@ import javax.inject.Inject;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.jvnet.hk2.annotations.Service;
 
 import io.dropwizard.hibernate.AbstractDAO;
@@ -33,10 +32,6 @@ public class HeightWeightDAO extends AbstractDAO<HeightWeight> {
 	@Override
 	public HeightWeight persist(final HeightWeight entity) throws HibernateException {
 		return super.persist(entity);
-	}
-
-	public HeightWeight getByType(final String type) {
-		return uniqueResult(criteria().add(Restrictions.eq("type", type)));
 	}
 
 	public void delete(final HeightWeight set) {

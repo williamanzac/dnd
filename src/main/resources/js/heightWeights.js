@@ -102,7 +102,7 @@ function HeightWeightViewModel() {
 	self.generate = function(heightWeight) {
 		$.ajax({
 			method: "POST",
-			url: "/tools/heightWeights/" + heightWeight.type() + "/generate?times=" + self.times(),
+			url: "/tools/heightWeights/" + heightWeight.id + "/generate?times=" + self.times(),
 			contentType: "application/json",
 			dataType: "json"
 		}).done(function (data) {
@@ -113,7 +113,7 @@ function HeightWeightViewModel() {
 	self.remove = function (heightWeight) {
 		$.ajax({
 			method: "DELETE",
-			url: "/tools/heightWeights/" + heightWeight.type(),
+			url: "/tools/heightWeights/" + heightWeight.id,
 			contentType: "application/json",
 			dataType: "json"
 		}).done(function (data) {
