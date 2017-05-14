@@ -16,6 +16,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import io.dropwizard.hibernate.UnitOfWork;
+import nz.co.manager.api.DisplayType;
+import nz.co.manager.api.LandWaterDistribution;
+import nz.co.manager.api.LandWaterMass;
+import nz.co.manager.api.LandWaterMassResults;
+import nz.co.manager.api.RegionType;
 import nz.co.manager.api.WorldHydrography;
 import nz.co.manager.api.WorldShape;
 import nz.co.manager.api.WorldSize;
@@ -176,5 +181,174 @@ public class PlanetologyResource {
 	public Response generateWorldHydrography(final @QueryParam("times") Integer numOf) throws ServiceException {
 		final List<WorldHydrography> hooks = planetologyService.generateWorldHydrography(numOf);
 		return Response.ok(hooks).build();
+	}
+
+	@Path("/regionTypes")
+	@GET
+	@UnitOfWork
+	public Response listRegionTypes() {
+		final List<RegionType> hooks = planetologyService.listRegionTypes();
+		return Response.ok(hooks).build();
+	}
+
+	@Path("/regionTypes")
+	@POST
+	@UnitOfWork
+	public Response createRegionType(final RegionType hook) {
+		RegionType regionType = planetologyService.createRegionType(hook);
+		return Response.ok(regionType).build();
+	}
+
+	@Path("/regionTypes")
+	@PUT
+	@UnitOfWork
+	public Response updateRegionType(final RegionType hook) {
+		RegionType regionType = planetologyService.updateRegionType(hook);
+		return Response.ok(regionType).build();
+	}
+
+	@Path("/regionTypes/{id}")
+	@DELETE
+	@UnitOfWork
+	public Response deleteRegionType(final @PathParam("id") int id) {
+		planetologyService.deleteRegionType(id);
+		return Response.ok().build();
+	}
+
+	@Path("/regionTypes/{id}")
+	@GET
+	@UnitOfWork
+	public Response readRegionType(final @PathParam("id") int id) {
+		final RegionType hook = planetologyService.readRegionType(id);
+		return Response.ok(hook).build();
+	}
+
+	@Path("/displayTypes")
+	@GET
+	@UnitOfWork
+	public Response listDisplayTypes() {
+		final List<DisplayType> hooks = planetologyService.listDisplayTypes();
+		return Response.ok(hooks).build();
+	}
+
+	@Path("/displayTypes")
+	@POST
+	@UnitOfWork
+	public Response createDisplayType(final DisplayType hook) {
+		DisplayType displayType = planetologyService.createDisplayType(hook);
+		return Response.ok(displayType).build();
+	}
+
+	@Path("/displayTypes")
+	@PUT
+	@UnitOfWork
+	public Response updateDisplayType(final DisplayType hook) {
+		DisplayType displayType = planetologyService.updateDisplayType(hook);
+		return Response.ok(displayType).build();
+	}
+
+	@Path("/displayTypes/{id}")
+	@DELETE
+	@UnitOfWork
+	public Response deleteDisplayType(final @PathParam("id") int id) {
+		planetologyService.deleteDisplayType(id);
+		return Response.ok().build();
+	}
+
+	@Path("/displayTypes/{id}")
+	@GET
+	@UnitOfWork
+	public Response readDisplayType(final @PathParam("id") int id) {
+		final DisplayType hook = planetologyService.readDisplayType(id);
+		return Response.ok(hook).build();
+	}
+
+	@Path("/landWaterDistributions")
+	@GET
+	@UnitOfWork
+	public Response listLandWaterDistributions() {
+		final List<LandWaterDistribution> hooks = planetologyService.listLandWaterDistributions();
+		return Response.ok(hooks).build();
+	}
+
+	@Path("/landWaterDistributions")
+	@POST
+	@UnitOfWork
+	public Response createLandWaterDistribution(final LandWaterDistribution hook) {
+		LandWaterDistribution landWaterDistribution = planetologyService.createLandWaterDistribution(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/landWaterDistributions")
+	@PUT
+	@UnitOfWork
+	public Response updateLandWaterDistribution(final LandWaterDistribution hook) {
+		LandWaterDistribution landWaterDistribution = planetologyService.updateLandWaterDistribution(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/landWaterDistributions/{id}")
+	@DELETE
+	@UnitOfWork
+	public Response deleteLandWaterDistribution(final @PathParam("id") int id) {
+		planetologyService.deleteLandWaterDistribution(id);
+		return Response.ok().build();
+	}
+
+	@Path("/landWaterDistributions/{id}")
+	@GET
+	@UnitOfWork
+	public Response readLandWaterDistribution(final @PathParam("id") int id) {
+		final LandWaterDistribution hook = planetologyService.readLandWaterDistribution(id);
+		return Response.ok(hook).build();
+	}
+
+	@Path("/landWaterMasses")
+	@GET
+	@UnitOfWork
+	public Response listLandWaterMassses() {
+		final List<LandWaterMass> hooks = planetologyService.listLandWaterMasses();
+		return Response.ok(hooks).build();
+	}
+
+	@Path("/landWaterMasses")
+	@POST
+	@UnitOfWork
+	public Response createLandWaterMass(final LandWaterMass hook) {
+		LandWaterMass landWaterDistribution = planetologyService.createLandWaterMass(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/landWaterMasses")
+	@PUT
+	@UnitOfWork
+	public Response updateLandWaterMass(final LandWaterMass hook) {
+		LandWaterMass landWaterDistribution = planetologyService.updateLandWaterMass(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/landWaterMasses/{id}")
+	@DELETE
+	@UnitOfWork
+	public Response deleteLandWaterMass(final @PathParam("id") int id) {
+		planetologyService.deleteLandWaterMass(id);
+		return Response.ok().build();
+	}
+
+	@Path("/landWaterMasses/{id}")
+	@GET
+	@UnitOfWork
+	public Response readLandWaterMass(final @PathParam("id") int id) {
+		final LandWaterMass hook = planetologyService.readLandWaterMass(id);
+		return Response.ok(hook).build();
+	}
+
+	@Path("/landWaterMasses/generate")
+	@POST
+	@UnitOfWork
+	public Response generateLandWaterMasses(final @QueryParam("hId") int hId, final @QueryParam("dId") int dId)
+			throws ServiceException {
+		final LandWaterMassResults results = planetologyService.generateLandWaterMasses(hId, dId);
+		return Response.ok(results).build();
 	}
 }

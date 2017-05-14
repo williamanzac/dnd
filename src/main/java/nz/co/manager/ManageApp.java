@@ -65,6 +65,10 @@ public class ManageApp extends Application<ManageAppConfiguration> {
 				bind(WorldShapeDAO.class).to(WorldShapeDAO.class);
 				bind(WorldSizeDAO.class).to(WorldSizeDAO.class);
 				bind(WorldHydrographyDAO.class).to(WorldHydrographyDAO.class);
+				bind(DisplayTypeDAO.class).to(DisplayTypeDAO.class);
+				bind(RegionTypeDAO.class).to(RegionTypeDAO.class);
+				bind(LandWaterDistributionDAO.class).to(LandWaterDistributionDAO.class);
+				bind(LandWaterMassDAO.class).to(LandWaterMassDAO.class);
 
 				bind(NameGenerator.class).to(NameGenerator.class);
 				bind(AdminService.class).to(AdminService.class);

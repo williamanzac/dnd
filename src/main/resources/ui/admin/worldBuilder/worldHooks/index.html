@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Tools -> WorldHooks</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/select/1.1.2/css/select.bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+
+<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+    <!-- Edit Category Modal -->
+    <div data-bind="modal: {
+	    visible: editCategoryModalVisible,
+	    header: { data: { label: 'Edit Category' } },
+	    body: { name: 'editCategoryModalTemplate' },
+	    footer: { data: { action: updateCategory, closeLabel: 'Cancel', primaryLabel: 'Update' } }
+    }"></div>
+
+    <!-- New Category Modal -->
+    <div data-bind="modal: {
+	    visible: newCategoryModalVisible,
+	    header: { data: { label: 'New Category' } },
+	    body: { name: 'editCategoryModalTemplate' },
+	    footer: { data: { action: createCategory, closeLabel: 'Cancel', primaryLabel: 'Create' } }
+    }"></div>
+
+    <!-- Edit WorldHook Modal -->
+    <div data-bind="modal: {
+        visible: editWorldHookModalVisible,
+        header: { data: { label: 'Edit World Hook' } },
+        body: { name: 'editWorldHookModalTemplate' },
+        footer: { data: { action: updateWorldHook, closeLabel: 'Cancel', primaryLabel: 'Update' } }
+    }"></div>
+
+    <!-- New WorldHook Modal -->
+    <div data-bind="modal: {
+        visible: newWorldHookModalVisible,
+        header: { data: { label: 'New World Hook' } },
+        body: { name: 'editWorldHookModalTemplate' },
+        footer: { data: { action: createWorldHook, closeLabel: 'Cancel', primaryLabel: 'Create' } }
+    }"></div>
+
+	<div class="container">
+        <div class="row">
+            <ol class="breadcrumb">
+                <li>tools</li>
+                <li>World Builder</li>
+                <li class="active">World Hooks</li>
+            </ol>
+        </div>
+		<div class="row">
+			<h1>World Hooks</h1>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-inline row">
+					<div class="form-group">
+						<button class="btn btn-success" data-bind="click: showNewCategoryModal">
+							<i class="fa fa-plus"></i>
+						</button>
+						<input class="form-control" type="number" data-bind="value: times" min="1" >
+                        <button type="button" class="btn btn-default" data-bind="click: generate">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                        </button>
+					</div>
+				</div>
+				<div class="row" data-bind="foreach: categories">
+					<div class="category col-md-12">
+                        <div class="col-md-2">
+                            <div class="row" data-bind="text: $data.min() + '-' + $data.max()"></div>
+                        </div>
+						<div class="col-md-7">
+							<div class="row" data-bind="text: $data.name"></div>
+						</div>
+						<div class="col-md-3">
+							<div class="btn-group btn-group-xs pull-right row" role="group">
+                                <button type="button" class="btn btn-success" data-bind="click: $root.showNewWorldHookModal.bind($data)">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+								<button type="button" class="btn btn-default" data-bind="click: $root.showEditCategoryModal.bind($data)">
+									<i class="fa fa-pencil" aria-hidden="true"></i>
+								</button>
+								<button type="button" class="btn btn-warning" data-bind="click: $root.removeCategory.bind($data)">
+									<i class="fa fa-times" aria-hidden="true"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+                    <!-- ko foreach: $data.worldHooks -->
+                    <div class="worldHook col-md-12">
+                        <div class="col-md-offset-3 col-md-6">
+                            <div class="row" data-bind="text: $data.name"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="btn-group btn-group-xs pull-right row" role="group">
+                                <button type="button" class="btn btn-default" data-bind="click: $root.showEditWorldHookModal.bind($data)">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-warning" data-bind="click: $root.removeWorldHook.bind($data)">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="col-md-12" data-bind="foreach: worldHooks">
+					<div class="name row">
+						<div class="col-md-12" data-bind="text: $data.name"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <script type="text/html" id="editCategoryModalTemplate">
+		<div class="clearfix">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Name" autofocus data-bind="value: $root.editCategory().name" />
+			</div> <!-- /input-group -->
+            <div class="input-group">
+                <input type="number" class="form-control" placeholder="Min" data-bind="value: $root.editCategory().min" />
+            </div> <!-- /input-group -->
+            <div class="input-group">
+                <input type="number" class="form-control" placeholder="Max" data-bind="value: $root.editCategory().max" />
+            </div> <!-- /input-group -->
+		</div>
+    </script>
+
+    <script type="text/html" id="editWorldHookModalTemplate">
+        <div class="clearfix">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Name" autofocus data-bind="value: $root.editWorldHook().name" />
+            </div> <!-- /input-group -->
+        </div>
+    </script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/select/1.1.2/js/dataTables.select.min.js"></script>
+	<script src="/js/knockstrap.js"></script>
+	<script src="/js/worldHooks.js"></script>
+</body>
+</html>
