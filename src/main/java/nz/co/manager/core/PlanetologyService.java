@@ -1,31 +1,21 @@
 package nz.co.manager.core;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
 import org.jvnet.hk2.annotations.Service;
 
-import nz.co.manager.api.DisplayType;
-import nz.co.manager.api.LandWaterDistribution;
-import nz.co.manager.api.LandWaterMass;
-import nz.co.manager.api.LandWaterMassResults;
-import nz.co.manager.api.RegionType;
-import nz.co.manager.api.WorldHydrography;
-import nz.co.manager.api.WorldShape;
-import nz.co.manager.api.WorldSize;
-import nz.co.manager.jdbi.DisplayTypeDAO;
-import nz.co.manager.jdbi.LandWaterDistributionDAO;
-import nz.co.manager.jdbi.LandWaterMassDAO;
-import nz.co.manager.jdbi.RegionTypeDAO;
-import nz.co.manager.jdbi.WorldHydrographyDAO;
-import nz.co.manager.jdbi.WorldShapeDAO;
-import nz.co.manager.jdbi.WorldSizeDAO;
+import nz.co.manager.api.*;
+import nz.co.manager.jdbi.*;
 
 @Service
 public class PlanetologyService {
 
+	private static final int NUM_REGIONS_POLYHEDRAL = 20;
 	private final WorldShapeDAO worldShapeDAO;
 	private final WorldSizeDAO worldSizeDAO;
 	private final WorldHydrographyDAO worldHydrographyDAO;
@@ -34,12 +24,20 @@ public class PlanetologyService {
 	private final LandWaterDistributionDAO landWaterDAO;
 	private final LandWaterMassDAO landWaterMassDAO;
 	private final DiceService diceService;
+	private final PlateMovementDAO plateMovementDAO;
+	private final VolcanicActivityDAO volcanicActivityDAO;
+	private final EarthquakeActivityDAO earthquakeActivityDAO;
+	private final MountainPlacementDAO mountainPlacementDAO;
+	private final MountainPropertyDAO mountainPropertyDAO;
 
 	@Inject
 	public PlanetologyService(final WorldShapeDAO worldShapeDAO, final WorldSizeDAO worldSizeDAO,
 			final WorldHydrographyDAO worldHydrographyDAO, final RegionTypeDAO regionTypeDAO,
 			final DisplayTypeDAO displayTypeDAO, final LandWaterDistributionDAO landWaterDAO,
-			final LandWaterMassDAO landWaterMassDAO, final DiceService diceService) {
+			final LandWaterMassDAO landWaterMassDAO, final DiceService diceService,
+			final PlateMovementDAO plateMovementDAO, final VolcanicActivityDAO volcanicActivityDAO,
+			final EarthquakeActivityDAO earthquakeActivityDAO, final MountainPlacementDAO mountainPlacementDAO,
+			final MountainPropertyDAO mountainPropertyDAO) {
 		this.worldShapeDAO = worldShapeDAO;
 		this.worldSizeDAO = worldSizeDAO;
 		this.worldHydrographyDAO = worldHydrographyDAO;
@@ -48,6 +46,11 @@ public class PlanetologyService {
 		this.landWaterDAO = landWaterDAO;
 		this.landWaterMassDAO = landWaterMassDAO;
 		this.diceService = diceService;
+		this.plateMovementDAO = plateMovementDAO;
+		this.volcanicActivityDAO = volcanicActivityDAO;
+		this.earthquakeActivityDAO = earthquakeActivityDAO;
+		this.mountainPlacementDAO = mountainPlacementDAO;
+		this.mountainPropertyDAO = mountainPropertyDAO;
 	}
 
 	public WorldShape createWorldShape(final WorldShape shape) {
@@ -302,7 +305,7 @@ public class PlanetologyService {
 			rolls = diceService.roll(results.getMass().getMaxSize(), 1);
 		}
 		final int numMasses = rolls.get(0);
-		final List<Integer> positions = diceService.roll(20, numMasses);
+		final List<Integer> positions = diceService.roll(NUM_REGIONS_POLYHEDRAL, numMasses);
 		results.setPositions(positions);
 		final List<Integer> sizes = diceService.roll(results.getMass().getMaxSize(), numMasses);
 		results.setSizes(sizes);
@@ -335,5 +338,162 @@ public class PlanetologyService {
 			}
 		}
 		return numRegions;
+	}
+
+	public List<PlateResults> generatePlates(final int times) throws ServiceException {
+		final List<PlateResults> results = new ArrayList<>();
+		final List<Integer> rolls = new DiceService().roll("4d4", times);
+		for (int numPlates : rolls) {
+			final PlateResults result = new PlateResults();
+			final List<Integer> positions = diceService.roll(NUM_REGIONS_POLYHEDRAL, numPlates);
+			result.setPositions(positions);
+			final List<Integer> sizes = diceService.roll("1d6", numPlates);
+			result.setSizes(sizes);
+			int totalSize = 0;
+			for (int i = 0; i < sizes.size(); i++) {
+				if (totalSize + sizes.get(i) > NUM_REGIONS_POLYHEDRAL) {
+					sizes.set(i, 1);
+				}
+				totalSize += sizes.get(i);
+			}
+			if (totalSize < NUM_REGIONS_POLYHEDRAL) {
+				sizes.set(numPlates - 1, sizes.get(numPlates - 1) + NUM_REGIONS_POLYHEDRAL - totalSize);
+			}
+			results.add(result);
+		}
+		return results;
+	}
+
+	public PlateMovement createPlateMovement(final PlateMovement dist) {
+		return plateMovementDAO.persist(dist);
+	}
+
+	public PlateMovement updatePlateMovement(final PlateMovement dist) {
+		return plateMovementDAO.persist(dist);
+	}
+
+	public PlateMovement readPlateMovement(final int id) {
+		return plateMovementDAO.get(id);
+	}
+
+	public List<PlateMovement> listPlateMovements() {
+		return plateMovementDAO.listAll();
+	}
+
+	public void deletePlateMovement(final PlateMovement dist) {
+		plateMovementDAO.delete(dist);
+	}
+
+	public void deletePlateMovement(final int id) {
+		final PlateMovement dist = plateMovementDAO.get(id);
+		plateMovementDAO.delete(dist);
+	}
+
+	public VolcanicActivity createVolcanicActivity(final VolcanicActivity shape) {
+		return volcanicActivityDAO.persist(shape);
+	}
+
+	public VolcanicActivity updateVolcanicActivity(final VolcanicActivity shape) {
+		return volcanicActivityDAO.persist(shape);
+	}
+
+	public VolcanicActivity readVolcanicActivity(final int id) {
+		return volcanicActivityDAO.get(id);
+	}
+
+	public List<VolcanicActivity> listVolcanicActivities() {
+		return volcanicActivityDAO.listAll();
+	}
+
+	public void deleteVolcanicActivity(final VolcanicActivity shape) {
+		volcanicActivityDAO.delete(shape);
+	}
+
+	public void deleteVolcanicActivity(final int id) {
+		final VolcanicActivity shape = volcanicActivityDAO.get(id);
+		volcanicActivityDAO.delete(shape);
+	}
+
+	public EarthquakeActivity createEarthquakeActivity(final EarthquakeActivity shape) {
+		return earthquakeActivityDAO.persist(shape);
+	}
+
+	public EarthquakeActivity updateEarthquakeActivity(final EarthquakeActivity shape) {
+		return earthquakeActivityDAO.persist(shape);
+	}
+
+	public EarthquakeActivity readEarthquakeActivity(final int id) {
+		return earthquakeActivityDAO.get(id);
+	}
+
+	public List<EarthquakeActivity> listEarthquakeActivities() {
+		return earthquakeActivityDAO.listAll();
+	}
+
+	public void deleteEarthquakeActivity(final EarthquakeActivity shape) {
+		earthquakeActivityDAO.delete(shape);
+	}
+
+	public void deleteEarthquakeActivity(final int id) {
+		final EarthquakeActivity shape = earthquakeActivityDAO.get(id);
+		earthquakeActivityDAO.delete(shape);
+	}
+
+	public Set<EarthquakeStrength> listEarthquakeStrengths() {
+		return EnumSet.allOf(EarthquakeStrength.class);
+	}
+
+	public Set<EarthquakeFrequency> listEarthquakeFrequencies() {
+		return EnumSet.allOf(EarthquakeFrequency.class);
+	}
+
+	public MountainPlacement createMountainPlacement(final MountainPlacement shape) {
+		return mountainPlacementDAO.persist(shape);
+	}
+
+	public MountainPlacement updateMountainPlacement(final MountainPlacement shape) {
+		return mountainPlacementDAO.persist(shape);
+	}
+
+	public MountainPlacement readMountainPlacement(final int id) {
+		return mountainPlacementDAO.get(id);
+	}
+
+	public List<MountainPlacement> listMountainPlacements() {
+		return mountainPlacementDAO.listAll();
+	}
+
+	public void deleteMountainPlacement(final MountainPlacement shape) {
+		mountainPlacementDAO.delete(shape);
+	}
+
+	public void deleteMountainPlacement(final int id) {
+		final MountainPlacement shape = mountainPlacementDAO.get(id);
+		mountainPlacementDAO.delete(shape);
+	}
+
+	public MountainProperty createMountainProperty(final MountainProperty shape) {
+		return mountainPropertyDAO.persist(shape);
+	}
+
+	public MountainProperty updateMountainProperty(final MountainProperty shape) {
+		return mountainPropertyDAO.persist(shape);
+	}
+
+	public MountainProperty readMountainProperty(final int id) {
+		return mountainPropertyDAO.get(id);
+	}
+
+	public List<MountainProperty> listMountainProperties() {
+		return mountainPropertyDAO.listAll();
+	}
+
+	public void deleteMountainProperty(final MountainProperty shape) {
+		mountainPropertyDAO.delete(shape);
+	}
+
+	public void deleteMountainProperty(final int id) {
+		final MountainProperty shape = mountainPropertyDAO.get(id);
+		mountainPropertyDAO.delete(shape);
 	}
 }

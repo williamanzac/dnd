@@ -19,6 +19,10 @@ public class WorldSize extends Idable {
 	private int worldMapSize;
 	@Column
 	private int regionMapSize;
+	@Column
+	private int mountainSizeAdjustment;
+	@Column
+	private String mountainSizeComment;
 
 	public int getMin() {
 		return min;
@@ -58,5 +62,21 @@ public class WorldSize extends Idable {
 
 	public void setRegionMapSize(int regionMapSize) {
 		this.regionMapSize = regionMapSize;
+	}
+
+	public int getMountainSizeAdjustment() {
+		return mountainSizeAdjustment;
+	}
+
+	public void setMountainSizeAdjustment(int mountainSizeAdjustment) {
+		this.mountainSizeAdjustment = mountainSizeAdjustment;
+	}
+
+	public String getMountainSizeComment() {
+		return mountainSizeComment;
+	}
+
+	public void setMountainSizeComment(String mountainSizeComment) {
+		this.mountainSizeComment = mountainSizeComment;
 	}
 }

@@ -21,12 +21,16 @@ function WorldSize(data) {
 		self.max = ko.observable(data.max);
 		self.worldMapSize = ko.observable(data.worldMapSize);
 		self.regionMapSize = ko.observable(data.regionMapSize);
+		self.mountainSizeAdjustment = ko.observable(data.mountainSizeAdjustment);
+		self.mountainSizeComment = ko.observable(data.mountainSizeComment);
 	} else {
 		self.diameter = ko.observable();
 		self.min = ko.observable();
 		self.max = ko.observable();
 		self.worldMapSize = ko.observable();
 		self.regionMapSize = ko.observable();
+		self.mountainSizeAdjustment = ko.observable();
+		self.mountainSizeComment = ko.observable();
 	}
 }
 

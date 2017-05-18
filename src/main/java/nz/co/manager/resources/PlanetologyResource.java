@@ -1,6 +1,7 @@
 package nz.co.manager.resources;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -16,14 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import io.dropwizard.hibernate.UnitOfWork;
-import nz.co.manager.api.DisplayType;
-import nz.co.manager.api.LandWaterDistribution;
-import nz.co.manager.api.LandWaterMass;
-import nz.co.manager.api.LandWaterMassResults;
-import nz.co.manager.api.RegionType;
-import nz.co.manager.api.WorldHydrography;
-import nz.co.manager.api.WorldShape;
-import nz.co.manager.api.WorldSize;
+import nz.co.manager.api.*;
 import nz.co.manager.core.PlanetologyService;
 import nz.co.manager.core.ServiceException;
 
@@ -306,7 +300,7 @@ public class PlanetologyResource {
 	@Path("/landWaterMasses")
 	@GET
 	@UnitOfWork
-	public Response listLandWaterMassses() {
+	public Response listLandWaterMasses() {
 		final List<LandWaterMass> hooks = planetologyService.listLandWaterMasses();
 		return Response.ok(hooks).build();
 	}
@@ -350,5 +344,229 @@ public class PlanetologyResource {
 			throws ServiceException {
 		final LandWaterMassResults results = planetologyService.generateLandWaterMasses(hId, dId);
 		return Response.ok(results).build();
+	}
+
+	@Path("/tectonicPlates/generate")
+	@POST
+	@UnitOfWork
+	public Response generateTechtonicPlates(final @QueryParam("times") Integer times) throws ServiceException {
+		final List<PlateResults> results = planetologyService.generatePlates(times);
+		return Response.ok(results).build();
+	}
+
+	@Path("/plateMovements")
+	@GET
+	@UnitOfWork
+	public Response listPlateMovements() {
+		final List<PlateMovement> hooks = planetologyService.listPlateMovements();
+		return Response.ok(hooks).build();
+	}
+
+	@Path("/plateMovements")
+	@POST
+	@UnitOfWork
+	public Response createPlateMovement(final PlateMovement hook) {
+		PlateMovement landWaterDistribution = planetologyService.createPlateMovement(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/plateMovements")
+	@PUT
+	@UnitOfWork
+	public Response updatePlateMovement(final PlateMovement hook) {
+		PlateMovement landWaterDistribution = planetologyService.updatePlateMovement(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/plateMovements/{id}")
+	@DELETE
+	@UnitOfWork
+	public Response deletePlateMovement(final @PathParam("id") int id) {
+		planetologyService.deletePlateMovement(id);
+		return Response.ok().build();
+	}
+
+	@Path("/plateMovements/{id}")
+	@GET
+	@UnitOfWork
+	public Response readPlateMovement(final @PathParam("id") int id) {
+		final PlateMovement hook = planetologyService.readPlateMovement(id);
+		return Response.ok(hook).build();
+	}
+
+	@Path("/volcanicActivities")
+	@GET
+	@UnitOfWork
+	public Response listVolcanicActivities() {
+		final List<VolcanicActivity> hooks = planetologyService.listVolcanicActivities();
+		return Response.ok(hooks).build();
+	}
+
+	@Path("/volcanicActivities")
+	@POST
+	@UnitOfWork
+	public Response createVolcanicActivity(final VolcanicActivity hook) {
+		VolcanicActivity landWaterDistribution = planetologyService.createVolcanicActivity(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/volcanicActivities")
+	@PUT
+	@UnitOfWork
+	public Response updateVolcanicActivity(final VolcanicActivity hook) {
+		VolcanicActivity landWaterDistribution = planetologyService.updateVolcanicActivity(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/volcanicActivities/{id}")
+	@DELETE
+	@UnitOfWork
+	public Response deleteVolcanicActivity(final @PathParam("id") int id) {
+		planetologyService.deleteVolcanicActivity(id);
+		return Response.ok().build();
+	}
+
+	@Path("/volcanicActivities/{id}")
+	@GET
+	@UnitOfWork
+	public Response readVolcanicActivity(final @PathParam("id") int id) {
+		final VolcanicActivity hook = planetologyService.readVolcanicActivity(id);
+		return Response.ok(hook).build();
+	}
+
+	@Path("/earthquakeActivities")
+	@GET
+	@UnitOfWork
+	public Response listEarthquakeActivities() {
+		final List<EarthquakeActivity> hooks = planetologyService.listEarthquakeActivities();
+		return Response.ok(hooks).build();
+	}
+
+	@Path("/earthquakeActivities")
+	@POST
+	@UnitOfWork
+	public Response createEarthquakeActivity(final EarthquakeActivity hook) {
+		EarthquakeActivity landWaterDistribution = planetologyService.createEarthquakeActivity(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/earthquakeActivities")
+	@PUT
+	@UnitOfWork
+	public Response updateEarthquakeActivity(final EarthquakeActivity hook) {
+		EarthquakeActivity landWaterDistribution = planetologyService.updateEarthquakeActivity(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/earthquakeActivities/{id}")
+	@DELETE
+	@UnitOfWork
+	public Response deleteEarthquakeActivity(final @PathParam("id") int id) {
+		planetologyService.deleteEarthquakeActivity(id);
+		return Response.ok().build();
+	}
+
+	@Path("/earthquakeActivities/{id}")
+	@GET
+	@UnitOfWork
+	public Response readEarthquakeActivity(final @PathParam("id") int id) {
+		final EarthquakeActivity hook = planetologyService.readEarthquakeActivity(id);
+		return Response.ok(hook).build();
+	}
+
+	@Path("/earthquakeActivities/earthquakeStrengths")
+	@GET
+	@UnitOfWork
+	public Response listEarthquakeStrengths() {
+		final Set<EarthquakeStrength> hooks = planetologyService.listEarthquakeStrengths();
+		return Response.ok(hooks).build();
+	}
+
+	@Path("/earthquakeActivities/earthquakeFrequencies")
+	@GET
+	@UnitOfWork
+	public Response listEarthquakeFrequencies() {
+		final Set<EarthquakeFrequency> hooks = planetologyService.listEarthquakeFrequencies();
+		return Response.ok(hooks).build();
+	}
+
+	@Path("/mountainProperties")
+	@GET
+	@UnitOfWork
+	public Response listMountainProperties() {
+		final List<MountainProperty> hooks = planetologyService.listMountainProperties();
+		return Response.ok(hooks).build();
+	}
+
+	@Path("/mountainProperties")
+	@POST
+	@UnitOfWork
+	public Response createMountainProperty(final MountainProperty hook) {
+		MountainProperty landWaterDistribution = planetologyService.createMountainProperty(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/mountainProperties")
+	@PUT
+	@UnitOfWork
+	public Response updateMountainProperty(final MountainProperty hook) {
+		MountainProperty landWaterDistribution = planetologyService.updateMountainProperty(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/mountainProperties/{id}")
+	@DELETE
+	@UnitOfWork
+	public Response deleteMountainProperty(final @PathParam("id") int id) {
+		planetologyService.deleteMountainProperty(id);
+		return Response.ok().build();
+	}
+
+	@Path("/mountainProperties/{id}")
+	@GET
+	@UnitOfWork
+	public Response readMountainProperty(final @PathParam("id") int id) {
+		final MountainProperty hook = planetologyService.readMountainProperty(id);
+		return Response.ok(hook).build();
+	}
+
+	@Path("/mountainPlacements")
+	@GET
+	@UnitOfWork
+	public Response listMountainPlacements() {
+		final List<MountainPlacement> hooks = planetologyService.listMountainPlacements();
+		return Response.ok(hooks).build();
+	}
+
+	@Path("/mountainPlacements")
+	@POST
+	@UnitOfWork
+	public Response createMountainPlacement(final MountainPlacement hook) {
+		MountainPlacement landWaterDistribution = planetologyService.createMountainPlacement(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/mountainPlacements")
+	@PUT
+	@UnitOfWork
+	public Response updateMountainPlacement(final MountainPlacement hook) {
+		MountainPlacement landWaterDistribution = planetologyService.updateMountainPlacement(hook);
+		return Response.ok(landWaterDistribution).build();
+	}
+
+	@Path("/mountainPlacements/{id}")
+	@DELETE
+	@UnitOfWork
+	public Response deleteMountainPlacement(final @PathParam("id") int id) {
+		planetologyService.deleteMountainPlacement(id);
+		return Response.ok().build();
+	}
+
+	@Path("/mountainPlacements/{id}")
+	@GET
+	@UnitOfWork
+	public Response readMountainPlacement(final @PathParam("id") int id) {
+		final MountainPlacement hook = planetologyService.readMountainPlacement(id);
+		return Response.ok(hook).build();
 	}
 }
