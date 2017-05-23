@@ -48,165 +48,179 @@ public class AdminService {
 		this.gearDAO = gearDAO;
 	}
 
-	public AbilityScore createAbilityScore(final AbilityScore score) {
-		return abilityScoreDAO.persist(score);
+	public AbilityScore createAbilityScore(final AbilityScore entity) {
+		abilityScoreDAO.add(entity);
+		return entity;
 	}
 
-	public AbilityScore updateAbilityScore(final AbilityScore score) {
-		return abilityScoreDAO.persist(score);
+	public AbilityScore updateAbilityScore(final AbilityScore entity) {
+		abilityScoreDAO.update(entity);
+		return entity;
 	}
 
 	public AbilityScore readAbilityScore(final int id) {
-		final AbilityScore set = abilityScoreDAO.get(id);
-		return set;
+		return abilityScoreDAO.find(id);
 	}
 
 	public List<AbilityScore> listAbilityScores() {
-		final List<AbilityScore> listAll = abilityScoreDAO.listAll();
-		return listAll;
+		return abilityScoreDAO.list();
 	}
 
-	public void deleteAbilityScore(final AbilityScore score) {
-		abilityScoreDAO.delete(score);
+	public void deleteAbilityScore(final AbilityScore entity) {
+		abilityScoreDAO.remove(entity);
 	}
 
-	public Ability createAbility(final Ability score) {
-		return abilityDAO.persist(score);
+	public Ability createAbility(final Ability entity) {
+		abilityDAO.add(entity);
+		return entity;
 	}
 
-	public Ability updateAbility(final Ability score) {
-		return abilityDAO.persist(score);
+	public Ability updateAbility(final Ability entity) {
+		abilityDAO.update(entity);
+		return entity;
 	}
 
 	public Ability readAbility(final int id) {
-		return abilityDAO.get(id);
+		return abilityDAO.find(id);
 	}
 
 	public List<Ability> listAbilities() {
-		return abilityDAO.listAll();
+		return abilityDAO.list();
 	}
 
-	public void deleteAbility(final Ability score) {
-		abilityDAO.delete(score);
+	public void deleteAbility(final Ability entity) {
+		abilityDAO.remove(entity);
 	}
 
-	public Duration createDuration(final Duration score) {
-		return durationDAO.persist(score);
+	public Duration createDuration(final Duration entity) {
+		durationDAO.add(entity);
+		return entity;
 	}
 
-	public Duration updateDuration(final Duration score) {
-		return durationDAO.persist(score);
+	public Duration updateDuration(final Duration entity) {
+		durationDAO.update(entity);
+		return entity;
 	}
 
 	public Duration readDuration(final int id) {
-		return durationDAO.get(id);
+		return durationDAO.find(id);
 	}
 
 	public List<Duration> listDurations() {
-		return durationDAO.listAll();
+		return durationDAO.list();
 	}
 
-	public void deleteDuration(final Duration score) {
-		durationDAO.delete(score);
+	public void deleteDuration(final Duration entity) {
+		durationDAO.remove(entity);
 	}
 
-	public School createSchool(final School score) {
-		return schoolDAO.persist(score);
+	public School createSchool(final School entity) {
+		schoolDAO.add(entity);
+		return entity;
 	}
 
-	public School updateSchool(final School score) {
-		return schoolDAO.persist(score);
+	public School updateSchool(final School entity) {
+		schoolDAO.update(entity);
+		return entity;
 	}
 
 	public School readSchool(final int id) {
-		return schoolDAO.get(id);
+		return schoolDAO.find(id);
 	}
 
 	public List<School> listSchools() {
-		return schoolDAO.listAll();
+		return schoolDAO.list();
 	}
 
-	public void deleteSchool(final School score) {
-		schoolDAO.delete(score);
+	public void deleteSchool(final School entity) {
+		schoolDAO.remove(entity);
 	}
 
-	public Condition createCondition(final Condition score) {
-		return conditionDAO.persist(score);
+	public Condition createCondition(final Condition entity) {
+		conditionDAO.add(entity);
+		return entity;
 	}
 
-	public Condition updateCondition(final Condition score) {
-		return conditionDAO.persist(score);
+	public Condition updateCondition(final Condition entity) {
+		conditionDAO.update(entity);
+		return entity;
 	}
 
 	public Condition readCondition(final int id) {
-		return conditionDAO.get(id);
+		return conditionDAO.find(id);
 	}
 
 	public List<Condition> listConditions() {
-		return conditionDAO.listAll();
+		return conditionDAO.list();
 	}
 
-	public void deleteCondition(final Condition score) {
-		conditionDAO.delete(score);
+	public void deleteCondition(final Condition entity) {
+		conditionDAO.remove(entity);
 	}
 
-	public Language createLanguage(final Language score) {
-		return languageDAO.persist(score);
+	public Language createLanguage(final Language entity) {
+		languageDAO.add(entity);
+		return entity;
 	}
 
-	public Language updateLanguage(final Language score) {
-		return languageDAO.persist(score);
+	public Language updateLanguage(final Language entity) {
+		languageDAO.update(entity);
+		return entity;
 	}
 
 	public Language readLanguage(final int id) {
-		return languageDAO.get(id);
+		return languageDAO.find(id);
 	}
 
 	public List<Language> listLanguages() {
-		return languageDAO.listAll();
+		return languageDAO.list();
 	}
 
-	public void deleteLanguage(final Language score) {
-		languageDAO.delete(score);
+	public void deleteLanguage(final Language entity) {
+		languageDAO.remove(entity);
 	}
 
-	public Alignment createAlignment(final Alignment score) {
-		return alignmentDAO.persist(score);
+	public Alignment createAlignment(final Alignment entity) {
+		alignmentDAO.add(entity);
+		return entity;
 	}
 
-	public Alignment updateAlignment(final Alignment score) {
-		return alignmentDAO.persist(score);
+	public Alignment updateAlignment(final Alignment entity) {
+		alignmentDAO.update(entity);
+		return entity;
 	}
 
 	public Alignment readAlignment(final int id) {
-		return alignmentDAO.get(id);
+		return alignmentDAO.find(id);
 	}
 
 	public List<Alignment> listAlignments() {
-		return alignmentDAO.listAll();
+		return alignmentDAO.list();
 	}
 
-	public void deleteAlignment(final Alignment score) {
-		alignmentDAO.delete(score);
+	public void deleteAlignment(final Alignment entity) {
+		alignmentDAO.remove(entity);
 	}
 
-	public Gear createGear(final Gear score) {
-		return gearDAO.persist(score);
+	public Gear createGear(final Gear entity) {
+		gearDAO.add(entity);
+		return entity;
 	}
 
-	public Gear updateGear(final Gear score) {
-		return gearDAO.persist(score);
+	public Gear updateGear(final Gear entity) {
+		gearDAO.update(entity);
+		return entity;
 	}
 
 	public Gear readGear(final int id) {
-		return gearDAO.get(id);
+		return gearDAO.find(id);
 	}
 
 	public List<Gear> listGear() {
-		return gearDAO.listAll();
+		return gearDAO.list();
 	}
 
-	public void deleteGear(final Gear score) {
-		gearDAO.delete(score);
+	public void deleteGear(final Gear entity) {
+		gearDAO.remove(entity);
 	}
 }

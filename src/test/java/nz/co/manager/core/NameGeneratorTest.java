@@ -38,7 +38,7 @@ public class NameGeneratorTest {
 	@Test
 	public void generateName() throws ServiceException {
 		final NameSet nameSet = mock(NameSet.class);
-		when(nameSetDAO.get(DWARF_MALE_TYPE)).thenReturn(nameSet);
+		when(nameSetDAO.find(DWARF_MALE_TYPE)).thenReturn(nameSet);
 		when(nameSet.getNames()).thenReturn(DWARF_MALE);
 		final String actual = cut.generateName(DWARF_MALE_TYPE);
 		System.out.println(actual);
@@ -50,7 +50,7 @@ public class NameGeneratorTest {
 	@Test
 	public void generateNameList() throws ServiceException {
 		final NameSet nameSet = mock(NameSet.class);
-		when(nameSetDAO.get(DWARF_MALE_TYPE)).thenReturn(nameSet);
+		when(nameSetDAO.find(DWARF_MALE_TYPE)).thenReturn(nameSet);
 		when(nameSet.getNames()).thenReturn(DWARF_MALE);
 		final List<String> actual = cut.nameList(DWARF_MALE_TYPE, 10);
 		System.out.println(actual);

@@ -222,25 +222,26 @@ public class NameGenerator {
 		return "-";
 	}
 
-	public NameSet createNameSet(final NameSet set) {
-		return dao.persist(set);
+	public NameSet createNameSet(final NameSet entity) {
+		dao.add(entity);
+		return entity;
 	}
 
-	public NameSet updateNameSet(final NameSet set) {
-		return dao.persist(set);
+	public NameSet updateNameSet(final NameSet entity) {
+		dao.update(entity);
+		return entity;
 	}
 
 	public NameSet readNameSet(final int id) {
-		return dao.get(id);
+		return dao.find(id);
 	}
 
 	public List<NameSet> listNameSets() {
-		final List<NameSet> listAll = dao.listAll();
-		return listAll;
+		return dao.list();
 	}
 
 	public void deleteNameSet(final int id) {
-		final NameSet set = readNameSet(id);
-		dao.delete(set);
+		final NameSet entity = readNameSet(id);
+		dao.remove(entity);
 	}
 }

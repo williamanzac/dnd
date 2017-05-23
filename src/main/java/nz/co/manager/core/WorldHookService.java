@@ -45,65 +45,77 @@ public class WorldHookService {
 		return values;
 	}
 
-	public WorldHook createWorldHook(final WorldHook hook) {
-		final WorldHookCategory category = worldHookCategoryDAO.get(hook.getCategory().getId());
-		hook.setCategory(null);
-		final WorldHook worldHook = worldHookDAO.persist(hook);
-		worldHook.setCategory(category);
-		category.getWorldHooks().add(worldHook);
-		worldHookCategoryDAO.persist(category);
-		return worldHook;
+	public WorldHook createWorldHook(final WorldHook entity) {
+		final WorldHookCategory category = worldHookCategoryDAO.find(entity.getCategory().getId());
+		entity.setCategory(null);
+		worldHookDAO.add(entity);
+		entity.setCategory(category);
+		category.getWorldHooks().add(entity);
+		worldHookCategoryDAO.add(category);
+		return entity;
 	}
 
-	public WorldHook updateWorldHook(final WorldHook hook) {
-		final WorldHookCategory category = worldHookCategoryDAO.get(hook.getCategory().getId());
-		hook.setCategory(null);
-		final WorldHook worldHook = worldHookDAO.persist(hook);
-		worldHook.setCategory(category);
-		category.getWorldHooks().add(worldHook);
-		worldHookCategoryDAO.persist(category);
-		return worldHook;
+	public WorldHook updateWorldHook(final WorldHook entity) {
+		final WorldHookCategory category = worldHookCategoryDAO.find(entity.getCategory().getId());
+		entity.setCategory(null);
+		worldHookDAO.update(entity);
+		entity.setCategory(category);
+		category.getWorldHooks().add(entity);
+		worldHookCategoryDAO.update(category);
+		return entity;
 	}
 
 	public WorldHook readWorldHook(final int id) {
-		return worldHookDAO.get(id);
+		return worldHookDAO.find(id);
 	}
 
 	public List<WorldHook> listWorldHooks() {
-		return worldHookDAO.listAll();
+		return worldHookDAO.list();
 	}
 
-	public void deleteWorldHook(final WorldHook hook) {
-		worldHookDAO.delete(hook);
+	public void deleteWorldHook(final WorldHook entity) {
+		worldHookDAO.remove(entity);
 	}
 
 	public void deleteWorldHook(final int id) {
-		final WorldHook hook = worldHookDAO.get(id);
-		worldHookDAO.delete(hook);
+		final WorldHook entity = readWorldHook(id);
+		deleteWorldHook(entity);
 	}
 
-	public WorldHookCategory createWorldHookCategory(final WorldHookCategory hook) {
-		return worldHookCategoryDAO.persist(hook);
+	public WorldHookCategory createWorldHookCategory(final WorldHookCategory entity) {
+		if (entity.getWorldHooks() != null) {
+			for (WorldHook hook : entity.getWorldHooks()) {
+				worldHookDAO.update(hook);
+			}
+		}
+		worldHookCategoryDAO.add(entity);
+		return entity;
 	}
 
-	public WorldHookCategory updateWorldHookCategory(final WorldHookCategory hook) {
-		return worldHookCategoryDAO.persist(hook);
+	public WorldHookCategory updateWorldHookCategory(final WorldHookCategory entity) {
+		if (entity.getWorldHooks() != null) {
+			for (WorldHook hook : entity.getWorldHooks()) {
+				worldHookDAO.update(hook);
+			}
+		}
+		worldHookCategoryDAO.update(entity);
+		return entity;
 	}
 
 	public WorldHookCategory readWorldHookCategory(final int id) {
-		return worldHookCategoryDAO.get(id);
+		return worldHookCategoryDAO.find(id);
 	}
 
 	public List<WorldHookCategory> listWorldHookCategories() {
-		return worldHookCategoryDAO.listAll();
+		return worldHookCategoryDAO.list();
 	}
 
-	public void deleteWorldHookCategory(final WorldHookCategory hook) {
-		worldHookCategoryDAO.delete(hook);
+	public void deleteWorldHookCategory(final WorldHookCategory entity) {
+		worldHookCategoryDAO.remove(entity);
 	}
 
 	public void deleteWorldHookCategory(final int id) {
-		final WorldHookCategory hook = worldHookCategoryDAO.get(id);
-		worldHookCategoryDAO.delete(hook);
+		final WorldHookCategory entity = readWorldHookCategory(id);
+		deleteWorldHookCategory(entity);
 	}
 }

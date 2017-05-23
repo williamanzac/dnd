@@ -42,28 +42,30 @@ public class HeightWeightService {
 		return values;
 	}
 
-	public HeightWeight createHeightWeight(final HeightWeight score) {
-		return heightWeightDAO.persist(score);
+	public HeightWeight createHeightWeight(final HeightWeight entity) {
+		heightWeightDAO.add(entity);
+		return entity;
 	}
 
-	public HeightWeight updateHeightWeight(final HeightWeight score) {
-		return heightWeightDAO.persist(score);
+	public HeightWeight updateHeightWeight(final HeightWeight entity) {
+		heightWeightDAO.update(entity);
+		return entity;
 	}
 
 	public HeightWeight readHeightWeight(final int id) {
-		return heightWeightDAO.get(id);
+		return heightWeightDAO.find(id);
 	}
 
 	public List<HeightWeight> listHeightWeights() {
-		return heightWeightDAO.listAll();
+		return heightWeightDAO.list();
 	}
 
-	public void deleteHeightWeight(final HeightWeight score) {
-		heightWeightDAO.delete(score);
+	public void deleteHeightWeight(final HeightWeight entity) {
+		heightWeightDAO.remove(entity);
 	}
 
 	public void deleteHeightWeight(final int id) {
-		final HeightWeight score = readHeightWeight(id);
-		heightWeightDAO.delete(score);
+		final HeightWeight entity = readHeightWeight(id);
+		deleteHeightWeight(entity);
 	}
 }

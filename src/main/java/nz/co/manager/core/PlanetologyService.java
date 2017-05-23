@@ -53,29 +53,31 @@ public class PlanetologyService {
 		this.mountainPropertyDAO = mountainPropertyDAO;
 	}
 
-	public WorldShape createWorldShape(final WorldShape shape) {
-		return worldShapeDAO.persist(shape);
+	public WorldShape createWorldShape(final WorldShape entity) {
+		worldShapeDAO.add(entity);
+		return entity;
 	}
 
-	public WorldShape updateWorldShape(final WorldShape shape) {
-		return worldShapeDAO.persist(shape);
+	public WorldShape updateWorldShape(final WorldShape entity) {
+		worldShapeDAO.update(entity);
+		return entity;
 	}
 
 	public WorldShape readWorldShape(final int id) {
-		return worldShapeDAO.get(id);
+		return worldShapeDAO.find(id);
 	}
 
 	public List<WorldShape> listWorldShapes() {
-		return worldShapeDAO.listAll();
+		return worldShapeDAO.list();
 	}
 
-	public void deleteWorldShape(final WorldShape shape) {
-		worldShapeDAO.delete(shape);
+	public void deleteWorldShape(final WorldShape entity) {
+		worldShapeDAO.remove(entity);
 	}
 
 	public void deleteWorldShape(final int id) {
-		final WorldShape shape = worldShapeDAO.get(id);
-		worldShapeDAO.delete(shape);
+		final WorldShape entity = readWorldShape(id);
+		deleteWorldShape(entity);
 	}
 
 	public List<WorldShape> generateWorldShape(final int times) throws ServiceException {
@@ -98,29 +100,31 @@ public class PlanetologyService {
 		return values;
 	}
 
-	public WorldSize createWorldSize(final WorldSize size) {
-		return worldSizeDAO.persist(size);
+	public WorldSize createWorldSize(final WorldSize entity) {
+		worldSizeDAO.add(entity);
+		return entity;
 	}
 
-	public WorldSize updateWorldSize(final WorldSize size) {
-		return worldSizeDAO.persist(size);
+	public WorldSize updateWorldSize(final WorldSize entity) {
+		worldSizeDAO.update(entity);
+		return entity;
 	}
 
 	public WorldSize readWorldSize(final int id) {
-		return worldSizeDAO.get(id);
+		return worldSizeDAO.find(id);
 	}
 
 	public List<WorldSize> listWorldSizes() {
-		return worldSizeDAO.listAll();
+		return worldSizeDAO.list();
 	}
 
-	public void deleteWorldSize(final WorldSize size) {
-		worldSizeDAO.delete(size);
+	public void deleteWorldSize(final WorldSize entity) {
+		worldSizeDAO.remove(entity);
 	}
 
 	public void deleteWorldSize(final int id) {
-		final WorldSize size = worldSizeDAO.get(id);
-		worldSizeDAO.delete(size);
+		final WorldSize entity = readWorldSize(id);
+		deleteWorldSize(entity);
 	}
 
 	public List<WorldSize> generateWorldSize(final int times) throws ServiceException {
@@ -143,29 +147,31 @@ public class PlanetologyService {
 		return values;
 	}
 
-	public WorldHydrography createWorldHydrography(final WorldHydrography hook) {
-		return worldHydrographyDAO.persist(hook);
+	public WorldHydrography createWorldHydrography(final WorldHydrography entity) {
+		worldHydrographyDAO.add(entity);
+		return entity;
 	}
 
-	public WorldHydrography updateWorldHydrography(final WorldHydrography hydro) {
-		return worldHydrographyDAO.persist(hydro);
+	public WorldHydrography updateWorldHydrography(final WorldHydrography entity) {
+		worldHydrographyDAO.update(entity);
+		return entity;
 	}
 
 	public WorldHydrography readWorldHydrography(final int id) {
-		return worldHydrographyDAO.get(id);
+		return worldHydrographyDAO.find(id);
 	}
 
 	public List<WorldHydrography> listWorldHydrographies() {
-		return worldHydrographyDAO.listAll();
+		return worldHydrographyDAO.list();
 	}
 
-	public void deleteWorldHydrography(final WorldHydrography hydro) {
-		worldHydrographyDAO.delete(hydro);
+	public void deleteWorldHydrography(final WorldHydrography entity) {
+		worldHydrographyDAO.remove(entity);
 	}
 
 	public void deleteWorldHydrography(final int id) {
-		final WorldHydrography hydro = worldHydrographyDAO.get(id);
-		worldHydrographyDAO.delete(hydro);
+		final WorldHydrography entity = readWorldHydrography(id);
+		deleteWorldHydrography(entity);
 	}
 
 	public List<WorldHydrography> generateWorldHydrography(final int times) throws ServiceException {
@@ -188,104 +194,112 @@ public class PlanetologyService {
 		return values;
 	}
 
-	public RegionType createRegionType(final RegionType type) {
-		return regionTypeDAO.persist(type);
+	public RegionType createRegionType(final RegionType entity) {
+		regionTypeDAO.add(entity);
+		return entity;
 	}
 
-	public RegionType updateRegionType(final RegionType type) {
-		return regionTypeDAO.persist(type);
+	public RegionType updateRegionType(final RegionType entity) {
+		regionTypeDAO.update(entity);
+		return entity;
 	}
 
 	public RegionType readRegionType(final int id) {
-		return regionTypeDAO.get(id);
+		return regionTypeDAO.find(id);
 	}
 
 	public List<RegionType> listRegionTypes() {
-		return regionTypeDAO.listAll();
+		return regionTypeDAO.list();
 	}
 
-	public void deleteRegionType(final RegionType type) {
-		regionTypeDAO.delete(type);
+	public void deleteRegionType(final RegionType entity) {
+		regionTypeDAO.remove(entity);
 	}
 
 	public void deleteRegionType(final int id) {
-		final RegionType type = regionTypeDAO.get(id);
-		regionTypeDAO.delete(type);
+		final RegionType entity = readRegionType(id);
+		deleteRegionType(entity);
 	}
 
-	public DisplayType createDisplayType(final DisplayType type) {
-		return displayTypeDAO.persist(type);
+	public DisplayType createDisplayType(final DisplayType entity) {
+		displayTypeDAO.add(entity);
+		return entity;
 	}
 
-	public DisplayType updateDisplayType(final DisplayType type) {
-		return displayTypeDAO.persist(type);
+	public DisplayType updateDisplayType(final DisplayType entity) {
+		displayTypeDAO.update(entity);
+		return entity;
 	}
 
 	public DisplayType readDisplayType(final int id) {
-		return displayTypeDAO.get(id);
+		return displayTypeDAO.find(id);
 	}
 
 	public List<DisplayType> listDisplayTypes() {
-		return displayTypeDAO.listAll();
+		return displayTypeDAO.list();
 	}
 
-	public void deleteDisplayType(final DisplayType type) {
-		displayTypeDAO.delete(type);
+	public void deleteDisplayType(final DisplayType entity) {
+		displayTypeDAO.remove(entity);
 	}
 
 	public void deleteDisplayType(final int id) {
-		final DisplayType type = displayTypeDAO.get(id);
-		displayTypeDAO.delete(type);
+		final DisplayType entity = readDisplayType(id);
+		deleteDisplayType(entity);
 	}
 
-	public LandWaterDistribution createLandWaterDistribution(final LandWaterDistribution dist) {
-		return landWaterDAO.persist(dist);
+	public LandWaterDistribution createLandWaterDistribution(final LandWaterDistribution entity) {
+		landWaterDAO.add(entity);
+		return entity;
 	}
 
-	public LandWaterDistribution updateLandWaterDistribution(final LandWaterDistribution dist) {
-		return landWaterDAO.persist(dist);
+	public LandWaterDistribution updateLandWaterDistribution(final LandWaterDistribution entity) {
+		landWaterDAO.update(entity);
+		return entity;
 	}
 
 	public LandWaterDistribution readLandWaterDistribution(final int id) {
-		return landWaterDAO.get(id);
+		return landWaterDAO.find(id);
 	}
 
 	public List<LandWaterDistribution> listLandWaterDistributions() {
-		return landWaterDAO.listAll();
+		return landWaterDAO.list();
 	}
 
-	public void deleteLandWaterDistribution(final LandWaterDistribution dist) {
-		landWaterDAO.delete(dist);
+	public void deleteLandWaterDistribution(final LandWaterDistribution entity) {
+		landWaterDAO.remove(entity);
 	}
 
 	public void deleteLandWaterDistribution(final int id) {
-		final LandWaterDistribution dist = landWaterDAO.get(id);
-		landWaterDAO.delete(dist);
+		final LandWaterDistribution entity = readLandWaterDistribution(id);
+		deleteLandWaterDistribution(entity);
 	}
 
-	public LandWaterMass createLandWaterMass(final LandWaterMass dist) {
-		return landWaterMassDAO.persist(dist);
+	public LandWaterMass createLandWaterMass(final LandWaterMass entity) {
+		landWaterMassDAO.add(entity);
+		return entity;
 	}
 
-	public LandWaterMass updateLandWaterMass(final LandWaterMass dist) {
-		return landWaterMassDAO.persist(dist);
+	public LandWaterMass updateLandWaterMass(final LandWaterMass entity) {
+		landWaterMassDAO.update(entity);
+		return entity;
 	}
 
 	public LandWaterMass readLandWaterMass(final int id) {
-		return landWaterMassDAO.get(id);
+		return landWaterMassDAO.find(id);
 	}
 
 	public List<LandWaterMass> listLandWaterMasses() {
-		return landWaterMassDAO.listAll();
+		return landWaterMassDAO.list();
 	}
 
-	public void deleteLandWaterMass(final LandWaterMass dist) {
-		landWaterMassDAO.delete(dist);
+	public void deleteLandWaterMass(final LandWaterMass entity) {
+		landWaterMassDAO.remove(entity);
 	}
 
 	public void deleteLandWaterMass(final int id) {
-		final LandWaterMass dist = landWaterMassDAO.get(id);
-		landWaterMassDAO.delete(dist);
+		final LandWaterMass entity = readLandWaterMass(id);
+		deleteLandWaterMass(entity);
 	}
 
 	public LandWaterMassResults generateLandWaterMasses(final int hydrographyId, final int displayTypeId)
@@ -364,79 +378,85 @@ public class PlanetologyService {
 		return results;
 	}
 
-	public PlateMovement createPlateMovement(final PlateMovement dist) {
-		return plateMovementDAO.persist(dist);
+	public PlateMovement createPlateMovement(final PlateMovement entity) {
+		plateMovementDAO.add(entity);
+		return entity;
 	}
 
-	public PlateMovement updatePlateMovement(final PlateMovement dist) {
-		return plateMovementDAO.persist(dist);
+	public PlateMovement updatePlateMovement(final PlateMovement entity) {
+		plateMovementDAO.update(entity);
+		return entity;
 	}
 
 	public PlateMovement readPlateMovement(final int id) {
-		return plateMovementDAO.get(id);
+		return plateMovementDAO.find(id);
 	}
 
 	public List<PlateMovement> listPlateMovements() {
-		return plateMovementDAO.listAll();
+		return plateMovementDAO.list();
 	}
 
-	public void deletePlateMovement(final PlateMovement dist) {
-		plateMovementDAO.delete(dist);
+	public void deletePlateMovement(final PlateMovement entity) {
+		plateMovementDAO.remove(entity);
 	}
 
 	public void deletePlateMovement(final int id) {
-		final PlateMovement dist = plateMovementDAO.get(id);
-		plateMovementDAO.delete(dist);
+		final PlateMovement entity = readPlateMovement(id);
+		deletePlateMovement(entity);
 	}
 
-	public VolcanicActivity createVolcanicActivity(final VolcanicActivity shape) {
-		return volcanicActivityDAO.persist(shape);
+	public VolcanicActivity createVolcanicActivity(final VolcanicActivity entity) {
+		volcanicActivityDAO.add(entity);
+		return entity;
 	}
 
-	public VolcanicActivity updateVolcanicActivity(final VolcanicActivity shape) {
-		return volcanicActivityDAO.persist(shape);
+	public VolcanicActivity updateVolcanicActivity(final VolcanicActivity entity) {
+		volcanicActivityDAO.update(entity);
+		return entity;
 	}
 
 	public VolcanicActivity readVolcanicActivity(final int id) {
-		return volcanicActivityDAO.get(id);
+		return volcanicActivityDAO.find(id);
 	}
 
 	public List<VolcanicActivity> listVolcanicActivities() {
-		return volcanicActivityDAO.listAll();
+		return volcanicActivityDAO.list();
 	}
 
-	public void deleteVolcanicActivity(final VolcanicActivity shape) {
-		volcanicActivityDAO.delete(shape);
+	public void deleteVolcanicActivity(final VolcanicActivity entity) {
+		volcanicActivityDAO.remove(entity);
 	}
 
 	public void deleteVolcanicActivity(final int id) {
-		final VolcanicActivity shape = volcanicActivityDAO.get(id);
-		volcanicActivityDAO.delete(shape);
+		final VolcanicActivity entity = readVolcanicActivity(id);
+		deleteVolcanicActivity(entity);
 	}
 
-	public EarthquakeActivity createEarthquakeActivity(final EarthquakeActivity shape) {
-		return earthquakeActivityDAO.persist(shape);
+	public EarthquakeActivity createEarthquakeActivity(final EarthquakeActivity entity) {
+		earthquakeActivityDAO.add(entity);
+		return entity;
 	}
 
-	public EarthquakeActivity updateEarthquakeActivity(final EarthquakeActivity shape) {
-		return earthquakeActivityDAO.persist(shape);
+	public EarthquakeActivity updateEarthquakeActivity(final EarthquakeActivity entity) {
+		earthquakeActivityDAO.update(entity);
+		return entity;
 	}
 
 	public EarthquakeActivity readEarthquakeActivity(final int id) {
-		return earthquakeActivityDAO.get(id);
+		return earthquakeActivityDAO.find(id);
 	}
 
 	public List<EarthquakeActivity> listEarthquakeActivities() {
-		return earthquakeActivityDAO.listAll();
+		return earthquakeActivityDAO.list();
 	}
 
-	public void deleteEarthquakeActivity(final EarthquakeActivity shape) {
-		earthquakeActivityDAO.delete(shape);
+	public void deleteEarthquakeActivity(final EarthquakeActivity entity) {
+		earthquakeActivityDAO.remove(entity);
 	}
 
 	public void deleteEarthquakeActivity(final int id) {
-		final EarthquakeActivity shape = earthquakeActivityDAO.get(id);
-		earthquakeActivityDAO.delete(shape);
+		final EarthquakeActivity entity = readEarthquakeActivity(id);
+		deleteEarthquakeActivity(entity);
 	}
 
 	public Set<EarthquakeStrength> listEarthquakeStrengths() {
@@ -447,53 +467,57 @@ public class PlanetologyService {
 		return EnumSet.allOf(EarthquakeFrequency.class);
 	}
 
-	public MountainPlacement createMountainPlacement(final MountainPlacement shape) {
-		return mountainPlacementDAO.persist(shape);
+	public MountainPlacement createMountainPlacement(final MountainPlacement entity) {
+		mountainPlacementDAO.add(entity);
+		return entity;
 	}
 
-	public MountainPlacement updateMountainPlacement(final MountainPlacement shape) {
-		return mountainPlacementDAO.persist(shape);
+	public MountainPlacement updateMountainPlacement(final MountainPlacement entity) {
+		mountainPlacementDAO.update(entity);
+		return entity;
 	}
 
 	public MountainPlacement readMountainPlacement(final int id) {
-		return mountainPlacementDAO.get(id);
+		return mountainPlacementDAO.find(id);
 	}
 
 	public List<MountainPlacement> listMountainPlacements() {
-		return mountainPlacementDAO.listAll();
+		return mountainPlacementDAO.list();
 	}
 
-	public void deleteMountainPlacement(final MountainPlacement shape) {
-		mountainPlacementDAO.delete(shape);
+	public void deleteMountainPlacement(final MountainPlacement entity) {
+		mountainPlacementDAO.remove(entity);
 	}
 
 	public void deleteMountainPlacement(final int id) {
-		final MountainPlacement shape = mountainPlacementDAO.get(id);
-		mountainPlacementDAO.delete(shape);
+		final MountainPlacement entity = readMountainPlacement(id);
+		deleteMountainPlacement(entity);
 	}
 
-	public MountainProperty createMountainProperty(final MountainProperty shape) {
-		return mountainPropertyDAO.persist(shape);
+	public MountainProperty createMountainProperty(final MountainProperty entity) {
+		mountainPropertyDAO.add(entity);
+		return entity;
 	}
 
-	public MountainProperty updateMountainProperty(final MountainProperty shape) {
-		return mountainPropertyDAO.persist(shape);
+	public MountainProperty updateMountainProperty(final MountainProperty entity) {
+		mountainPropertyDAO.update(entity);
+		return entity;
 	}
 
 	public MountainProperty readMountainProperty(final int id) {
-		return mountainPropertyDAO.get(id);
+		return mountainPropertyDAO.find(id);
 	}
 
 	public List<MountainProperty> listMountainProperties() {
-		return mountainPropertyDAO.listAll();
+		return mountainPropertyDAO.list();
 	}
 
-	public void deleteMountainProperty(final MountainProperty shape) {
-		mountainPropertyDAO.delete(shape);
+	public void deleteMountainProperty(final MountainProperty entity) {
+		mountainPropertyDAO.remove(entity);
 	}
 
 	public void deleteMountainProperty(final int id) {
-		final MountainProperty shape = mountainPropertyDAO.get(id);
-		mountainPropertyDAO.delete(shape);
+		final MountainProperty entity = readMountainProperty(id);
+		deleteMountainProperty(entity);
 	}
 }
