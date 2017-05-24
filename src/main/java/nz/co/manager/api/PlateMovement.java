@@ -20,15 +20,15 @@ public class PlateMovement extends Idable {
 		return description;
 	}
 
-	public void setDescription(String name) {
-		this.description = name;
+	public void setDescription(final String name) {
+		description = name;
 	}
 
 	public int getMin() {
 		return min;
 	}
 
-	public void setMin(int min) {
+	public void setMin(final int min) {
 		this.min = min;
 	}
 
@@ -36,7 +36,7 @@ public class PlateMovement extends Idable {
 		return max;
 	}
 
-	public void setMax(int max) {
+	public void setMax(final int max) {
 		this.max = max;
 	}
 }

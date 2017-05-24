@@ -11,7 +11,7 @@ public class PlateResults {
 		return positions;
 	}
 
-	public void setPositions(List<Integer> positions) {
+	public void setPositions(final List<Integer> positions) {
 		this.positions = positions;
 	}
 
@@ -19,7 +19,7 @@ public class PlateResults {
 		return sizes;
 	}
 
-	public void setSizes(List<Integer> sizes) {
+	public void setSizes(final List<Integer> sizes) {
 		this.sizes = sizes;
 	}
 }

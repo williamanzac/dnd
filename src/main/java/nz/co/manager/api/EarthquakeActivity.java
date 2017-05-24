@@ -22,7 +22,7 @@ public class EarthquakeActivity extends Idable {
 		return strength;
 	}
 
-	public void setStrength(EarthquakeStrength strength) {
+	public void setStrength(final EarthquakeStrength strength) {
 		this.strength = strength;
 	}
 
@@ -30,7 +30,7 @@ public class EarthquakeActivity extends Idable {
 		return frequency;
 	}
 
-	public void setFrequency(EarthquakeFrequency frequency) {
+	public void setFrequency(final EarthquakeFrequency frequency) {
 		this.frequency = frequency;
 	}
 
@@ -38,7 +38,7 @@ public class EarthquakeActivity extends Idable {
 		return min;
 	}
 
-	public void setMin(int min) {
+	public void setMin(final int min) {
 		this.min = min;
 	}
 
@@ -46,7 +46,7 @@ public class EarthquakeActivity extends Idable {
 		return max;
 	}
 
-	public void setMax(int max) {
+	public void setMax(final int max) {
 		this.max = max;
 	}
 }

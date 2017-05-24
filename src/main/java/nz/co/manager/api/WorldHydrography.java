@@ -20,7 +20,7 @@ public class WorldHydrography extends Idable {
 		return min;
 	}
 
-	public void setMin(int min) {
+	public void setMin(final int min) {
 		this.min = min;
 	}
 
@@ -28,7 +28,7 @@ public class WorldHydrography extends Idable {
 		return max;
 	}
 
-	public void setMax(int max) {
+	public void setMax(final int max) {
 		this.max = max;
 	}
 
@@ -36,7 +36,7 @@ public class WorldHydrography extends Idable {
 		return percent;
 	}
 
-	public void setPercent(int percent) {
+	public void setPercent(final int percent) {
 		this.percent = percent;
 	}
 }

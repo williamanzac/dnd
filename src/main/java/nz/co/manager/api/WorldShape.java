@@ -20,7 +20,7 @@ public class WorldShape extends Idable {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -28,7 +28,7 @@ public class WorldShape extends Idable {
 		return min;
 	}
 
-	public void setMin(int min) {
+	public void setMin(final int min) {
 		this.min = min;
 	}
 
@@ -36,7 +36,7 @@ public class WorldShape extends Idable {
 		return max;
 	}
 
-	public void setMax(int max) {
+	public void setMax(final int max) {
 		this.max = max;
 	}
 }

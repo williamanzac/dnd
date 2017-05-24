@@ -11,17 +11,15 @@ import nz.co.manager.api.HeightWeight;
 import nz.co.manager.jdbi.HeightWeightDAO;
 
 @Service
-public class HeightWeightService {
-
-	private final HeightWeightDAO heightWeightDAO;
+public class HeightWeightService extends CRUDService<HeightWeight> {
 
 	@Inject
 	public HeightWeightService(final HeightWeightDAO heightWeightDAO) {
-		this.heightWeightDAO = heightWeightDAO;
+		super(heightWeightDAO);
 	}
 
 	public List<Integer> generate(final int id, final int times) throws ServiceException {
-		final HeightWeight heightWeight = readHeightWeight(id);
+		final HeightWeight heightWeight = read(id);
 		final int baseHeight = heightWeight.getBaseHeightInch();
 		final int baseWeight = heightWeight.getBaseWeightLB();
 		final DiceService diceService = new DiceService();
@@ -40,32 +38,5 @@ public class HeightWeightService {
 			values.add(baseWeight + heights.get(i) * weights.get(i));
 		}
 		return values;
-	}
-
-	public HeightWeight createHeightWeight(final HeightWeight entity) {
-		heightWeightDAO.add(entity);
-		return entity;
-	}
-
-	public HeightWeight updateHeightWeight(final HeightWeight entity) {
-		heightWeightDAO.update(entity);
-		return entity;
-	}
-
-	public HeightWeight readHeightWeight(final int id) {
-		return heightWeightDAO.find(id);
-	}
-
-	public List<HeightWeight> listHeightWeights() {
-		return heightWeightDAO.list();
-	}
-
-	public void deleteHeightWeight(final HeightWeight entity) {
-		heightWeightDAO.remove(entity);
-	}
-
-	public void deleteHeightWeight(final int id) {
-		final HeightWeight entity = readHeightWeight(id);
-		deleteHeightWeight(entity);
 	}
 }

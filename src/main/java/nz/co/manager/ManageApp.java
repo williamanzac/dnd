@@ -2,6 +2,7 @@ package nz.co.manager;
 
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.hibernate.SessionFactory;
+import org.hibernate.hql.internal.NameGenerator;
 
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
@@ -10,12 +11,7 @@ import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.hibernate.ScanningHibernateBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import nz.co.manager.core.AdminService;
-import nz.co.manager.core.DiceService;
-import nz.co.manager.core.HeightWeightService;
-import nz.co.manager.core.NameGenerator;
-import nz.co.manager.core.PlanetologyService;
-import nz.co.manager.core.WorldHookService;
+import nz.co.manager.core.*;
 import nz.co.manager.jdbi.*;
 
 public class ManageApp extends Application<ManageAppConfiguration> {
@@ -50,37 +46,57 @@ public class ManageApp extends Application<ManageAppConfiguration> {
 			protected void configure() {
 				bind(sessionFactory).to(SessionFactory.class);
 
-				bind(NameSetDAO.class).to(NameSetDAO.class);
-				bind(AbilityScoreDAO.class).to(AbilityScoreDAO.class);
 				bind(AbilityDAO.class).to(AbilityDAO.class);
-				bind(DurationDAO.class).to(DurationDAO.class);
-				bind(SchoolDAO.class).to(SchoolDAO.class);
-				bind(ConditionDAO.class).to(ConditionDAO.class);
-				bind(HeightWeightDAO.class).to(HeightWeightDAO.class);
+				bind(AbilityScoreDAO.class).to(AbilityScoreDAO.class);
 				bind(AlignmentDAO.class).to(AlignmentDAO.class);
-				bind(LanguageDAO.class).to(LanguageDAO.class);
-				bind(GearDAO.class).to(GearDAO.class);
-				bind(WorldHookCategoryDAO.class).to(WorldHookCategoryDAO.class);
-				bind(WorldHookDAO.class).to(WorldHookDAO.class);
-				bind(WorldShapeDAO.class).to(WorldShapeDAO.class);
-				bind(WorldSizeDAO.class).to(WorldSizeDAO.class);
-				bind(WorldHydrographyDAO.class).to(WorldHydrographyDAO.class);
+				bind(ConditionDAO.class).to(ConditionDAO.class);
 				bind(DisplayTypeDAO.class).to(DisplayTypeDAO.class);
-				bind(RegionTypeDAO.class).to(RegionTypeDAO.class);
+				bind(DurationDAO.class).to(DurationDAO.class);
+				bind(EarthquakeActivityDAO.class).to(EarthquakeActivityDAO.class);
+				bind(GearDAO.class).to(GearDAO.class);
+				bind(HeightWeightDAO.class).to(HeightWeightDAO.class);
 				bind(LandWaterDistributionDAO.class).to(LandWaterDistributionDAO.class);
 				bind(LandWaterMassDAO.class).to(LandWaterMassDAO.class);
-				bind(PlateMovementDAO.class).to(PlateMovementDAO.class);
-				bind(VolcanicActivityDAO.class).to(VolcanicActivityDAO.class);
-				bind(EarthquakeActivityDAO.class).to(EarthquakeActivityDAO.class);
+				bind(LanguageDAO.class).to(LanguageDAO.class);
 				bind(MountainPlacementDAO.class).to(MountainPlacementDAO.class);
 				bind(MountainPropertyDAO.class).to(MountainPropertyDAO.class);
+				bind(NameSetDAO.class).to(NameSetDAO.class);
+				bind(PlateMovementDAO.class).to(PlateMovementDAO.class);
+				bind(RegionTypeDAO.class).to(RegionTypeDAO.class);
+				bind(SchoolDAO.class).to(SchoolDAO.class);
+				bind(VolcanicActivityDAO.class).to(VolcanicActivityDAO.class);
+				bind(WorldHookCategoryDAO.class).to(WorldHookCategoryDAO.class);
+				bind(WorldHookDAO.class).to(WorldHookDAO.class);
+				bind(WorldHydrographyDAO.class).to(WorldHydrographyDAO.class);
+				bind(WorldShapeDAO.class).to(WorldShapeDAO.class);
+				bind(WorldSizeDAO.class).to(WorldSizeDAO.class);
 
-				bind(NameGenerator.class).to(NameGenerator.class);
-				bind(AdminService.class).to(AdminService.class);
+				bind(AbilityService.class).to(AbilityService.class);
+				bind(AbilityScoreService.class).to(AbilityScoreService.class);
+				bind(AlignmentService.class).to(AlignmentService.class);
+				bind(ConditionService.class).to(ConditionService.class);
 				bind(DiceService.class).to(DiceService.class);
+				bind(DisplayTypeService.class).to(DisplayTypeService.class);
+				bind(DurationService.class).to(DurationService.class);
+				bind(EarthquakeActivityService.class).to(EarthquakeActivityService.class);
+				bind(GearService.class).to(GearService.class);
 				bind(HeightWeightService.class).to(HeightWeightService.class);
+				bind(LandWaterDistributionService.class).to(LandWaterDistributionService.class);
+				bind(LandWaterMassService.class).to(LandWaterMassService.class);
+				bind(LanguageService.class).to(LanguageService.class);
+				bind(MountainPlacementService.class).to(MountainPlacementService.class);
+				bind(MountainPropertyService.class).to(MountainPropertyService.class);
+				bind(NameGenerator.class).to(NameGenerator.class);
+				bind(PlateMovementService.class).to(PlateMovementService.class);
+				bind(RegionTypeService.class).to(RegionTypeService.class);
+				bind(SchoolService.class).to(SchoolService.class);
+				bind(TectonicPlateService.class).to(TectonicPlateService.class);
+				bind(VolcanicActivityService.class).to(VolcanicActivityService.class);
+				bind(WorldHookCategoryService.class).to(WorldHookCategoryService.class);
 				bind(WorldHookService.class).to(WorldHookService.class);
-				bind(PlanetologyService.class).to(PlanetologyService.class);
+				bind(WorldHydrographyService.class).to(WorldHydrographyService.class);
+				bind(WorldShapeService.class).to(WorldShapeService.class);
+				bind(WorldSizeService.class).to(WorldSizeService.class);
 			}
 		});
 

@@ -25,22 +25,22 @@ public abstract class HibernateDAO<E extends Idable> implements GenericDAO<E, In
 	}
 
 	@Override
-	public void add(E entity) {
+	public void add(final E entity) {
 		currentSession().save(entity);
 	}
 
 	@Override
-	public void update(E entity) {
+	public void update(final E entity) {
 		currentSession().saveOrUpdate(entity);
 	}
 
 	@Override
-	public void remove(E entity) {
+	public void remove(final E entity) {
 		currentSession().delete(entity);
 	}
 
 	@Override
-	public E find(Integer key) {
+	public E find(final Integer key) {
 		return currentSession().get(daoType, key);
 	}
 

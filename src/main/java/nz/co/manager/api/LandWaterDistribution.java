@@ -23,7 +23,7 @@ public class LandWaterDistribution extends Idable {
 		return regionType;
 	}
 
-	public void setRegionType(RegionType regionType) {
+	public void setRegionType(final RegionType regionType) {
 		this.regionType = regionType;
 	}
 
@@ -31,7 +31,7 @@ public class LandWaterDistribution extends Idable {
 		return displayType;
 	}
 
-	public void setDisplayType(DisplayType displayType) {
+	public void setDisplayType(final DisplayType displayType) {
 		this.displayType = displayType;
 	}
 
@@ -39,7 +39,7 @@ public class LandWaterDistribution extends Idable {
 		return hydrography;
 	}
 
-	public void setHydrography(WorldHydrography hydrography) {
+	public void setHydrography(final WorldHydrography hydrography) {
 		this.hydrography = hydrography;
 	}
 
@@ -47,7 +47,7 @@ public class LandWaterDistribution extends Idable {
 		return numRegions;
 	}
 
-	public void setNumRegions(int numRegions) {
+	public void setNumRegions(final int numRegions) {
 		this.numRegions = numRegions;
 	}
 }

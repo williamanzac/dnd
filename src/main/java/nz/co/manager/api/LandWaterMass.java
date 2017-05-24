@@ -22,7 +22,7 @@ public class LandWaterMass extends Idable {
 		return numRegions;
 	}
 
-	public void setNumRegions(int numRegions) {
+	public void setNumRegions(final int numRegions) {
 		this.numRegions = numRegions;
 	}
 
@@ -30,7 +30,7 @@ public class LandWaterMass extends Idable {
 		return numMasses;
 	}
 
-	public void setNumMasses(String numMasses) {
+	public void setNumMasses(final String numMasses) {
 		this.numMasses = numMasses;
 	}
 
@@ -38,7 +38,7 @@ public class LandWaterMass extends Idable {
 		return minSize;
 	}
 
-	public void setMinSize(int minSize) {
+	public void setMinSize(final int minSize) {
 		this.minSize = minSize;
 	}
 
@@ -46,7 +46,7 @@ public class LandWaterMass extends Idable {
 		return maxSize;
 	}
 
-	public void setMaxSize(int maxSize) {
+	public void setMaxSize(final int maxSize) {
 		this.maxSize = maxSize;
 	}
 }

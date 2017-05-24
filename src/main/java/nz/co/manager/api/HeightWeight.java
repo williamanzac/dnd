@@ -49,7 +49,7 @@ public class HeightWeight extends Idable {
 	}
 
 	public void setBaseWeightLB(final int baseWieghtLB) {
-		this.baseWeightLB = baseWieghtLB;
+		baseWeightLB = baseWieghtLB;
 	}
 
 	public String getWeightModifier() {

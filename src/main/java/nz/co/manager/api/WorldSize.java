@@ -28,7 +28,7 @@ public class WorldSize extends Idable {
 		return min;
 	}
 
-	public void setMin(int min) {
+	public void setMin(final int min) {
 		this.min = min;
 	}
 
@@ -36,7 +36,7 @@ public class WorldSize extends Idable {
 		return max;
 	}
 
-	public void setMax(int max) {
+	public void setMax(final int max) {
 		this.max = max;
 	}
 
@@ -44,7 +44,7 @@ public class WorldSize extends Idable {
 		return diameter;
 	}
 
-	public void setDiameter(int diameter) {
+	public void setDiameter(final int diameter) {
 		this.diameter = diameter;
 	}
 
@@ -52,7 +52,7 @@ public class WorldSize extends Idable {
 		return worldMapSize;
 	}
 
-	public void setWorldMapSize(int worldMapSize) {
+	public void setWorldMapSize(final int worldMapSize) {
 		this.worldMapSize = worldMapSize;
 	}
 
@@ -60,7 +60,7 @@ public class WorldSize extends Idable {
 		return regionMapSize;
 	}
 
-	public void setRegionMapSize(int regionMapSize) {
+	public void setRegionMapSize(final int regionMapSize) {
 		this.regionMapSize = regionMapSize;
 	}
 
@@ -68,7 +68,7 @@ public class WorldSize extends Idable {
 		return mountainSizeAdjustment;
 	}
 
-	public void setMountainSizeAdjustment(int mountainSizeAdjustment) {
+	public void setMountainSizeAdjustment(final int mountainSizeAdjustment) {
 		this.mountainSizeAdjustment = mountainSizeAdjustment;
 	}
 
@@ -76,7 +76,7 @@ public class WorldSize extends Idable {
 		return mountainSizeComment;
 	}
 
-	public void setMountainSizeComment(String mountainSizeComment) {
+	public void setMountainSizeComment(final String mountainSizeComment) {
 		this.mountainSizeComment = mountainSizeComment;
 	}
 }

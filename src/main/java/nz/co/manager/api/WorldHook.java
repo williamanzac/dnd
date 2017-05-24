@@ -19,7 +19,7 @@ public class WorldHook extends Idable {
 		return category;
 	}
 
-	public void setCategory(WorldHookCategory category) {
+	public void setCategory(final WorldHookCategory category) {
 		this.category = category;
 	}
 
@@ -27,7 +27,7 @@ public class WorldHook extends Idable {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 }

@@ -26,7 +26,7 @@ public class DiceServiceTest {
 		try {
 			cut.roll("bob", 1);
 			fail("Should not get to this point");
-		} catch (ServiceException e) {
+		} catch (final ServiceException e) {
 		}
 	}
 
@@ -35,7 +35,7 @@ public class DiceServiceTest {
 		try {
 			cut.roll("1d16", 1);
 			fail("Should not get to this point");
-		} catch (ServiceException e) {
+		} catch (final ServiceException e) {
 		}
 	}
 

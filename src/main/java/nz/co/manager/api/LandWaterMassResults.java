@@ -12,7 +12,7 @@ public class LandWaterMassResults {
 		return mass;
 	}
 
-	public void setMass(LandWaterMass mass) {
+	public void setMass(final LandWaterMass mass) {
 		this.mass = mass;
 	}
 
@@ -20,7 +20,7 @@ public class LandWaterMassResults {
 		return positions;
 	}
 
-	public void setPositions(List<Integer> positions) {
+	public void setPositions(final List<Integer> positions) {
 		this.positions = positions;
 	}
 
@@ -28,7 +28,7 @@ public class LandWaterMassResults {
 		return sizes;
 	}
 
-	public void setSizes(List<Integer> sizes) {
+	public void setSizes(final List<Integer> sizes) {
 		this.sizes = sizes;
 	}
 }

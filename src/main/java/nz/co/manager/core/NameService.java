@@ -13,13 +13,11 @@ import nz.co.manager.api.NameSet;
 import nz.co.manager.jdbi.NameSetDAO;
 
 @Service
-public class NameGenerator {
-
-	private final NameSetDAO dao;
+public class NameService extends CRUDService<NameSet> {
 
 	@Inject
-	public NameGenerator(final NameSetDAO dao) {
-		this.dao = dao;
+	public NameService(final NameSetDAO dao) {
+		super(dao);
 		// nameSet.put("dwarf_male",
 		// Arrays.asList("Adrik", "Alberich", "Baern", "Barendd", "Brottor", "Bruenor", "Dain", "Darrak", "Delg",
 		// "Eberk", "Einkil", "Fargrim", "Flint", "Gardain", "Harbek", "Kildrak", "Morgran", "Orsik",
@@ -117,7 +115,7 @@ public class NameGenerator {
 	}
 
 	protected Map<String, Map<String, Double>> markovChain(final int id) throws ServiceException {
-		final List<String> list = readNameSet(id).getNames();
+		final List<String> list = read(id).getNames();
 		if (list == null) {
 			throw new ServiceException("No Names defined.");
 		}
@@ -220,28 +218,5 @@ public class NameGenerator {
 			}
 		}
 		return "-";
-	}
-
-	public NameSet createNameSet(final NameSet entity) {
-		dao.add(entity);
-		return entity;
-	}
-
-	public NameSet updateNameSet(final NameSet entity) {
-		dao.update(entity);
-		return entity;
-	}
-
-	public NameSet readNameSet(final int id) {
-		return dao.find(id);
-	}
-
-	public List<NameSet> listNameSets() {
-		return dao.list();
-	}
-
-	public void deleteNameSet(final int id) {
-		final NameSet entity = readNameSet(id);
-		dao.remove(entity);
 	}
 }

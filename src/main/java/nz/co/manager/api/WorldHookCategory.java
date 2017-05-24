@@ -25,7 +25,7 @@ public class WorldHookCategory extends Idable {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -33,7 +33,7 @@ public class WorldHookCategory extends Idable {
 		return min;
 	}
 
-	public void setMin(int min) {
+	public void setMin(final int min) {
 		this.min = min;
 	}
 
@@ -41,7 +41,7 @@ public class WorldHookCategory extends Idable {
 		return max;
 	}
 
-	public void setMax(int max) {
+	public void setMax(final int max) {
 		this.max = max;
 	}
 
@@ -49,7 +49,7 @@ public class WorldHookCategory extends Idable {
 		return worldHooks;
 	}
 
-	public void setWorldHooks(List<WorldHook> worldHooks) {
+	public void setWorldHooks(final List<WorldHook> worldHooks) {
 		this.worldHooks = worldHooks;
 	}
 }

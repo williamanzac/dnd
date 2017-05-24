@@ -33,7 +33,7 @@ public class NameGeneratorTest {
 	private NameSetDAO nameSetDAO;
 	@Spy
 	@InjectMocks
-	private NameGenerator cut;
+	private NameService cut;
 
 	@Test
 	public void generateName() throws ServiceException {

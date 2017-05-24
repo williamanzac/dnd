@@ -20,7 +20,7 @@ public class VolcanicActivity extends Idable {
 		return activity;
 	}
 
-	public void setActivity(String activity) {
+	public void setActivity(final String activity) {
 		this.activity = activity;
 	}
 
@@ -28,7 +28,7 @@ public class VolcanicActivity extends Idable {
 		return min;
 	}
 
-	public void setMin(int min) {
+	public void setMin(final int min) {
 		this.min = min;
 	}
 
@@ -36,7 +36,7 @@ public class VolcanicActivity extends Idable {
 		return max;
 	}
 
-	public void setMax(int max) {
+	public void setMax(final int max) {
 		this.max = max;
 	}
 }
