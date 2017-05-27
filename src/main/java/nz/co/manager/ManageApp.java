@@ -61,9 +61,11 @@ public class ManageApp extends Application<ManageAppConfiguration> {
 				bind(MountainPlacementDAO.class).to(MountainPlacementDAO.class);
 				bind(MountainPropertyDAO.class).to(MountainPropertyDAO.class);
 				bind(NameSetDAO.class).to(NameSetDAO.class);
+				bind(PlanetaryTemperatureDAO.class).to(PlanetaryTemperatureDAO.class);
 				bind(PlateMovementDAO.class).to(PlateMovementDAO.class);
 				bind(RegionTypeDAO.class).to(RegionTypeDAO.class);
 				bind(SchoolDAO.class).to(SchoolDAO.class);
+				bind(SeasonalVariationDAO.class).to(SeasonalVariationDAO.class);
 				bind(VolcanicActivityDAO.class).to(VolcanicActivityDAO.class);
 				bind(WorldHookCategoryDAO.class).to(WorldHookCategoryDAO.class);
 				bind(WorldHookDAO.class).to(WorldHookDAO.class);
@@ -87,9 +89,11 @@ public class ManageApp extends Application<ManageAppConfiguration> {
 				bind(MountainPlacementService.class).to(MountainPlacementService.class);
 				bind(MountainPropertyService.class).to(MountainPropertyService.class);
 				bind(NameGenerator.class).to(NameGenerator.class);
+				bind(PlanetaryTemperatureService.class).to(PlanetaryTemperatureService.class);
 				bind(PlateMovementService.class).to(PlateMovementService.class);
 				bind(RegionTypeService.class).to(RegionTypeService.class);
 				bind(SchoolService.class).to(SchoolService.class);
+				bind(SeasonalVariationService.class).to(SeasonalVariationService.class);
 				bind(TectonicPlateService.class).to(TectonicPlateService.class);
 				bind(VolcanicActivityService.class).to(VolcanicActivityService.class);
 				bind(WorldHookCategoryService.class).to(WorldHookCategoryService.class);

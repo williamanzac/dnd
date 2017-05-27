@@ -19,10 +19,10 @@ import nz.co.manager.core.WorldShapeService;
 @Path("/tools/worldBuilder/planetology/worldShapes")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class WorldShapesResource extends CRUDResource<WorldShape> {
+public class WorldShapeResource extends CRUDResource<WorldShape> {
 
 	@Inject
-	public WorldShapesResource(WorldShapeService service) {
+	public WorldShapeResource(WorldShapeService service) {
 		super(service);
 	}
 
