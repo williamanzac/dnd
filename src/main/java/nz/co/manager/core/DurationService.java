@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.DurationDAO;
 public class DurationService extends CRUDService<Duration> {
 
 	@Inject
-	public DurationService(DurationDAO dao) {
+	public DurationService(final DurationDAO dao) {
 		super(dao);
 	}
 }

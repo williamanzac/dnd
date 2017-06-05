@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.LanguageDAO;
 public class LanguageService extends CRUDService<Language> {
 
 	@Inject
-	public LanguageService(LanguageDAO dao) {
+	public LanguageService(final LanguageDAO dao) {
 		super(dao);
 	}
 }

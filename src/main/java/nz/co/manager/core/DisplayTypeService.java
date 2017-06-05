@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.DisplayTypeDAO;
 public class DisplayTypeService extends CRUDService<DisplayType> {
 
 	@Inject
-	public DisplayTypeService(DisplayTypeDAO dao) {
+	public DisplayTypeService(final DisplayTypeDAO dao) {
 		super(dao);
 	}
 }

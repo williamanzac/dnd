@@ -15,7 +15,7 @@ import nz.co.manager.core.MountainPropertyService;
 public class MountainPropertyResource extends CRUDResource<MountainProperty> {
 
 	@Inject
-	public MountainPropertyResource(MountainPropertyService service) {
+	public MountainPropertyResource(final MountainPropertyService service) {
 		super(service);
 	}
 }

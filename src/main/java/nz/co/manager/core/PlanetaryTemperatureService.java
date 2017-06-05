@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.PlanetaryTemperatureDAO;
 public class PlanetaryTemperatureService extends CRUDService<PlanetaryTemperature> {
 
 	@Inject
-	public PlanetaryTemperatureService(PlanetaryTemperatureDAO dao) {
+	public PlanetaryTemperatureService(final PlanetaryTemperatureDAO dao) {
 		super(dao);
 	}
 }

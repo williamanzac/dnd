@@ -22,7 +22,7 @@ import nz.co.manager.core.WorldHydrographyService;
 public class WorldHydrographyResource extends CRUDResource<WorldHydrography> {
 
 	@Inject
-	public WorldHydrographyResource(WorldHydrographyService service) {
+	public WorldHydrographyResource(final WorldHydrographyService service) {
 		super(service);
 	}
 

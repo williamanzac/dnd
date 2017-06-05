@@ -14,7 +14,7 @@ import nz.co.manager.jdbi.WorldSizeDAO;
 public class WorldSizeService extends CRUDService<WorldSize> {
 
 	@Inject
-	public WorldSizeService(WorldSizeDAO dao) {
+	public WorldSizeService(final WorldSizeDAO dao) {
 		super(dao);
 	}
 

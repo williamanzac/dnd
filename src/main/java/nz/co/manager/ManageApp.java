@@ -63,6 +63,7 @@ public class ManageApp extends Application<ManageAppConfiguration> {
 				bind(NameSetDAO.class).to(NameSetDAO.class);
 				bind(PlanetaryTemperatureDAO.class).to(PlanetaryTemperatureDAO.class);
 				bind(PlateMovementDAO.class).to(PlateMovementDAO.class);
+				bind(RegionalHydrographyDAO.class).to(RegionalHydrographyDAO.class);
 				bind(RegionTypeDAO.class).to(RegionTypeDAO.class);
 				bind(SchoolDAO.class).to(SchoolDAO.class);
 				bind(SeasonalVariationDAO.class).to(SeasonalVariationDAO.class);
@@ -91,6 +92,7 @@ public class ManageApp extends Application<ManageAppConfiguration> {
 				bind(NameGenerator.class).to(NameGenerator.class);
 				bind(PlanetaryTemperatureService.class).to(PlanetaryTemperatureService.class);
 				bind(PlateMovementService.class).to(PlateMovementService.class);
+				bind(RegionalHydrographyService.class).to(RegionalHydrographyService.class);
 				bind(RegionTypeService.class).to(RegionTypeService.class);
 				bind(SchoolService.class).to(SchoolService.class);
 				bind(SeasonalVariationService.class).to(SeasonalVariationService.class);

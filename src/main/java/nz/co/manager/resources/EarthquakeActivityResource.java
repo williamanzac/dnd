@@ -22,7 +22,7 @@ import nz.co.manager.core.EarthquakeActivityService;
 public class EarthquakeActivityResource extends CRUDResource<EarthquakeActivity> {
 
 	@Inject
-	public EarthquakeActivityResource(EarthquakeActivityService service) {
+	public EarthquakeActivityResource(final EarthquakeActivityService service) {
 		super(service);
 	}
 

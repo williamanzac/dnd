@@ -15,7 +15,7 @@ import nz.co.manager.core.AlignmentService;
 public class AlignmentResource extends CRUDResource<Alignment> {
 
 	@Inject
-	public AlignmentResource(AlignmentService service) {
+	public AlignmentResource(final AlignmentService service) {
 		super(service);
 	}
 }

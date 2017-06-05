@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Tools -> WorldHooks</title>
+<title>Admin -> World Builder -> World Hooks</title>
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -26,44 +26,38 @@
 <body>
     <!-- Edit Category Modal -->
     <div data-bind="modal: {
-	    visible: editCategoryModalVisible,
+	    visible: editCategoryModal.visible,
 	    header: { data: { label: 'Edit Category' } },
 	    body: { name: 'editCategoryModalTemplate' },
-	    footer: { data: { action: updateCategory, closeLabel: 'Cancel', primaryLabel: 'Update' } }
+	    footer: { data: { action: $root.updateCategory, closeLabel: 'Cancel', primaryLabel: 'Update' } }
     }"></div>
 
     <!-- New Category Modal -->
     <div data-bind="modal: {
-	    visible: newCategoryModalVisible,
+	    visible: newCategoryModal.visible,
 	    header: { data: { label: 'New Category' } },
 	    body: { name: 'editCategoryModalTemplate' },
-	    footer: { data: { action: createCategory, closeLabel: 'Cancel', primaryLabel: 'Create' } }
+	    footer: { data: { action: $root.createCategory, closeLabel: 'Cancel', primaryLabel: 'Create' } }
     }"></div>
 
     <!-- Edit WorldHook Modal -->
     <div data-bind="modal: {
-        visible: editWorldHookModalVisible,
+        visible: editWorldHookModal.visible,
         header: { data: { label: 'Edit World Hook' } },
         body: { name: 'editWorldHookModalTemplate' },
-        footer: { data: { action: updateWorldHook, closeLabel: 'Cancel', primaryLabel: 'Update' } }
+        footer: { data: { action: $root.updateWorldHook, closeLabel: 'Cancel', primaryLabel: 'Update' } }
     }"></div>
 
     <!-- New WorldHook Modal -->
     <div data-bind="modal: {
-        visible: newWorldHookModalVisible,
+        visible: newWorldHookModal.visible,
         header: { data: { label: 'New World Hook' } },
         body: { name: 'editWorldHookModalTemplate' },
-        footer: { data: { action: createWorldHook, closeLabel: 'Cancel', primaryLabel: 'Create' } }
+        footer: { data: { action: $root.createWorldHook, closeLabel: 'Cancel', primaryLabel: 'Create' } }
     }"></div>
 
 	<div class="container">
-        <div class="row">
-            <ol class="breadcrumb">
-                <li>tools</li>
-                <li>World Builder</li>
-                <li class="active">World Hooks</li>
-            </ol>
-        </div>
+        <breadcrumbs params="crumbs: ['Admin', 'World Builder', 'World Hooks']"></breadcrumbs>
 		<div class="row">
 			<h1>World Hooks</h1>
 		</div>
@@ -71,7 +65,7 @@
 			<div class="col-md-4">
 				<div class="form-inline row">
 					<div class="form-group">
-						<button class="btn btn-success" data-bind="click: showNewCategoryModal">
+						<button class="btn btn-success" data-bind="click: newCategoryModal.show">
 							<i class="fa fa-plus"></i>
 						</button>
 						<input class="form-control" type="number" data-bind="value: times" min="1" >
@@ -90,10 +84,10 @@
 						</div>
 						<div class="col-md-3">
 							<div class="btn-group btn-group-xs pull-right row" role="group">
-                                <button type="button" class="btn btn-success" data-bind="click: $root.showNewWorldHookModal.bind($data)">
+                                <button type="button" class="btn btn-success" data-bind="click: $root.newWorldHookModal.show.bind($data)">
                                     <i class="fa fa-plus"></i>
                                 </button>
-								<button type="button" class="btn btn-default" data-bind="click: $root.showEditCategoryModal.bind($data)">
+								<button type="button" class="btn btn-default" data-bind="click: $root.editCategoryModal.show.bind($data)">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 								</button>
 								<button type="button" class="btn btn-warning" data-bind="click: $root.removeCategory.bind($data)">
@@ -109,7 +103,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="btn-group btn-group-xs pull-right row" role="group">
-                                <button type="button" class="btn btn-default" data-bind="click: $root.showEditWorldHookModal.bind($data)">
+                                <button type="button" class="btn btn-default" data-bind="click: $root.editWorldHookModal.show.bind($data)">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
                                 <button type="button" class="btn btn-warning" data-bind="click: $root.removeWorldHook.bind($data)">
@@ -134,13 +128,13 @@
     <script type="text/html" id="editCategoryModalTemplate">
 		<div class="clearfix">
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Name" autofocus data-bind="value: $root.editCategory().name" />
+				<input type="text" class="form-control" placeholder="Name" autofocus data-bind="value: $root.editCategoryModal.value().name" />
 			</div> <!-- /input-group -->
             <div class="input-group">
-                <input type="number" class="form-control" placeholder="Min" data-bind="value: $root.editCategory().min" />
+                <input type="number" class="form-control" placeholder="Min" data-bind="value: $root.editCategoryModal.value().min" />
             </div> <!-- /input-group -->
             <div class="input-group">
-                <input type="number" class="form-control" placeholder="Max" data-bind="value: $root.editCategory().max" />
+                <input type="number" class="form-control" placeholder="Max" data-bind="value: $root.editCategoryModal.value().max" />
             </div> <!-- /input-group -->
 		</div>
     </script>
@@ -148,26 +142,11 @@
     <script type="text/html" id="editWorldHookModalTemplate">
         <div class="clearfix">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Name" autofocus data-bind="value: $root.editWorldHook().name" />
+                <input type="text" class="form-control" placeholder="Name" autofocus data-bind="value: $root.editWorldHookModal.value().name" />
             </div> <!-- /input-group -->
         </div>
     </script>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/select/1.1.2/js/dataTables.select.min.js"></script>
-	<script src="/js/knockstrap.js"></script>
-	<script src="/js/worldHooks.js"></script>
+    <script src="/js/require.js" data-main="/js/worldBuilder/worldHooks/main"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@ import nz.co.manager.core.ConditionService;
 public class ConditionResource extends CRUDResource<Condition> {
 
 	@Inject
-	public ConditionResource(ConditionService service) {
+	public ConditionResource(final ConditionService service) {
 		super(service);
 	}
 }

@@ -15,7 +15,7 @@ import nz.co.manager.core.AbilityService;
 public class AbilityResource extends CRUDResource<Ability> {
 
 	@Inject
-	public AbilityResource(AbilityService service) {
+	public AbilityResource(final AbilityService service) {
 		super(service);
 	}
 }

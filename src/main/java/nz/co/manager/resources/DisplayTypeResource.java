@@ -15,7 +15,7 @@ import nz.co.manager.core.DisplayTypeService;
 public class DisplayTypeResource extends CRUDResource<DisplayType> {
 
 	@Inject
-	public DisplayTypeResource(DisplayTypeService service) {
+	public DisplayTypeResource(final DisplayTypeService service) {
 		super(service);
 	}
 }

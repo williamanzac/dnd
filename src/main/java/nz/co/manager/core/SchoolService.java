@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.SchoolDAO;
 public class SchoolService extends CRUDService<School> {
 
 	@Inject
-	public SchoolService(SchoolDAO dao) {
+	public SchoolService(final SchoolDAO dao) {
 		super(dao);
 	}
 }

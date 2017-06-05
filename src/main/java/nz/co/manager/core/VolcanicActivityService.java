@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.VolcanicActivityDAO;
 public class VolcanicActivityService extends CRUDService<VolcanicActivity> {
 
 	@Inject
-	public VolcanicActivityService(VolcanicActivityDAO dao) {
+	public VolcanicActivityService(final VolcanicActivityDAO dao) {
 		super(dao);
 	}
 }

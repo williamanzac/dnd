@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.SeasonalVariationDAO;
 public class SeasonalVariationService extends CRUDService<SeasonalVariation> {
 
 	@Inject
-	public SeasonalVariationService(SeasonalVariationDAO dao) {
+	public SeasonalVariationService(final SeasonalVariationDAO dao) {
 		super(dao);
 	}
 }

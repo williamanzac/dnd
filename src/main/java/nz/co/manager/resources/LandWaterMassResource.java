@@ -21,7 +21,7 @@ import nz.co.manager.core.ServiceException;
 public class LandWaterMassResource extends CRUDResource<LandWaterMass> {
 
 	@Inject
-	public LandWaterMassResource(LandWaterMassService service) {
+	public LandWaterMassResource(final LandWaterMassService service) {
 		super(service);
 	}
 

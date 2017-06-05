@@ -15,7 +15,7 @@ import nz.co.manager.core.LanguageService;
 public class LanguageResource extends CRUDResource<Language> {
 
 	@Inject
-	public LanguageResource(LanguageService service) {
+	public LanguageResource(final LanguageService service) {
 		super(service);
 	}
 }

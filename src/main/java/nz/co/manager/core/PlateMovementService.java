@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.PlateMovementDAO;
 public class PlateMovementService extends CRUDService<PlateMovement> {
 
 	@Inject
-	public PlateMovementService(PlateMovementDAO dao) {
+	public PlateMovementService(final PlateMovementDAO dao) {
 		super(dao);
 	}
 }

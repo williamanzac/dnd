@@ -21,7 +21,7 @@ public class PlanetaryTemperature extends Idable {
 	}
 
 	public void setCategory(final String name) {
-		this.category = name;
+		category = name;
 	}
 
 	public int getMin() {

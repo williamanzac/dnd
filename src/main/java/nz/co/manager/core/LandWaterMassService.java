@@ -23,7 +23,7 @@ public class LandWaterMassService extends CRUDService<LandWaterMass> {
 	private final WorldHydrographyDAO worldHydrographyDAO;
 
 	@Inject
-	public LandWaterMassService(LandWaterMassDAO dao, final DiceService diceService,
+	public LandWaterMassService(final LandWaterMassDAO dao, final DiceService diceService,
 			final LandWaterDistributionDAO landWaterDistributionDAO, final WorldHydrographyDAO worldHydrographyDAO) {
 		super(dao);
 		this.diceService = diceService;

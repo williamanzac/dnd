@@ -15,7 +15,7 @@ import nz.co.manager.core.SeasonalVariationService;
 public class SeasonalVariationResource extends CRUDResource<SeasonalVariation> {
 
 	@Inject
-	public SeasonalVariationResource(SeasonalVariationService service) {
+	public SeasonalVariationResource(final SeasonalVariationService service) {
 		super(service);
 	}
 }

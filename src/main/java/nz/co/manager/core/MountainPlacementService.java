@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.MountainPlacementDAO;
 public class MountainPlacementService extends CRUDService<MountainPlacement> {
 
 	@Inject
-	public MountainPlacementService(MountainPlacementDAO dao) {
+	public MountainPlacementService(final MountainPlacementDAO dao) {
 		super(dao);
 	}
 }

@@ -110,8 +110,8 @@ function SeismologyViewModel() {
 	self.editWorldSize = ko.observable(new WorldSize());
 	self.editVolcanicActivity = ko.observable(new VolcanicActivity());
 	self.editEarthquakeActivity = ko.observable(new EarthquakeActivity());
-	self.editMountainPlacement = ko.observable(new VolcanicActivity());
-	self.editMountainProperty = ko.observable(new VolcanicActivity());
+	self.editMountainPlacement = ko.observable(new MountainPlacement());
+	self.editMountainProperty = ko.observable(new MountainProperty());
 
 	self.editPlateMovementModalVisible = ko.observable(false);
 	self.showEditPlateMovementModal = function(data) {

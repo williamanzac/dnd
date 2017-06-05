@@ -15,7 +15,7 @@ import nz.co.manager.core.PlateMovementService;
 public class PlateMovementResource extends CRUDResource<PlateMovement> {
 
 	@Inject
-	public PlateMovementResource(PlateMovementService service) {
+	public PlateMovementResource(final PlateMovementService service) {
 		super(service);
 	}
 }

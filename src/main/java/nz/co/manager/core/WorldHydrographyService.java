@@ -14,7 +14,7 @@ import nz.co.manager.jdbi.WorldHydrographyDAO;
 public class WorldHydrographyService extends CRUDService<WorldHydrography> {
 
 	@Inject
-	public WorldHydrographyService(WorldHydrographyDAO dao) {
+	public WorldHydrographyService(final WorldHydrographyDAO dao) {
 		super(dao);
 	}
 

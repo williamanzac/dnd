@@ -14,7 +14,7 @@ import nz.co.manager.jdbi.WorldShapeDAO;
 public class WorldShapeService extends CRUDService<WorldShape> {
 
 	@Inject
-	public WorldShapeService(WorldShapeDAO dao) {
+	public WorldShapeService(final WorldShapeDAO dao) {
 		super(dao);
 	}
 

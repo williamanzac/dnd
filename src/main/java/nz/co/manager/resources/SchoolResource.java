@@ -15,7 +15,7 @@ import nz.co.manager.core.SchoolService;
 public class SchoolResource extends CRUDResource<School> {
 
 	@Inject
-	public SchoolResource(SchoolService service) {
+	public SchoolResource(final SchoolService service) {
 		super(service);
 	}
 }

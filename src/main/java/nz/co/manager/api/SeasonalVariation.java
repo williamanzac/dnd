@@ -21,7 +21,7 @@ public class SeasonalVariation extends Idable {
 	}
 
 	public void setVariation(final String name) {
-		this.variation = name;
+		variation = name;
 	}
 
 	public int getMin() {

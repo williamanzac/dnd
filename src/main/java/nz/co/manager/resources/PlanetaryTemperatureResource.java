@@ -15,7 +15,7 @@ import nz.co.manager.core.PlanetaryTemperatureService;
 public class PlanetaryTemperatureResource extends CRUDResource<PlanetaryTemperature> {
 
 	@Inject
-	public PlanetaryTemperatureResource(PlanetaryTemperatureService service) {
+	public PlanetaryTemperatureResource(final PlanetaryTemperatureService service) {
 		super(service);
 	}
 }

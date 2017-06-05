@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.RegionTypeDAO;
 public class RegionTypeService extends CRUDService<RegionType> {
 
 	@Inject
-	public RegionTypeService(RegionTypeDAO dao) {
+	public RegionTypeService(final RegionTypeDAO dao) {
 		super(dao);
 	}
 }

@@ -15,7 +15,7 @@ import nz.co.manager.core.LandWaterDistributionService;
 public class LandWaterDistributionResource extends CRUDResource<LandWaterDistribution> {
 
 	@Inject
-	public LandWaterDistributionResource(LandWaterDistributionService service) {
+	public LandWaterDistributionResource(final LandWaterDistributionService service) {
 		super(service);
 	}
 }

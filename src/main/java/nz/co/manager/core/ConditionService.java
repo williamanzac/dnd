@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.ConditionDAO;
 public class ConditionService extends CRUDService<Condition> {
 
 	@Inject
-	public ConditionService(ConditionDAO dao) {
+	public ConditionService(final ConditionDAO dao) {
 		super(dao);
 	}
 }

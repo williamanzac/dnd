@@ -15,7 +15,7 @@ import nz.co.manager.core.DurationService;
 public class DurationResource extends CRUDResource<Duration> {
 
 	@Inject
-	public DurationResource(DurationService service) {
+	public DurationResource(final DurationService service) {
 		super(service);
 	}
 }

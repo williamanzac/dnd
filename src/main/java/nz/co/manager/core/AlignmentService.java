@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.AlignmentDAO;
 public class AlignmentService extends CRUDService<Alignment> {
 
 	@Inject
-	public AlignmentService(AlignmentDAO dao) {
+	public AlignmentService(final AlignmentDAO dao) {
 		super(dao);
 	}
 }

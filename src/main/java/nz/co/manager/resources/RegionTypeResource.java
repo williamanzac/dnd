@@ -15,7 +15,7 @@ import nz.co.manager.core.RegionTypeService;
 public class RegionTypeResource extends CRUDResource<RegionType> {
 
 	@Inject
-	public RegionTypeResource(RegionTypeService service) {
+	public RegionTypeResource(final RegionTypeService service) {
 		super(service);
 	}
 }

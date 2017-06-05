@@ -15,7 +15,7 @@ import nz.co.manager.core.VolcanicActivityService;
 public class VolcanicActivityResource extends CRUDResource<VolcanicActivity> {
 
 	@Inject
-	public VolcanicActivityResource(VolcanicActivityService service) {
+	public VolcanicActivityResource(final VolcanicActivityService service) {
 		super(service);
 	}
 }

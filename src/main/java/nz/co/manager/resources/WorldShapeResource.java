@@ -22,7 +22,7 @@ import nz.co.manager.core.WorldShapeService;
 public class WorldShapeResource extends CRUDResource<WorldShape> {
 
 	@Inject
-	public WorldShapeResource(WorldShapeService service) {
+	public WorldShapeResource(final WorldShapeService service) {
 		super(service);
 	}
 

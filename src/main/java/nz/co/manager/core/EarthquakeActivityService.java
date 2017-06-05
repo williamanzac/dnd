@@ -16,7 +16,7 @@ import nz.co.manager.jdbi.EarthquakeActivityDAO;
 public class EarthquakeActivityService extends CRUDService<EarthquakeActivity> {
 
 	@Inject
-	public EarthquakeActivityService(EarthquakeActivityDAO dao) {
+	public EarthquakeActivityService(final EarthquakeActivityDAO dao) {
 		super(dao);
 	}
 

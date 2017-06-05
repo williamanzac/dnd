@@ -20,10 +20,10 @@ import nz.co.manager.core.TectonicPlateService;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class TectonicPlateResource {
-	private TectonicPlateService service;
+	private final TectonicPlateService service;
 
 	@Inject
-	public TectonicPlateResource(TectonicPlateService service) {
+	public TectonicPlateResource(final TectonicPlateService service) {
 		this.service = service;
 	}
 

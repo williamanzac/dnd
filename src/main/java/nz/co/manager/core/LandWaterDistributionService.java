@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.LandWaterDistributionDAO;
 public class LandWaterDistributionService extends CRUDService<LandWaterDistribution> {
 
 	@Inject
-	public LandWaterDistributionService(LandWaterDistributionDAO dao) {
+	public LandWaterDistributionService(final LandWaterDistributionDAO dao) {
 		super(dao);
 	}
 }

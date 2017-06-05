@@ -11,7 +11,7 @@ import nz.co.manager.jdbi.AbilityDAO;
 public class AbilityService extends CRUDService<Ability> {
 
 	@Inject
-	public AbilityService(AbilityDAO dao) {
+	public AbilityService(final AbilityDAO dao) {
 		super(dao);
 	}
 }
