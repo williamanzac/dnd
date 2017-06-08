@@ -56,6 +56,6 @@ public class NameGeneratorTest {
 		System.out.println(actual);
 		verify(cut, times(10)).markovChain(DWARF_MALE_TYPE);
 		verify(cut, times(10)).markovName(anyMap());
-		verify(cut).constructChain(anyList());
+		verify(cut, times(10)).constructChain(anyList());
 	}
 }

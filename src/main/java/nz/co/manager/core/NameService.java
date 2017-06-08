@@ -191,32 +191,44 @@ public class NameService extends CRUDService<NameSet> {
 		final List<String> names = new ArrayList<>();
 
 		for (int i = 0; i < parts; i++) {
-			final int nameLen = Integer.valueOf(selectLink(chain, "nameLen"));
+			int nameLen = Integer.valueOf(selectLink(chain, "nameLen"));
 			String c = selectLink(chain, "initial");
-			String name = c;
-			String lastC = c;
+			final List<String> name = new ArrayList<>();
+			name.add(c);
 
-			while (name.length() < nameLen) {
-				c = selectLink(chain, lastC);
-				name += c;
-				lastC = c;
+			while (name.size() < nameLen) {
+				c = selectLink(chain, name.get(name.size() - 1));
+				if (c == null) {
+					nameLen = name.size();
+					continue;
+				}
+				name.add(c);
 			}
-			names.add(name);
+			names.add(String.join("", name));
 		}
 		return String.join(" ", names);
 	}
 
 	private String selectLink(final Map<String, Map<String, Double>> chain, final String key) {
-		final double len = chain.get("tableLen").get(key);
+		final Map<String, Double> tableLen = chain.get("tableLen");
+		final double len;
+		if (tableLen.containsKey(key)) {
+			len = tableLen.get(key);
+		} else {
+			return null;
+		}
 		final double idx = Math.floor(Math.random() * len);
 
 		int t = 0;
-		for (final String token : chain.get(key).keySet()) {
-			t += chain.get(key).get(token);
-			if (idx < t) {
-				return token;
+		if (chain.containsKey(key)) {
+			final Map<String, Double> map = chain.get(key);
+			for (final String token : map.keySet()) {
+				t += map.get(token);
+				if (idx < t) {
+					return token;
+				}
 			}
 		}
-		return "-";
+		return null;
 	}
 }
