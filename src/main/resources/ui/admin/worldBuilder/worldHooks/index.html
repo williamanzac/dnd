@@ -84,7 +84,7 @@
 						</div>
 						<div class="col-md-3">
 							<div class="btn-group btn-group-xs pull-right row" role="group">
-                                <button type="button" class="btn btn-success" data-bind="click: $root.newWorldHookModal.show.bind($data)">
+                                <button type="button" class="btn btn-success" data-bind="click: function(){$root.editWorldHook().categoryId($data.id); $root.newWorldHookModal.show($root.editWorldHook());}">
                                     <i class="fa fa-plus"></i>
                                 </button>
 								<button type="button" class="btn btn-default" data-bind="click: $root.editCategoryModal.show.bind($data)">
@@ -125,7 +125,7 @@
 		</div>
 	</div>
 
-    <script type="text/html" id="editCategoryModalTemplate">
+    <template id="editCategoryModalTemplate">
 		<div class="clearfix">
 			<div class="input-group">
 				<input type="text" class="form-control" placeholder="Name" autofocus data-bind="value: $root.editCategoryModal.value().name" />
@@ -137,15 +137,15 @@
                 <input type="number" class="form-control" placeholder="Max" data-bind="value: $root.editCategoryModal.value().max" />
             </div> <!-- /input-group -->
 		</div>
-    </script>
+    </template>
 
-    <script type="text/html" id="editWorldHookModalTemplate">
+    <template id="editWorldHookModalTemplate">
         <div class="clearfix">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Name" autofocus data-bind="value: $root.editWorldHookModal.value().name" />
             </div> <!-- /input-group -->
         </div>
-    </script>
+    </template>
 
     <script src="/js/require.js" data-main="/js/worldBuilder/worldHooks/main"></script>
 </body>

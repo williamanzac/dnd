@@ -26,7 +26,7 @@
 <body>
     <!-- Edit PlanetaryTemperature Modal -->
     <div data-bind="modal: {
-	    visible: editPlanetaryTemperatureModalVisible,
+	    visible: editPlanetaryTemperatureModal.visible,
 	    header: { data: { label: 'Edit Planetary Temperature' } },
 	    body: { name: 'editPlanetaryTemperatureModalTemplate' },
 	    footer: { data: { action: updatePlanetaryTemperature, closeLabel: 'Cancel', primaryLabel: 'Update' } }
@@ -34,7 +34,7 @@
 
     <!-- New PlanetaryTemperature Modal -->
     <div data-bind="modal: {
-	    visible: newPlanetaryTemperatureModalVisible,
+	    visible: newPlanetaryTemperatureModal.visible,
 	    header: { data: { label: 'New Planetary Temperature' } },
 	    body: { name: 'editPlanetaryTemperatureModalTemplate' },
 	    footer: { data: { action: createPlanetaryTemperature, closeLabel: 'Cancel', primaryLabel: 'Create' } }
@@ -42,7 +42,7 @@
 
     <!-- Edit SeasonalVariation Modal -->
     <div data-bind="modal: {
-        visible: editSeasonalVariationModalVisible,
+        visible: editSeasonalVariationModal.visible,
         header: { data: { label: 'Edit Seasonal Variation' } },
         body: { name: 'editSeasonalVariationModalTemplate' },
         footer: { data: { action: updateSeasonalVariation, closeLabel: 'Cancel', primaryLabel: 'Update' } }
@@ -50,21 +50,14 @@
 
     <!-- New SeasonalVariation Modal -->
     <div data-bind="modal: {
-        visible: newSeasonalVariationModalVisible,
+        visible: newSeasonalVariationModal.visible,
         header: { data: { label: 'New Seasonal Variation' } },
         body: { name: 'editSeasonalVariationModalTemplate' },
         footer: { data: { action: createSeasonalVariation, closeLabel: 'Cancel', primaryLabel: 'Create' } }
     }"></div>
 
 	<div class="container">
-        <div class="row">
-            <ol class="breadcrumb">
-                <li>Admin</li>
-                <li>World Builder</li>
-                <li>Planetology</li>
-                <li class="active">Climatology</li>
-            </ol>
-        </div>
+        <breadcrumbs params="crumbs: ['Admin', 'World Builder', 'Planetology', 'Climatology']"></breadcrumbs>
 		<div class="row">
 			<h1>Climatology</h1>
 		</div>
@@ -79,7 +72,7 @@
                                 <th>Category</th>
                                 <th>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button class="btn btn-success" data-bind="click: showNewPlanetaryTemperatureModal">
+                                        <button class="btn btn-success" data-bind="click: newPlanetaryTemperatureModal.show">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -92,7 +85,7 @@
                                 <td data-bind="text: category"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default" data-bind="click: $root.showEditPlanetaryTemperatureModal.bind($data)">
+                                        <button type="button" class="btn btn-default" data-bind="click: $root.editPlanetaryTemperatureModal.show.bind($data)">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                         <button type="button" class="btn btn-warning" data-bind="click: $root.removePlanetaryTemperature.bind($data)">
@@ -115,7 +108,7 @@
                                 <th>Variation</th>
                                 <th>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button class="btn btn-success" data-bind="click: showNewSeasonalVariationModal">
+                                        <button class="btn btn-success" data-bind="click: newSeasonalVariationModal.show">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -128,7 +121,7 @@
                                 <td data-bind="text: variation"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default" data-bind="click: $root.showEditSeasonalVariationModal.bind($data)">
+                                        <button type="button" class="btn btn-default" data-bind="click: $root.editSeasonalVariationModal.show.bind($data)">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                         <button type="button" class="btn btn-warning" data-bind="click: $root.removeSeasonalVariation.bind($data)">
@@ -144,49 +137,34 @@
 		</div>
 	</div>
 
-    <script type="text/html" id="editPlanetaryTemperatureModalTemplate">
+    <template id="editPlanetaryTemperatureModalTemplate">
 		<div class="clearfix">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Category" autofocus data-bind="value: $root.editPlanetaryTemperature().category" />
+                <input type="text" class="form-control" placeholder="Category" autofocus data-bind="value: $root.editPlanetaryTemperatureModal.value().category" />
             </div> <!-- /input-group -->
             <div class="input-group">
-                <input type="number" class="form-control" placeholder="Min" data-bind="value: $root.editPlanetaryTemperature().min" />
+                <input type="number" class="form-control" placeholder="Min" data-bind="value: $root.editPlanetaryTemperatureModal.value().min" />
             </div> <!-- /input-group -->
             <div class="input-group">
-                <input type="number" class="form-control" placeholder="Max" data-bind="value: $root.editPlanetaryTemperature().max" />
+                <input type="number" class="form-control" placeholder="Max" data-bind="value: $root.editPlanetaryTemperatureModal.value().max" />
             </div> <!-- /input-group -->
 		</div>
-    </script>
+    </template>
 
-    <script type="text/html" id="editSeasonalVariationModalTemplate">
+    <template id="editSeasonalVariationModalTemplate">
         <div class="clearfix">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Variation" autofocus data-bind="value: $root.editSeasonalVariation().variation" />
+                <input type="text" class="form-control" placeholder="Variation" autofocus data-bind="value: $root.editSeasonalVariationModal.value().variation" />
             </div> <!-- /input-group -->
             <div class="input-group">
-                <input type="number" class="form-control" placeholder="Min" data-bind="value: $root.editSeasonalVariation().min" />
+                <input type="number" class="form-control" placeholder="Min" data-bind="value: $root.editSeasonalVariationModal.value().min" />
             </div> <!-- /input-group -->
             <div class="input-group">
-                <input type="number" class="form-control" placeholder="Max" data-bind="value: $root.editSeasonalVariation().max" />
+                <input type="number" class="form-control" placeholder="Max" data-bind="value: $root.editSeasonalVariationModal.value().max" />
             </div> <!-- /input-group -->
         </div>
-    </script>
+    </template>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/select/1.1.2/js/dataTables.select.min.js"></script>
-	<script src="/js/knockstrap.js"></script>
-	<script src="/js/climatology.js"></script>
+    <script src="/js/require.js" data-main="/js/worldBuilder/planetology/climatology/main"></script>
 </body>
 </html>

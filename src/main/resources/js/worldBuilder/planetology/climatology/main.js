@@ -1,5 +1,5 @@
 requirejs.config({
-	baseUrl: '../../../js/lib',
+	baseUrl: '../../../../js/lib',
     paths: {
         'jquery': '//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min',
         'knockout': '//cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min',
@@ -15,7 +15,7 @@ requirejs.config({
     }
 });
 
-require(['jquery', 'bootstrap', 'knockout', '../viewModels/worldHook', 'domReady!'], function($, bootstrap, ko, ViewModel) {
+require(['jquery', 'bootstrap', 'knockout', '../viewModels/climatology', 'domReady!'], function($, bootstrap, ko, ClimatologyViewModel) {
 	ko.components.register('breadcrumbs', { require: '../components/breadcrumbs' });
-	ko.applyBindings(new ViewModel());
+	ko.applyBindings(new ClimatologyViewModel());
 });
