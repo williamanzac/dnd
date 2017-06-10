@@ -87,10 +87,10 @@
                                 <button type="button" class="btn btn-success" data-bind="click: function(){$root.editWorldHook().categoryId($data.id); $root.newWorldHookModal.show($root.editWorldHook());}">
                                     <i class="fa fa-plus"></i>
                                 </button>
-								<button type="button" class="btn btn-default" data-bind="click: $root.editCategoryModal.show.bind($data)">
+								<button type="button" class="btn btn-default" data-bind="click: $root.editCategoryModal.show">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 								</button>
-								<button type="button" class="btn btn-warning" data-bind="click: $root.removeCategory.bind($data)">
+								<button type="button" class="btn btn-warning" data-bind="click: remove">
 									<i class="fa fa-times" aria-hidden="true"></i>
 								</button>
 							</div>
@@ -103,10 +103,10 @@
                         </div>
                         <div class="col-md-3">
                             <div class="btn-group btn-group-xs pull-right row" role="group">
-                                <button type="button" class="btn btn-default" data-bind="click: $root.editWorldHookModal.show.bind($data)">
+                                <button type="button" class="btn btn-default" data-bind="click: $root.editWorldHookModal.show">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-warning" data-bind="click: $root.removeWorldHook.bind($data)">
+                                <button type="button" class="btn btn-warning" data-bind="click: remove">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </button>
                             </div>

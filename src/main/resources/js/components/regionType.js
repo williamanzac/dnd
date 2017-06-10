@@ -1,12 +1,14 @@
-define(['knockout'], function(ko) {
-	var baseurl = "/tools/worldBuilder/planetology/seasonalVariations";
+define(['jquery', 'knockout'], function($, ko) {
+	var baseurl = "/tools/worldBuilder/planetology/regionTypes";
 
-	function SeasonalVariation(data) {
+	function RegionType(data) {
 		var self = this;
-		self.id = data && data.id || null;
-		self.variation = ko.observable(data && data.variation || null);
-		self.min = ko.observable(data && data.min || null);
-		self.max = ko.observable(data && data.max || null);
+		if (data != null) {
+			self.id = data.id;
+			self.name = ko.observable(data.name);
+		} else {
+			self.name = ko.observable();
+		}
 
 		self.update = function() {
 			var data = ko.toJS(self);
@@ -38,14 +40,14 @@ define(['knockout'], function(ko) {
 		}
 	}
 
-	SeasonalVariation.list = function(list) {
+	RegionType.list = function(list) {
 		$.getJSON(baseurl, function (data) {
 			var mapped = $.map(data, function(item) {
-				return new SeasonalVariation(item)
+				return new RegionType(item)
 			});
 			list(mapped);
 		});
 	}
 
-	return SeasonalVariation;
+	return RegionType;
 });

@@ -26,7 +26,7 @@
 <body>
     <!-- Edit Hydrography Modal -->
     <div data-bind="modal: {
-	    visible: editHydrographyModalVisible,
+	    visible: editHydrographyModal.visible,
 	    header: { data: { label: 'Edit World Hydrography' } },
 	    body: { name: 'editHydrographyModalTemplate' },
 	    footer: { data: { action: updateHydrography, closeLabel: 'Cancel', primaryLabel: 'Update' } }
@@ -34,7 +34,7 @@
 
     <!-- New Hydrography Modal -->
     <div data-bind="modal: {
-	    visible: newHydrographyModalVisible,
+	    visible: newHydrographyModal.visible,
 	    header: { data: { label: 'New World Hydrography' } },
 	    body: { name: 'editHydrographyModalTemplate' },
 	    footer: { data: { action: createHydrography, closeLabel: 'Cancel', primaryLabel: 'Create' } }
@@ -42,7 +42,7 @@
 
     <!-- Edit RegionType Modal -->
     <div data-bind="modal: {
-        visible: editRegionTypeModalVisible,
+        visible: editRegionTypeModal.visible,
         header: { data: { label: 'Edit Region Type' } },
         body: { name: 'editRegionTypeModalTemplate' },
         footer: { data: { action: updateRegionType, closeLabel: 'Cancel', primaryLabel: 'Update' } }
@@ -50,7 +50,7 @@
 
     <!-- New RegionType Modal -->
     <div data-bind="modal: {
-        visible: newRegionTypeModalVisible,
+        visible: newRegionTypeModal.visible,
         header: { data: { label: 'New Region Type' } },
         body: { name: 'editRegionTypeModalTemplate' },
         footer: { data: { action: createRegionType, closeLabel: 'Cancel', primaryLabel: 'Create' } }
@@ -58,7 +58,7 @@
 
     <!-- Edit DisplayType Modal -->
     <div data-bind="modal: {
-        visible: editDisplayTypeModalVisible,
+        visible: editDisplayTypeModal.visible,
         header: { data: { label: 'Edit Display Type' } },
         body: { name: 'editDisplayTypeModalTemplate' },
         footer: { data: { action: updateDisplayType, closeLabel: 'Cancel', primaryLabel: 'Update' } }
@@ -66,7 +66,7 @@
 
     <!-- New DisplayType Modal -->
     <div data-bind="modal: {
-        visible: newDisplayTypeModalVisible,
+        visible: newDisplayTypeModal.visible,
         header: { data: { label: 'New Display Type' } },
         body: { name: 'editDisplayTypeModalTemplate' },
         footer: { data: { action: createDisplayType, closeLabel: 'Cancel', primaryLabel: 'Create' } }
@@ -74,7 +74,7 @@
 
     <!-- Edit LandWaterDistribution Modal -->
     <div data-bind="modal: {
-        visible: editLandWaterDistributionModalVisible,
+        visible: editLandWaterDistributionModal.visible,
         header: { data: { label: 'Edit Land Water Distribution' } },
         body: { name: 'editLandWaterDistributionModalTemplate' },
         footer: { data: { action: updateLandWaterDistribution, closeLabel: 'Cancel', primaryLabel: 'Update' } }
@@ -82,7 +82,7 @@
 
     <!-- New LandWaterDistribution Modal -->
     <div data-bind="modal: {
-        visible: newLandWaterDistributionModalVisible,
+        visible: newLandWaterDistributionModal.visible,
         header: { data: { label: 'New Land Water Distribution' } },
         body: { name: 'editLandWaterDistributionModalTemplate' },
         footer: { data: { action: createLandWaterDistribution, closeLabel: 'Cancel', primaryLabel: 'Create' } }
@@ -90,7 +90,7 @@
 
     <!-- Edit LandWaterMass Modal -->
     <div data-bind="modal: {
-        visible: editLandWaterMassModalVisible,
+        visible: editLandWaterMassModal.visible,
         header: { data: { label: 'Edit Land Water Mass' } },
         body: { name: 'editLandWaterMassModalTemplate' },
         footer: { data: { action: updateLandWaterMass, closeLabel: 'Cancel', primaryLabel: 'Update' } }
@@ -98,21 +98,14 @@
 
     <!-- New LandWaterMass Modal -->
     <div data-bind="modal: {
-        visible: newLandWaterMassModalVisible,
+        visible: newLandWaterMassModal.visible,
         header: { data: { label: 'New Land Water Mass' } },
         body: { name: 'editLandWaterMassModalTemplate' },
         footer: { data: { action: createLandWaterMass, closeLabel: 'Cancel', primaryLabel: 'Create' } }
     }"></div>
 
 	<div class="container">
-        <div class="row">
-            <ol class="breadcrumb">
-                <li>Admin</li>
-                <li>World Builder</li>
-                <li>Planetology</li>
-                <li class="active">World Hydrography</li>
-            </ol>
-        </div>
+        <breadcrumbs prams="crumbs: ['Admin', 'World Builder', 'Planetology', 'World Hydrography']"></breadcrumbs>
 		<div class="row">
 			<h1>World Hydrography</h1>
 		</div>
@@ -127,7 +120,7 @@
                                 <th>Percent</th>
                                 <th>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button class="btn btn-success" data-bind="click: showNewHydrographyModal">
+                                        <button class="btn btn-success" data-bind="click: newHydrographyModal.show">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -140,10 +133,10 @@
                                 <td data-bind="text: percent"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default" data-bind="click: $root.showEditHydrographyModal.bind($data)">
+                                        <button type="button" class="btn btn-default" data-bind="click: $root.editHydrographyModal.show">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
-                                        <button type="button" class="btn btn-warning" data-bind="click: $root.removeHydrography.bind($data)">
+                                        <button type="button" class="btn btn-warning" data-bind="click: remove">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -162,7 +155,7 @@
                                 <th>Name</th>
                                 <th>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button class="btn btn-success" data-bind="click: showNewRegionTypeModal">
+                                        <button class="btn btn-success" data-bind="click: newRegionTypeModal.show">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -174,10 +167,10 @@
                                 <td data-bind="text: name"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default" data-bind="click: $root.showEditRegionTypeModal.bind($data)">
+                                        <button type="button" class="btn btn-default" data-bind="click: $root.editRegionTypeModal.show">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
-                                        <button type="button" class="btn btn-warning" data-bind="click: $root.removeRegionType.bind($data)">
+                                        <button type="button" class="btn btn-warning" data-bind="click: remove">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -196,7 +189,7 @@
                                 <th>Name</th>
                                 <th>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button class="btn btn-success" data-bind="click: showNewDisplayTypeModal">
+                                        <button class="btn btn-success" data-bind="click: newDisplayTypeModal.show">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -208,10 +201,10 @@
                                 <td data-bind="text: name"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default" data-bind="click: $root.showEditDisplayTypeModal.bind($data)">
+                                        <button type="button" class="btn btn-default" data-bind="click: $root.editDisplayTypeModal.show">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
-                                        <button type="button" class="btn btn-warning" data-bind="click: $root.removeDisplayType.bind($data)">
+                                        <button type="button" class="btn btn-warning" data-bind="click: remove">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -232,7 +225,7 @@
                                 <th>Size of Masses</th>
                                 <th>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button class="btn btn-success" data-bind="click: showNewLandWaterMassModal">
+                                        <button class="btn btn-success" data-bind="click: newLandWaterMassModal.show">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -246,10 +239,10 @@
                                 <td data-bind="text: minSize() + '-' + maxSize()"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default" data-bind="click: $root.showEditLandWaterMassModal.bind($data)">
+                                        <button type="button" class="btn btn-default" data-bind="click: $root.editLandWaterMassModal.show">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
-                                        <button type="button" class="btn btn-warning" data-bind="click: $root.removeLandWaterMass.bind($data)">
+                                        <button type="button" class="btn btn-warning" data-bind="click: remove">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -288,7 +281,7 @@
                                 <!-- ko with: $root.findNumRegions($parents[1].name(), $parents[0].name(), percent()) -->
                                 <span data-bind="text: numRegions"></span>
                                 <div class="btn-group btn-group-xs" role="group">
-                                    <button class="btn btn-default" data-bind="click: $root.showEditLandWaterDistributionModal.bind($data)">
+                                    <button class="btn btn-default" data-bind="click: $root.editLandWaterDistributionModal.show">
                                         <i class="fa fa-pencil"></i>
                                     </button>
                                 </div>
@@ -296,7 +289,7 @@
                                 <!-- /ko -->
                                 <!-- ko ifnot: $root.findNumRegions($parents[1].name(), $parents[0].name(), percent()) -->
                                 <div class="btn-group btn-group-xs" role="group">
-                                    <button class="btn btn-success" data-bind="click: $root.showNewLandWaterDistributionModal.bind($parents[2], $parents[1], $parents[0])">
+                                    <button class="btn btn-success" data-bind="click: $root.newLandWaterDistributionModal.show.bind($parents[2], $parents[1], $parents[0])">
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </div>
@@ -377,21 +370,6 @@
         </div>
     </script>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/select/1.1.2/js/dataTables.select.min.js"></script>
-	<script src="/js/knockstrap.js"></script>
-	<script src="/js/worldHydrography.js"></script>
+    <script src="/js/require.js" data-main="/js/worldBuilder/planetology/hydrography/main"></script>
 </body>
 </html>
