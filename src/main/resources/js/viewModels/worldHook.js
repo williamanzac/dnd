@@ -1,4 +1,6 @@
-define(['jquery', 'knockout', 'Modal', '../components/worldHook', '../components/worldHookCategory', 'knockstrap'], function($, ko, Modal, WorldHook, Category) {
+define([ 'jquery', 'knockout', 'Modal', '../components/worldHook',
+		'../components/worldHookCategory', 'knockstrap' ], function($, ko,
+		Modal, WorldHook, Category) {
 	return function WorldHookViewModel() {
 		var self = this;
 		self.categories = ko.observableArray([]);
@@ -27,18 +29,11 @@ define(['jquery', 'knockout', 'Modal', '../components/worldHook', '../components
 			self.editWorldHook().create();
 		}
 
-		self.generate = function () {
-			$.ajax({
-				method: "POST",
-				url: "/tools/worldHooks/generate?times=" + self.times(),
-				contentType: "application/json",
-				dataType: "json"
-			}).done(function (data) {
-				self.worldHooks(data);
-			});
+		self.generate = function() {
+			WorldHook.generate(self.worldHooks, self.times());
 		}
 
-		self.getCategories = function () {
+		self.getCategories = function() {
 			Category.list(self.categories);
 		}
 

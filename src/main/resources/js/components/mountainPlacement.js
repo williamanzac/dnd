@@ -1,10 +1,12 @@
 define([ 'jquery', 'knockout' ], function($, ko) {
-	var baseurl = "/tools/worldBuilder/planetology/regionTypes";
+	var baseurl = "/tools/worldBuilder/planetology/mountainPlacements";
 
-	function RegionType(data) {
+	function MountainPlacement(data) {
 		var self = this;
 		self.id = data && data.id || null;
-		self.name = ko.observable(data && data.name || null);
+		self.type = ko.observable(data && data.type || null);
+		self.min = ko.observable(data && data.min || null);
+		self.max = ko.observable(data && data.max || null);
 
 		self.update = function() {
 			var data = ko.toJS(self);
@@ -36,14 +38,14 @@ define([ 'jquery', 'knockout' ], function($, ko) {
 		}
 	}
 
-	RegionType.list = function(list) {
+	MountainPlacement.list = function(list) {
 		$.getJSON(baseurl, function(data) {
 			var mapped = $.map(data, function(item) {
-				return new RegionType(item)
+				return new MountainPlacement(item)
 			});
 			list(mapped);
 		});
 	}
 
-	return RegionType;
+	return MountainPlacement;
 });

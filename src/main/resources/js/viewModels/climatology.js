@@ -1,9 +1,10 @@
-define(['jquery', 'knockout', 'Modal', '../components/planetaryTemperature', '../components/seasonalVariation', 'knockstrap'], function($, ko, Modal, PlanetaryTemperature, SeasonalVariation) {
+define([ 'jquery', 'knockout', 'Modal', '../components/planetaryTemperature', '../components/seasonalVariation',
+        'knockstrap' ], function($, ko, Modal, PlanetaryTemperature, SeasonalVariation) {
 	return function ClimatologyViewModel() {
 		var self = this;
 		self.planetaryTemperatures = ko.observableArray([]);
 		self.seasonalVariations = ko.observableArray([]);
-		
+
 		self.times = ko.observable(3);
 
 		self.editPlanetaryTemperature = ko.observable(new PlanetaryTemperature());
@@ -27,11 +28,11 @@ define(['jquery', 'knockout', 'Modal', '../components/planetaryTemperature', '..
 		self.createSeasonalVariation = function() {
 			self.editSeasonalVariation().create();
 		}
-		
-		self.getPlanetaryTemperatures = function () {
+
+		self.getPlanetaryTemperatures = function() {
 			PlanetaryTemperature.list(self.planetaryTemperatures);
 		}
-		self.getSeasonalVariations = function () {
+		self.getSeasonalVariations = function() {
 			SeasonalVariation.list(self.seasonalVariations);
 		}
 

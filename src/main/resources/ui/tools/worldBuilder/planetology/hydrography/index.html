@@ -7,14 +7,10 @@
 
 <title>Tools -> World Builder -> Planetology -> World Hydrography</title>
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/select/1.1.2/css/select.bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.1.2/css/select.bootstrap.min.css">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/style.css">
 
@@ -24,25 +20,20 @@
 <![endif]-->
 </head>
 <body>
-	<div class="container">
+    <div class="container">
+        <breadcrumbs params="crumbs: ['Tools', 'World Builder', 'Planetology', 'World Hydrography']"></breadcrumbs>
         <div class="row">
-            <ol class="breadcrumb">
-                <li>Tools</li>
-                <li>World Builder</li>
-                <li>Planetology</li>
-                <li class="active">World Hydrography</li>
-            </ol>
+            <h1>World Hydrography</h1>
         </div>
-		<div class="row">
-			<h1>World Hydrography</h1>
-		</div>
-		<div class="row">
+        <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">Display Types</div>
                     <table class="table table-striped table-hover table-bordered">
                         <tbody data-bind="foreach: displayTypes">
-                            <tr data-bind="css: {active: $root.selectedDisplayType() != null && $root.selectedDisplayType().id == id}, click: $root.setSelectedDisplayType.bind($data)">
+                            <tr
+                                data-bind="css: {active: $root.selectedDisplayType() != null && $root.selectedDisplayType().id == id}, click: $root.setSelectedDisplayType.bind($data)"
+                            >
                                 <td data-bind="text: name"></td>
                             </tr>
                         </tbody>
@@ -51,14 +42,17 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Hydrography</div>
                     <div class="panel-body">
-    					<div class="input-group">
-    						<input class="form-control" type="number" data-bind="value: times" min="1" >
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" data-bind="click: generateHydrography, enable: selectedDisplayType">
+                        <div class="input-group">
+                            <input class="form-control" type="number" data-bind="value: times" min="1"> <span
+                                class="input-group-btn"
+                            >
+                                <button type="button" class="btn btn-default"
+                                    data-bind="click: generateHydrography, enable: selectedDisplayType"
+                                >
                                     <i class="fa fa-list" aria-hidden="true"></i>
                                 </button>
                             </span>
-    					</div>
+                        </div>
                     </div>
                     <table class="table table-striped table-hover table-bordered">
                         <tbody data-bind="foreach: hydrographies">
@@ -69,7 +63,7 @@
                     </table>
                 </div>
             </div>
-			<div class="col-md-8">
+            <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">Land/Water Distribution</div>
                     <table class="table table-striped table-hover table-bordered">
@@ -85,9 +79,9 @@
                             <tr>
                                 <td data-bind="text: percent"></td>
                                 <!-- ko foreach: $root.regionTypes -->
-                                <td>
-                                    <span data-bind="text: $root.findNumRegions(name(), $root.selectedDisplayType().name(), $parent.percent).numRegions()"></span>
-                                </td>
+                                <td><span
+                                    data-bind="text: $root.findNumRegions(name(), $root.selectedDisplayType().name(), $parent.percent()).numRegions()"
+                                ></span></td>
                                 <!-- /ko -->
                             </tr>
                         </tbody>
@@ -120,25 +114,10 @@
                         </svg>
                     </div>
                 </div>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/select/1.1.2/js/dataTables.select.min.js"></script>
-	<script src="/js/knockstrap.js"></script>
-	<script src="/js/worldHydrography.js"></script>
+    <script src="/js/require.js" data-main="/js/worldBuilder/planetology/hydrography/main"></script>
 </body>
 </html>

@@ -1,10 +1,13 @@
 define([ 'jquery', 'knockout' ], function($, ko) {
-	var baseurl = "/tools/worldBuilder/planetology/regionTypes";
+	var baseurl = "/tools/worldBuilder/planetology/earthquakeActivities";
 
-	function RegionType(data) {
+	function EarthquakeActivity(data) {
 		var self = this;
 		self.id = data && data.id || null;
-		self.name = ko.observable(data && data.name || null);
+		self.strength = ko.observable(data && data.strength || null);
+		self.frequency = ko.observable(data && data.frequency || null);
+		self.min = ko.observable(data && data.min || null);
+		self.max = ko.observable(data && data.max || null);
 
 		self.update = function() {
 			var data = ko.toJS(self);
@@ -36,14 +39,26 @@ define([ 'jquery', 'knockout' ], function($, ko) {
 		}
 	}
 
-	RegionType.list = function(list) {
+	EarthquakeActivity.list = function(list) {
 		$.getJSON(baseurl, function(data) {
 			var mapped = $.map(data, function(item) {
-				return new RegionType(item)
+				return new EarthquakeActivity(item)
 			});
 			list(mapped);
 		});
 	}
 
-	return RegionType;
+	EarthquakeActivity.listEarthquakeStrengths = function(list) {
+		$.getJSON(baseurl + "/earthquakeStrengths", function(data) {
+			list(data);
+		});
+	}
+
+	EarthquakeActivity.listEarthquakeFrequencies = function(list) {
+		$.getJSON(baseurl + "/earthquakeFrequencies", function(data) {
+			list(data);
+		});
+	}
+
+	return EarthquakeActivity;
 });
