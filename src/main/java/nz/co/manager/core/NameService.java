@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jvnet.hk2.annotations.Service;
 
 import nz.co.manager.api.NameSet;
@@ -136,23 +137,59 @@ public class NameService extends CRUDService<NameSet> {
 			for (final String name : names) {
 				incrChain(chain, "nameLen", String.valueOf(name.length()));
 
-				String c = name.substring(0, 1);
+				List<String> strings = splitName(name);
+
+				String c = strings.get(0);
 				incrChain(chain, "initial", c);
 
-				String string = name.substring(1);
+				strings = strings.subList(1, strings.size());
 				String lastC = c;
 
-				while (string.length() > 0) {
-					c = string.substring(0, 1);
+				while (!strings.isEmpty()) {
+					c = strings.get(0);
 					incrChain(chain, lastC, c);
 
-					string = string.substring(1);
+					strings = strings.subList(1, strings.size());
 					lastC = c;
 				}
 			}
 		}
 		scaleChain(chain);
 		return chain;
+	}
+
+	private List<String> splitName(final String name) {
+		final List<String> strings = new ArrayList<>();
+		boolean prevVowel = false;
+		StringBuilder vowelGroup = new StringBuilder();
+		for (final char c : name.toCharArray()) {
+			if (isVowel(c)) {
+				if (!prevVowel) {
+					// start vowel group
+					vowelGroup = new StringBuilder();
+				}
+				// add to vowel group
+				vowelGroup.append(c);
+				prevVowel = true;
+			} else {
+				// not a vowel so just add single character to list
+				if (prevVowel) {
+					// add vowel group
+					strings.add(vowelGroup.toString());
+				}
+				prevVowel = false;
+				strings.add(String.valueOf(c));
+			}
+		}
+		if (prevVowel) {
+			// add vowel group
+			strings.add(vowelGroup.toString());
+		}
+		return strings;
+	}
+
+	private boolean isVowel(final char c) {
+		return StringUtils.contains("aeiouAEIOU", c);
 	}
 
 	private void incrChain(final Map<String, Map<String, Double>> chain, final String key, final String token) {
@@ -196,7 +233,7 @@ public class NameService extends CRUDService<NameSet> {
 			final List<String> name = new ArrayList<>();
 			name.add(c);
 
-			while (name.size() < nameLen) {
+			while (String.join("", name).length() < nameLen) {
 				c = selectLink(chain, name.get(name.size() - 1));
 				if (c == null) {
 					nameLen = name.size();
@@ -211,22 +248,21 @@ public class NameService extends CRUDService<NameSet> {
 
 	private String selectLink(final Map<String, Map<String, Double>> chain, final String key) {
 		final Map<String, Double> tableLen = chain.get("tableLen");
-		final double len;
-		if (tableLen.containsKey(key)) {
-			len = tableLen.get(key);
-		} else {
+		if (!tableLen.containsKey(key)) {
 			return null;
 		}
+		final double len = tableLen.get(key);
 		final double idx = Math.floor(Math.random() * len);
 
+		if (!chain.containsKey(key)) {
+			return null;
+		}
 		int t = 0;
-		if (chain.containsKey(key)) {
-			final Map<String, Double> map = chain.get(key);
-			for (final String token : map.keySet()) {
-				t += map.get(token);
-				if (idx < t) {
-					return token;
-				}
+		final Map<String, Double> map = chain.get(key);
+		for (final String token : map.keySet()) {
+			t += map.get(token);
+			if (idx < t) {
+				return token;
 			}
 		}
 		return null;
