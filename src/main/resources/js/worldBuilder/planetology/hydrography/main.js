@@ -16,10 +16,10 @@ requirejs
 			}
 		});
 
-require([ 'jquery', 'bootstrap', 'knockout', '../viewModels/climatology',
-		'domReady!' ], function($, bootstrap, ko, ClimatologyViewModel) {
+require([ 'jquery', 'bootstrap', 'knockout', '../viewModels/worldHydrography',
+		'domReady!' ], function($, bootstrap, ko, ViewModel) {
 	ko.components.register('breadcrumbs', {
 		require : '../components/breadcrumbs'
 	});
-	ko.applyBindings(new ClimatologyViewModel());
+	ko.applyBindings(new ViewModel());
 });

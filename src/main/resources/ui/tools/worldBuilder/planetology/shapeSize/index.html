@@ -25,14 +25,7 @@
 </head>
 <body>
 	<div class="container">
-        <div class="row">
-            <ol class="breadcrumb">
-                <li>tools</li>
-                <li>World Builder</li>
-                <li>Planetology</li>
-                <li class="active">Shapes and Sizes</li>
-            </ol>
-        </div>
+        <breadcrumbs params="crumbs: ['Tools', 'World Builder', 'Planetology', 'Shapes and Sizes']"></breadcrumbs>
 		<div class="row">
 			<h1>Shapes and Sizes</h1>
 		</div>
@@ -122,21 +115,6 @@
 		</div>
 	</div>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/select/1.1.2/js/dataTables.select.min.js"></script>
-	<script src="/js/knockstrap.js"></script>
-	<script src="/js/worldShapesSizes.js"></script>
+    <script src="/js/require.js" data-main="/js/worldBuilder/planetology/shapeSize/main"></script>
 </body>
 </html>

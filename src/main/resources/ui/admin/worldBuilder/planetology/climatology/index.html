@@ -7,14 +7,10 @@
 
 <title>Admin -> World Builder -> Planetology -> Climatology</title>
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/select/1.1.2/css/select.bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.1.2/css/select.bootstrap.min.css">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/style.css">
 
@@ -25,44 +21,52 @@
 </head>
 <body>
     <!-- Edit PlanetaryTemperature Modal -->
-    <div data-bind="modal: {
+    <div
+        data-bind="modal: {
 	    visible: editPlanetaryTemperatureModal.visible,
 	    header: { data: { label: 'Edit Planetary Temperature' } },
 	    body: { name: 'editPlanetaryTemperatureModalTemplate' },
 	    footer: { data: { action: updatePlanetaryTemperature, closeLabel: 'Cancel', primaryLabel: 'Update' } }
-    }"></div>
+    }"
+    ></div>
 
     <!-- New PlanetaryTemperature Modal -->
-    <div data-bind="modal: {
+    <div
+        data-bind="modal: {
 	    visible: newPlanetaryTemperatureModal.visible,
 	    header: { data: { label: 'New Planetary Temperature' } },
 	    body: { name: 'editPlanetaryTemperatureModalTemplate' },
 	    footer: { data: { action: createPlanetaryTemperature, closeLabel: 'Cancel', primaryLabel: 'Create' } }
-    }"></div>
+    }"
+    ></div>
 
     <!-- Edit SeasonalVariation Modal -->
-    <div data-bind="modal: {
+    <div
+        data-bind="modal: {
         visible: editSeasonalVariationModal.visible,
         header: { data: { label: 'Edit Seasonal Variation' } },
         body: { name: 'editSeasonalVariationModalTemplate' },
         footer: { data: { action: updateSeasonalVariation, closeLabel: 'Cancel', primaryLabel: 'Update' } }
-    }"></div>
+    }"
+    ></div>
 
     <!-- New SeasonalVariation Modal -->
-    <div data-bind="modal: {
+    <div
+        data-bind="modal: {
         visible: newSeasonalVariationModal.visible,
         header: { data: { label: 'New Seasonal Variation' } },
         body: { name: 'editSeasonalVariationModalTemplate' },
         footer: { data: { action: createSeasonalVariation, closeLabel: 'Cancel', primaryLabel: 'Create' } }
-    }"></div>
+    }"
+    ></div>
 
-	<div class="container">
+    <div class="container">
         <breadcrumbs params="crumbs: ['Admin', 'World Builder', 'Planetology', 'Climatology']"></breadcrumbs>
-		<div class="row">
-			<h1>Climatology</h1>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
+        <div class="row">
+            <h1>Climatology</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">Planetary Temperature</div>
                     <table class="table table-striped table-hover table-bordered">
@@ -72,7 +76,9 @@
                                 <th>Category</th>
                                 <th>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button class="btn btn-success" data-bind="click: newPlanetaryTemperatureModal.show">
+                                        <button class="btn btn-success"
+                                            data-bind="click: newPlanetaryTemperatureModal.show"
+                                        >
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -85,10 +91,12 @@
                                 <td data-bind="text: category"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default" data-bind="click: $root.editPlanetaryTemperatureModal.show.bind($data)">
+                                        <button type="button" class="btn btn-default"
+                                            data-bind="click: $root.editPlanetaryTemperatureModal.show"
+                                        >
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
-                                        <button type="button" class="btn btn-warning" data-bind="click: $root.removePlanetaryTemperature.bind($data)">
+                                        <button type="button" class="btn btn-warning" data-bind="click: remove">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -108,7 +116,9 @@
                                 <th>Variation</th>
                                 <th>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button class="btn btn-success" data-bind="click: newSeasonalVariationModal.show">
+                                        <button class="btn btn-success"
+                                            data-bind="click: newSeasonalVariationModal.show"
+                                        >
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -121,10 +131,12 @@
                                 <td data-bind="text: variation"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default" data-bind="click: $root.editSeasonalVariationModal.show.bind($data)">
+                                        <button type="button" class="btn btn-default"
+                                            data-bind="click: $root.editSeasonalVariationModal.show"
+                                        >
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
-                                        <button type="button" class="btn btn-warning" data-bind="click: $root.removeSeasonalVariation.bind($data)">
+                                        <button type="button" class="btn btn-warning" data-bind="click: remove">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -134,35 +146,53 @@
                     </table>
                 </div>
             </div>
-		</div>
-	</div>
+        </div>
+    </div>
 
     <template id="editPlanetaryTemperatureModalTemplate">
-		<div class="clearfix">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Category" autofocus data-bind="value: $root.editPlanetaryTemperatureModal.value().category" />
-            </div> <!-- /input-group -->
-            <div class="input-group">
-                <input type="number" class="form-control" placeholder="Min" data-bind="value: $root.editPlanetaryTemperatureModal.value().min" />
-            </div> <!-- /input-group -->
-            <div class="input-group">
-                <input type="number" class="form-control" placeholder="Max" data-bind="value: $root.editPlanetaryTemperatureModal.value().max" />
-            </div> <!-- /input-group -->
-		</div>
+    <div class="clearfix">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Category" autofocus
+                data-bind="value: $root.editPlanetaryTemperatureModal.value().category"
+            />
+        </div>
+        <!-- /input-group -->
+        <div class="input-group">
+            <input type="number" class="form-control" placeholder="Min"
+                data-bind="value: $root.editPlanetaryTemperatureModal.value().min"
+            />
+        </div>
+        <!-- /input-group -->
+        <div class="input-group">
+            <input type="number" class="form-control" placeholder="Max"
+                data-bind="value: $root.editPlanetaryTemperatureModal.value().max"
+            />
+        </div>
+        <!-- /input-group -->
+    </div>
     </template>
 
     <template id="editSeasonalVariationModalTemplate">
-        <div class="clearfix">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Variation" autofocus data-bind="value: $root.editSeasonalVariationModal.value().variation" />
-            </div> <!-- /input-group -->
-            <div class="input-group">
-                <input type="number" class="form-control" placeholder="Min" data-bind="value: $root.editSeasonalVariationModal.value().min" />
-            </div> <!-- /input-group -->
-            <div class="input-group">
-                <input type="number" class="form-control" placeholder="Max" data-bind="value: $root.editSeasonalVariationModal.value().max" />
-            </div> <!-- /input-group -->
+    <div class="clearfix">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Variation" autofocus
+                data-bind="value: $root.editSeasonalVariationModal.value().variation"
+            />
         </div>
+        <!-- /input-group -->
+        <div class="input-group">
+            <input type="number" class="form-control" placeholder="Min"
+                data-bind="value: $root.editSeasonalVariationModal.value().min"
+            />
+        </div>
+        <!-- /input-group -->
+        <div class="input-group">
+            <input type="number" class="form-control" placeholder="Max"
+                data-bind="value: $root.editSeasonalVariationModal.value().max"
+            />
+        </div>
+        <!-- /input-group -->
+    </div>
     </template>
 
     <script src="/js/require.js" data-main="/js/worldBuilder/planetology/climatology/main"></script>

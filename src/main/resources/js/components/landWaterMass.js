@@ -1,12 +1,13 @@
 define([ 'jquery', 'knockout' ], function($, ko) {
-	var baseurl = "/tools/worldBuilder/planetology/planetaryTemperatures";
+	var baseurl = "/tools/worldBuilder/planetology/landWaterMasses";
 
-	function PlanetaryTemperature(data) {
+	function LandWaterMass(data) {
 		var self = this;
 		self.id = data && data.id || null;
-		self.category = ko.observable(data && data.category || null);
-		self.min = ko.observable(data && data.min || null);
-		self.max = ko.observable(data && data.max || null);
+		self.numRegions = ko.observable(data && data.numRegions || null);
+		self.numMasses = ko.observable(data && data.numMasses || null);
+		self.minSize = ko.observable(data && data.minSize || null);
+		self.maxSize = ko.observable(data && data.maxSize || null);
 
 		self.update = function() {
 			var data = ko.toJS(self);
@@ -38,14 +39,27 @@ define([ 'jquery', 'knockout' ], function($, ko) {
 		}
 	}
 
-	PlanetaryTemperature.list = function(list) {
+	LandWaterMass.list = function(list) {
 		$.getJSON(baseurl, function(data) {
 			var mapped = $.map(data, function(item) {
-				return new PlanetaryTemperature(item)
+				return new LandWaterMass(item)
 			});
 			list(mapped);
 		});
 	}
 
-	return PlanetaryTemperature;
+	LandWaterMass.generate = function(list, hydrographyId, displayTypeId) {
+		$.ajax(
+				{
+					method : "POST",
+					url : baseurl + "/generate?hId=" + hydrographyId + "&dId="
+							+ displayTypeId,
+					contentType : "application/json",
+					dataType : "json"
+				}).done(function(data) {
+			list.push(data);
+		});
+	}
+
+	return LandWaterMass;
 });

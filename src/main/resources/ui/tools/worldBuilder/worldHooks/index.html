@@ -7,14 +7,10 @@
 
 <title>Tools -> World Builder -> World Hooks</title>
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/select/1.1.2/css/select.bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.1.2/css/select.bootstrap.min.css">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/style.css">
 
@@ -25,77 +21,89 @@
 </head>
 <body>
     <!-- Edit Category Modal -->
-    <div data-bind="modal: {
+    <div
+        data-bind="modal: {
 	    visible: editCategoryModal.visible,
 	    header: { data: { label: 'Edit Category' } },
 	    body: { name: 'editCategoryModalTemplate' },
 	    footer: { data: { action: $root.updateCategory, closeLabel: 'Cancel', primaryLabel: 'Update' } }
-    }"></div>
+    }"
+    ></div>
 
     <!-- New Category Modal -->
-    <div data-bind="modal: {
+    <div
+        data-bind="modal: {
 	    visible: newCategoryModal.visible,
 	    header: { data: { label: 'New Category' } },
 	    body: { name: 'editCategoryModalTemplate' },
 	    footer: { data: { action: $root.createCategory, closeLabel: 'Cancel', primaryLabel: 'Create' } }
-    }"></div>
+    }"
+    ></div>
 
     <!-- Edit WorldHook Modal -->
-    <div data-bind="modal: {
+    <div
+        data-bind="modal: {
         visible: editWorldHookModal.visible,
         header: { data: { label: 'Edit World Hook' } },
         body: { name: 'editWorldHookModalTemplate' },
         footer: { data: { action: $root.updateWorldHook, closeLabel: 'Cancel', primaryLabel: 'Update' } }
-    }"></div>
+    }"
+    ></div>
 
     <!-- New WorldHook Modal -->
-    <div data-bind="modal: {
+    <div
+        data-bind="modal: {
         visible: newWorldHookModal.visible,
         header: { data: { label: 'New World Hook' } },
         body: { name: 'editWorldHookModalTemplate' },
         footer: { data: { action: $root.createWorldHook, closeLabel: 'Cancel', primaryLabel: 'Create' } }
-    }"></div>
+    }"
+    ></div>
 
-	<div class="container">
+    <div class="container">
         <breadcrumbs params="crumbs: ['Tools', 'World Builder', 'World Hooks']"></breadcrumbs>
-		<div class="row">
-			<h1>World Hooks</h1>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<div class="form-inline row">
-					<div class="form-group">
-						<button class="btn btn-success" data-bind="click: newCategoryModal.show">
-							<i class="fa fa-plus"></i>
-						</button>
-						<input class="form-control" type="number" data-bind="value: times" min="1" >
+        <div class="row">
+            <h1>World Hooks</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-inline row">
+                    <div class="form-group">
+                        <button class="btn btn-success" data-bind="click: newCategoryModal.show">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                        <input class="form-control" type="number" data-bind="value: times" min="1">
                         <button type="button" class="btn btn-default" data-bind="click: generate">
                             <i class="fa fa-list" aria-hidden="true"></i>
                         </button>
-					</div>
-				</div>
-				<div class="row" data-bind="foreach: categories">
-					<div class="category col-md-12">
+                    </div>
+                </div>
+                <div class="row" data-bind="foreach: categories">
+                    <div class="category col-md-12">
                         <div class="col-md-2">
                             <div class="row" data-bind="text: $data.min() + '-' + $data.max()"></div>
                         </div>
-						<div class="col-md-7">
-							<div class="row" data-bind="text: $data.name"></div>
-						</div>
-						<div class="col-md-3">
-							<div class="btn-group btn-group-xs pull-right row" role="group">
-                                <button type="button" class="btn btn-success" data-bind="click: function(){$root.editWorldHook().categoryId($data.id); $root.newWorldHookModal.show($root.editWorldHook());}">
+                        <div class="col-md-7">
+                            <div class="row" data-bind="text: $data.name"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="btn-group btn-group-xs pull-right row" role="group">
+                                <button type="button" class="btn btn-success"
+                                    data-bind="click: function(){$root.editWorldHook().categoryId($data.id); $root.newWorldHookModal.show($root.editWorldHook());}"
+                                >
                                     <i class="fa fa-plus"></i>
                                 </button>
-								<button type="button" class="btn btn-default" data-bind="click: $root.editCategoryModal.show.bind($data)">
-									<i class="fa fa-pencil" aria-hidden="true"></i>
-								</button>
-								<button type="button" class="btn btn-warning" data-bind="click: $root.removeCategory.bind($data)">
-									<i class="fa fa-times" aria-hidden="true"></i>
-								</button>
-							</div>
-						</div>
-					</div>
+                                <button type="button" class="btn btn-default"
+                                    data-bind="click: $root.editCategoryModal.show"
+                                >
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" class="btn btn-warning" data-bind="click: remove">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <!-- ko foreach: $data.worldHooks -->
                     <div class="worldHook col-md-12">
                         <div class="col-md-offset-3 col-md-6">
@@ -103,27 +111,29 @@
                         </div>
                         <div class="col-md-3">
                             <div class="btn-group btn-group-xs pull-right row" role="group">
-                                <button type="button" class="btn btn-default" data-bind="click: $root.editWorldHookModal.show.bind($data)">
+                                <button type="button" class="btn btn-default"
+                                    data-bind="click: $root.editWorldHookModal.show"
+                                >
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-warning" data-bind="click: $root.removeWorldHook.bind($data)">
+                                <button type="button" class="btn btn-warning" data-bind="click: remove">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <!-- /ko -->
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="col-md-12" data-bind="foreach: worldHooks">
-					<div class="name row">
-						<div class="col-md-12" data-bind="text: $data.name"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12" data-bind="foreach: worldHooks">
+                    <div class="name row">
+                        <div class="col-md-12" data-bind="text: $data.name"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script type="text/html" id="editCategoryModalTemplate">
 		<div class="clearfix">

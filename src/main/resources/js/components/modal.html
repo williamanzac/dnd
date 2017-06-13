@@ -1,0 +1,9 @@
+<!-- Edit PlanetaryTemperature Modal -->
+<div
+    data-bind="modal: {
+    visible: modal.visible,
+    header: { data: { label: label } },
+    body: { nodes: $componentTemplateNodes, name: null, templateEngine: new ko.nativeTemplateEngine() },
+    footer: { data: { action: action, closeLabel: 'Cancel', primaryLabel: primaryLabel } }
+}"
+></div>

@@ -1,17 +1,12 @@
-define([ 'knockout', '../components/worldHook' ], function(ko, WorldHook) {
-	var baseurl = "/tools/worldHookCategories";
+define([ 'jquery', 'knockout' ], function($, ko) {
+	var baseurl = "/tools/worldBuilder/planetology/mountainPlacements";
 
-	function Category(data) {
+	function MountainPlacement(data) {
 		var self = this;
 		self.id = data && data.id || null;
-		self.name = ko.observable(data && data.name || null);
+		self.type = ko.observable(data && data.type || null);
 		self.min = ko.observable(data && data.min || null);
 		self.max = ko.observable(data && data.max || null);
-		self.worldHooks = ko.observableArray([]);
-		var mapped = $.map(data && data.worldHooks || [], function(item) {
-			return new WorldHook(item)
-		});
-		self.worldHooks(mapped);
 
 		self.update = function() {
 			var data = ko.toJS(self);
@@ -43,14 +38,14 @@ define([ 'knockout', '../components/worldHook' ], function(ko, WorldHook) {
 		}
 	}
 
-	Category.list = function(list) {
+	MountainPlacement.list = function(list) {
 		$.getJSON(baseurl, function(data) {
 			var mapped = $.map(data, function(item) {
-				return new Category(item)
+				return new MountainPlacement(item)
 			});
 			list(mapped);
 		});
 	}
 
-	return Category;
+	return MountainPlacement;
 });

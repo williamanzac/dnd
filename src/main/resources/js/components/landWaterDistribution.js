@@ -1,17 +1,18 @@
-define([ 'knockout', '../components/worldHook' ], function(ko, WorldHook) {
-	var baseurl = "/tools/worldHookCategories";
+define([ 'jquery', 'knockout', '../components/worldHydrography',
+		'../components/displayType', '../components/regionType' ], function($,
+		ko, WorldHydrography, DisplayType, RegionType) {
+	var baseurl = "/tools/worldBuilder/planetology/landWaterDistributions";
 
-	function Category(data) {
+	function LandWaterDistribution(data) {
 		var self = this;
 		self.id = data && data.id || null;
-		self.name = ko.observable(data && data.name || null);
-		self.min = ko.observable(data && data.min || null);
-		self.max = ko.observable(data && data.max || null);
-		self.worldHooks = ko.observableArray([]);
-		var mapped = $.map(data && data.worldHooks || [], function(item) {
-			return new WorldHook(item)
-		});
-		self.worldHooks(mapped);
+		self.numRegions = ko.observable(data && data.numRegions || null);
+		self.displayType = ko.observable(new DisplayType(data
+				&& data.displayType || null));
+		self.regionType = ko.observable(new RegionType(data && data.regionType
+				|| null));
+		self.hydrography = ko.observable(new WorldHydrography(data
+				&& data.hydrography || null));
 
 		self.update = function() {
 			var data = ko.toJS(self);
@@ -43,14 +44,14 @@ define([ 'knockout', '../components/worldHook' ], function(ko, WorldHook) {
 		}
 	}
 
-	Category.list = function(list) {
+	LandWaterDistribution.list = function(list) {
 		$.getJSON(baseurl, function(data) {
 			var mapped = $.map(data, function(item) {
-				return new Category(item)
+				return new LandWaterDistribution(item)
 			});
 			list(mapped);
 		});
 	}
 
-	return Category;
+	return LandWaterDistribution;
 });

@@ -7,14 +7,10 @@
 
 <title>Admin -> World Builder -> Planetology -> Shapes and Sizes</title>
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/select/1.1.2/css/select.bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.1.2/css/select.bootstrap.min.css">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/style.css">
 
@@ -25,50 +21,51 @@
 </head>
 <body>
     <!-- Edit WorldShape Modal -->
-    <div data-bind="modal: {
-	    visible: editWorldShapeModalVisible,
+    <div
+        data-bind="modal: {
+	    visible: editWorldShapeModal.visible,
 	    header: { data: { label: 'Edit World Shape' } },
 	    body: { name: 'editWorldShapeModalTemplate' },
 	    footer: { data: { action: updateWorldShape, closeLabel: 'Cancel', primaryLabel: 'Update' } }
-    }"></div>
+    }"
+    ></div>
 
     <!-- New WorldShape Modal -->
-    <div data-bind="modal: {
-	    visible: newWorldShapeModalVisible,
+    <div
+        data-bind="modal: {
+	    visible: newWorldShapeModal.visible,
 	    header: { data: { label: 'New World Shape' } },
 	    body: { name: 'editWorldShapeModalTemplate' },
 	    footer: { data: { action: createWorldShape, closeLabel: 'Cancel', primaryLabel: 'Create' } }
-    }"></div>
+    }"
+    ></div>
 
     <!-- Edit WorldSize Modal -->
-    <div data-bind="modal: {
-        visible: editWorldSizeModalVisible,
+    <div
+        data-bind="modal: {
+        visible: editWorldSizeModal.visible,
         header: { data: { label: 'Edit World Size' } },
         body: { name: 'editWorldSizeModalTemplate' },
         footer: { data: { action: updateWorldSize, closeLabel: 'Cancel', primaryLabel: 'Update' } }
-    }"></div>
+    }"
+    ></div>
 
     <!-- New WorldSize Modal -->
-    <div data-bind="modal: {
-        visible: newWorldSizeModalVisible,
+    <div
+        data-bind="modal: {
+        visible: newWorldSizeModal.visible,
         header: { data: { label: 'New World Size' } },
         body: { name: 'editWorldSizeModalTemplate' },
         footer: { data: { action: createWorldSize, closeLabel: 'Cancel', primaryLabel: 'Create' } }
-    }"></div>
+    }"
+    ></div>
 
-	<div class="container">
+    <div class="container">
+        <breadcrumbs params="crumbs: ['Admin', 'World Builder', 'Planetology', 'Shapes and Sizes']"></breadcrumbs>
         <div class="row">
-            <ol class="breadcrumb">
-                <li>Admin</li>
-                <li>World Builder</li>
-                <li>Planetology</li>
-                <li class="active">Shapes and Sizes</li>
-            </ol>
+            <h1>Shapes and Sizes</h1>
         </div>
-		<div class="row">
-			<h1>Shapes and Sizes</h1>
-		</div>
-		<div class="row">
+        <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">World Shapes</div>
@@ -79,7 +76,7 @@
                                 <th>Name</th>
                                 <th>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button class="btn btn-success" data-bind="click: showNewWorldShapeModal">
+                                        <button class="btn btn-success" data-bind="click: newWorldShapeModal.show">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -92,10 +89,12 @@
                                 <td data-bind="text: name"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default" data-bind="click: $root.showEditWorldShapeModal.bind($data)">
+                                        <button type="button" class="btn btn-default"
+                                            data-bind="click: $root.editWorldShapeModal.show"
+                                        >
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
-                                        <button type="button" class="btn btn-warning" data-bind="click: $root.removeWorldShape.bind($data)">
+                                        <button type="button" class="btn btn-warning" data-bind="click: remove">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -117,7 +116,7 @@
                                 <th>Region Map Size</th>
                                 <th>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button class="btn btn-success" data-bind="click: showNewWorldSizeModal">
+                                        <button class="btn btn-success" data-bind="click: newWorldSizeModal.show">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -132,10 +131,12 @@
                                 <td data-bind="text: regionMapSize"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default" data-bind="click: $root.showEditWorldSizeModal.bind($data)">
+                                        <button type="button" class="btn btn-default"
+                                            data-bind="click: $root.editWorldSizeModal.show"
+                                        >
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
-                                        <button type="button" class="btn btn-warning" data-bind="click: $root.removeWorldSize.bind($data)">
+                                        <button type="button" class="btn btn-warning" data-bind="click: remove">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -145,8 +146,8 @@
                     </table>
                 </div>
             </div>
-		</div>
-	</div>
+        </div>
+    </div>
 
     <script type="text/html" id="editWorldShapeModalTemplate">
 		<div class="clearfix">
@@ -185,21 +186,6 @@
         </div>
     </script>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/select/1.1.2/js/dataTables.select.min.js"></script>
-	<script src="/js/knockstrap.js"></script>
-	<script src="/js/worldShapesSizes.js"></script>
+    <script src="/js/require.js" data-main="/js/worldBuilder/planetology/shapeSize/main"></script>
 </body>
 </html>

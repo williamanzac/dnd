@@ -1,17 +1,10 @@
-define([ 'knockout', '../components/worldHook' ], function(ko, WorldHook) {
-	var baseurl = "/tools/worldHookCategories";
+define([ 'jquery', 'knockout' ], function($, ko) {
+	var baseurl = "/tools/worldBuilder/planetology/regionTypes";
 
-	function Category(data) {
+	function RegionType(data) {
 		var self = this;
 		self.id = data && data.id || null;
 		self.name = ko.observable(data && data.name || null);
-		self.min = ko.observable(data && data.min || null);
-		self.max = ko.observable(data && data.max || null);
-		self.worldHooks = ko.observableArray([]);
-		var mapped = $.map(data && data.worldHooks || [], function(item) {
-			return new WorldHook(item)
-		});
-		self.worldHooks(mapped);
 
 		self.update = function() {
 			var data = ko.toJS(self);
@@ -43,14 +36,14 @@ define([ 'knockout', '../components/worldHook' ], function(ko, WorldHook) {
 		}
 	}
 
-	Category.list = function(list) {
+	RegionType.list = function(list) {
 		$.getJSON(baseurl, function(data) {
 			var mapped = $.map(data, function(item) {
-				return new Category(item)
+				return new RegionType(item)
 			});
 			list(mapped);
 		});
 	}
 
-	return Category;
+	return RegionType;
 });
