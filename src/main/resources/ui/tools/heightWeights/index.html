@@ -26,7 +26,7 @@
 <body>
     <!-- Edit HeightWeight Modal -->
     <div data-bind="modal: {
-	    visible: editHeightWeightModalVisible,
+	    visible: editHeightWeightModal.visible,
 	    header: { data: { label: 'Edit Height Weight' } },
 	    body: { name: 'editHeightWeightModalTemplate' },
 	    footer: { data: { action: updateHeightWeight, closeLabel: 'Cancel', primaryLabel: 'Update' } }
@@ -34,13 +34,14 @@
 
     <!-- New HeightWeight Modal -->
     <div data-bind="modal: {
-	    visible: newHeightWeightModalVisible,
+	    visible: newHeightWeightModal.visible,
 	    header: { data: { label: 'New Height Weight' } },
 	    body: { name: 'editHeightWeightModalTemplate' },
 	    footer: { data: { action: createHeightWeight, closeLabel: 'Cancel', primaryLabel: 'Create' } }
     }"></div>
 
 	<div class="container">
+        <breadcrumbs params="crumbs: ['Tools', 'Height Weights']"></breadcrumbs>
 		<div class="row">
 			<h1>Height Weights</h1>
 		</div>
@@ -48,7 +49,7 @@
 			<div class="col-md-3">
 				<div class="form-inline row">
 					<div class="form-group">
-						<button class="btn btn-success" data-bind="click: showNewHeightWeightModal">
+						<button class="btn btn-success" data-bind="click: newHeightWeightModal.show">
 							<i class="fa fa-plus"></i>
 						</button>
 						<input class="form-control" type="number" data-bind="value: times" min="1" >
@@ -61,13 +62,13 @@
 						</div>
 						<div class="col-md-6">
 							<div class="btn-group btn-group-xs pull-right row" role="group">
-								<button type="button" class="btn btn-default" data-bind="click: $root.generate.bind($data)">
+								<button type="button" class="btn btn-default" data-bind="click: generate.bind($root.result, $root.times())">
 									<i class="fa fa-list" aria-hidden="true"></i>
 								</button>
-								<button type="button" class="btn btn-default" data-bind="click: $root.showEditHeightWeightModal.bind($data)">
+								<button type="button" class="btn btn-default" data-bind="click: $root.editHeightWeightModal.show">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 								</button>
-								<button type="button" class="btn btn-warning" data-bind="click: $root.remove.bind($data)">
+								<button type="button" class="btn btn-warning" data-bind="click: remove">
 									<i class="fa fa-times" aria-hidden="true"></i>
 								</button>
 							</div>
@@ -103,21 +104,6 @@
 		</div>
     </script>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/select/1.1.2/js/dataTables.select.min.js"></script>
-	<script src="/js/knockstrap.js"></script>
-	<script src="/js/heightWeights.js"></script>
+    <script src="/js/require.js" data-main="/js/heightWeights/main"></script>
 </body>
 </html>
