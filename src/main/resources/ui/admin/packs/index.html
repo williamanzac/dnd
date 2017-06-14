@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Admin -> Packs</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/select/1.1.2/css/select.bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+
+<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+    <!-- Edit Pack Modal -->
+    <div data-bind="modal: {
+	    visible: editPackModal.visible,
+	    header: { data: { label: 'Edit Pack' } },
+	    body: { name: 'editPackModalTemplate' },
+	    footer: { data: { action: $root.updatePack, closeLabel: 'Cancel', primaryLabel: 'Update' } }
+    }"></div>
+
+    <!-- New Pack Modal -->
+    <div data-bind="modal: {
+	    visible: newPackModal.visible,
+	    header: { data: { label: 'New Pack' } },
+	    body: { name: 'editPackModalTemplate' },
+	    footer: { data: { action: $root.createPack, closeLabel: 'Cancel', primaryLabel: 'Create' } }
+    }"></div>
+
+	<div class="container">
+        <breadcrumbs params="crumbs: ['Admin', 'Packs']"></breadcrumbs>
+		<div class="row">
+			<h1>Packs</h1>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-inline row">
+					<div class="form-group">
+						<button class="btn btn-success" data-bind="click: newPackModal.show">
+							<i class="fa fa-plus"></i>
+						</button>
+					</div>
+				</div>
+				<div class="row" data-bind="foreach: packs">
+					<div class="category col-md-12">
+						<div class="col-md-7">
+							<div class="row" data-bind="text: $data.name"></div>
+						</div>
+						<div class="col-md-3">
+							<div class="btn-group btn-group-xs pull-right row" role="group">
+								<button type="button" class="btn btn-default" data-bind="click: $root.editPackModal.show">
+									<i class="fa fa-pencil" aria-hidden="true"></i>
+								</button>
+								<button type="button" class="btn btn-warning" data-bind="click: remove">
+									<i class="fa fa-times" aria-hidden="true"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <template id="editPackModalTemplate">
+		<div class="clearfix">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Name" autofocus data-bind="value: $root.editPack().name" />
+			</div> <!-- /input-group -->
+			<div class="input-group">
+				<input class="form-control" placeholder="Cost (gp)" type="text" data-bind="value: $root.editPack().costGP" />
+			</div> <!-- /input-group -->
+		</div>
+    </template>
+
+    <script src="/js/require.js" data-main="/js/packs/main"></script>
+</body>
+</html>

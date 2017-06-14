@@ -1,11 +1,13 @@
 define([ 'jquery', 'knockout' ], function($, ko) {
-	var baseurl = "/tools/worldHooks";
+	var baseurl = "/admin/gear";
 
-	function WorldHook(data) {
+	function Gear(data) {
 		var self = this;
 		self.id = data && data.id || null;
 		self.name = ko.observable(data && data.name || null);
-		self.categoryId = ko.observable();
+		self.category = ko.observable(data && data.category || null);
+		self.costGP = ko.observable(data && data.costGP || null);
+		self.weightLB = ko.observable(data && data.weightLB || null);
 
 		self.update = function() {
 			var data = ko.toJS(self);
@@ -37,25 +39,14 @@ define([ 'jquery', 'knockout' ], function($, ko) {
 		}
 	}
 
-	WorldHook.list = function(list) {
+	Gear.list = function(list) {
 		$.getJSON(baseurl, function(data) {
 			var mapped = $.map(data, function(item) {
-				return new WorldHook(item)
+				return new Gear(item)
 			});
 			list(mapped);
 		});
 	}
 
-	WorldHook.generate = function(list, times) {
-		$.ajax({
-		    method : "POST",
-		    url : baseurl + "/generate?times=" + times,
-		    contentType : "application/json",
-		    dataType : "json"
-		}).done(function(data) {
-			list(data);
-		});
-	}
-
-	return WorldHook;
+	return Gear;
 });

@@ -1,17 +1,16 @@
-define([ 'jquery', 'knockout', '../components/worldHook' ], function($, ko, WorldHook) {
-	var baseurl = "/tools/worldHookCategories";
+define([ 'jquery', 'knockout', '../components/packItem' ], function($, ko, PackItem) {
+	var baseurl = "/admin/packs";
 
-	function Category(data) {
+	function Pack(data) {
 		var self = this;
 		self.id = data && data.id || null;
 		self.name = ko.observable(data && data.name || null);
-		self.min = ko.observable(data && data.min || null);
-		self.max = ko.observable(data && data.max || null);
-		self.worldHooks = ko.observableArray([]);
-		var mapped = $.map(data && data.worldHooks || [], function(item) {
-			return new WorldHook(item)
+		self.costGP = ko.observable(data && data.costGP || null);
+		self.items = ko.observableArray([]);
+		var mapped = $.map(data && data.items || [], function(item) {
+			return new PackItem(item)
 		});
-		self.worldHooks(mapped);
+		self.items(mapped);
 
 		self.update = function() {
 			var data = ko.toJS(self);
@@ -43,14 +42,14 @@ define([ 'jquery', 'knockout', '../components/worldHook' ], function($, ko, Worl
 		}
 	}
 
-	Category.list = function(list) {
+	Pack.list = function(list) {
 		$.getJSON(baseurl, function(data) {
 			var mapped = $.map(data, function(item) {
-				return new Category(item)
+				return new Pack(item)
 			});
 			list(mapped);
 		});
 	}
 
-	return Category;
+	return Pack;
 });
