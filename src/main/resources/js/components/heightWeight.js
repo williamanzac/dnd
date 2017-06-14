@@ -6,12 +6,20 @@ define([ 'jquery', 'knockout' ], function($, ko) {
 		self.id = data && data.id || null;
 		self.type = ko.observable(data && data.type || null);
 		self.baseHeightInch = ko.observable(data && data.baseHeightInch || null);
-		self.baseHeight = ko.computed(function() {
-			if (this && this.baseHeightInch) {
-				return Math.floor(this.baseHeightInch() / 12) + "'" + (this.baseHeightInch() - (Math.floor(this.baseHeightInch() / 12) * 12)) + '"';
-			}
-			return null;
-		}, this);
+		self.baseHeight = ko.pureComputed({
+	        read: function() {
+				if (this && this.baseHeightInch) {
+					return Math.floor(this.baseHeightInch() / 12) + "'" + (this.baseHeightInch() - (Math.floor(this.baseHeightInch() / 12) * 12)) + '"';
+				}
+				return null;
+			},
+	        write: function (value) {
+	        	var myArray = /(\d+)'(\d+)"/g.exec(value);
+				var baseHeight = parseInt(myArray[1]) * 12 + parseInt(myArray[2]);
+				this.baseHeightInch(baseHeight);
+	        },
+	        owner: this
+	    });
 		self.heightModifier = ko.observable(data && data.heightModifier || null); 
 		self.baseWeightLB = ko.observable(data && data.baseWeightLB || null);
 		self.weightModifier = ko.observable(data && data.weightModifier || null);
