@@ -15,29 +15,29 @@ define([ 'jquery', 'knockout', '../components/packItem' ], function($, ko, PackI
 		self.update = function() {
 			var data = ko.toJS(self);
 			$.ajax({
-				method : "PUT",
-				data : JSON.stringify(data),
-				url : baseurl,
-				contentType : "application/json",
-				dataType : "json"
+			    method : "PUT",
+			    data : JSON.stringify(data),
+			    url : baseurl,
+			    contentType : "application/json",
+			    dataType : "json"
 			});
 		}
 		self.create = function() {
 			var data = ko.toJS(self);
 			$.ajax({
-				method : "POST",
-				data : JSON.stringify(data),
-				url : baseurl,
-				contentType : "application/json",
-				dataType : "json"
+			    method : "POST",
+			    data : JSON.stringify(data),
+			    url : baseurl,
+			    contentType : "application/json",
+			    dataType : "json"
 			});
 		}
 		self.remove = function() {
 			$.ajax({
-				method : "DELETE",
-				url : baseurl + "/" + self.id,
-				contentType : "application/json",
-				dataType : "json"
+			    method : "DELETE",
+			    url : baseurl + "/" + self.id,
+			    contentType : "application/json",
+			    dataType : "json"
 			});
 		}
 	}

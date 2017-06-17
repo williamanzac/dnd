@@ -5,17 +5,26 @@ define([ 'jquery', 'knockout', 'Modal', '../components/pack', '../components/pac
 		self.packs = ko.observableArray([]);
 
 		self.editPack = ko.observable(new Pack());
+		self.newPack = ko.observable(new Pack());
 
 		self.editPackModal = new Modal(self.editPack);
 		self.newPackModal = new Modal(self.editPack);
 
+		self.showNewPackModal = function() {
+			self.newPackModal.show(new Pack());
+		}
+		
 		self.updatePack = function() {
-			var pack = self.editPack();
-			pack.update();
+			self.editPack().update();
+			self.editPackModal.hide();
+			self.getPacks();
 		}
 		self.createPack = function() {
-			var pack = self.editPack();
-			pack.create();
+			//self.editPack().create();
+			//self.newPackModal.hide();
+			self.newPack().create();
+			self.getPacks();
+			self.newPack(new Pack());
 		}
 
 		self.getPacks = function() {
