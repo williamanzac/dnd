@@ -11,10 +11,10 @@ requirejs.config({
     }
 });
 
-require([ 'jquery', 'bootstrap', 'knockout', '../viewModels/packs', 'inline', 'domReady!' ],
-        function($, bootstrap, ko, ViewModel) {
-	        ko.components.register('breadcrumbs', {
-		        require : '../components/breadcrumbs'
-	        });
-	        ko.applyBindings(new ViewModel());
-        });
+require([ 'jquery', 'bootstrap', 'knockout', '../viewModels/packs', 'inline', 'domReady!' ], function($, bootstrap, ko,
+        ViewModel) {
+	ko.components.register('breadcrumbs', {
+		require : '../components/breadcrumbs'
+	});
+	ko.applyBindings(new ViewModel());
+});

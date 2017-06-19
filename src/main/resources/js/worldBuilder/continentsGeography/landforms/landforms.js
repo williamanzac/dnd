@@ -30,7 +30,7 @@ function LandformViewModel() {
 	var self = this;
 	self.mountainPlacements = ko.observableArray([]);
 	self.mountainProperties = ko.observableArray([]);
-	
+
 	self.times = ko.observable(3);
 	self.results = ko.observableArray([]);
 
@@ -73,105 +73,105 @@ function LandformViewModel() {
 		self.newMountainPropertyModalVisible(false);
 	};
 
-	self.updateMountainPlacement = function () {
+	self.updateMountainPlacement = function() {
 		self.hideEditMountainPlacementModal();
 		var data = ko.toJS(self.editMountainPlacement);
 		$.ajax({
-			method: "PUT",
-			data: JSON.stringify(data),
-			url: "/tools/worldBuilder/planetology/mountainPlacements",
-			contentType: "application/json",
-			dataType: "json"
+		    method : "PUT",
+		    data : JSON.stringify(data),
+		    url : "/tools/worldBuilder/planetology/mountainPlacements",
+		    contentType : "application/json",
+		    dataType : "json"
 		}).done(function() {
 			self.getMountainPlacements();
 		});
 	}
-	self.createMountainPlacement = function () {
+	self.createMountainPlacement = function() {
 		self.hideNewMountainPlacementModal();
 		var data = ko.toJS(self.editMountainPlacement);
 		$.ajax({
-			method: "PUT",
-			data: JSON.stringify(data),
-			url: "/tools/worldBuilder/planetology/mountainPlacements",
-			contentType: "application/json",
-			dataType: "json"
+		    method : "PUT",
+		    data : JSON.stringify(data),
+		    url : "/tools/worldBuilder/planetology/mountainPlacements",
+		    contentType : "application/json",
+		    dataType : "json"
 		}).done(function() {
 			self.getMountainPlacements();
 		});
 	}
-	self.removeMountainPlacement = function (data) {
+	self.removeMountainPlacement = function(data) {
 		$.ajax({
-			method: "DELETE",
-			url: "/tools/worldBuilder/planetology/mountainPlacements/" + data.id,
-			contentType: "application/json",
-			dataType: "json"
-		}).done(function (data) {
+		    method : "DELETE",
+		    url : "/tools/worldBuilder/planetology/mountainPlacements/" + data.id,
+		    contentType : "application/json",
+		    dataType : "json"
+		}).done(function(data) {
 			self.getMountainPlacements();
 		});
 	}
 
-	self.updateMountainProperty = function () {
+	self.updateMountainProperty = function() {
 		self.hideEditMountainPropertyModal();
 		var data = ko.toJS(self.editMountainProperty);
 		$.ajax({
-			method: "PUT",
-			data: JSON.stringify(data),
-			url: "/tools/worldBuilder/planetology/mountainProperties",
-			contentType: "application/json",
-			dataType: "json"
+		    method : "PUT",
+		    data : JSON.stringify(data),
+		    url : "/tools/worldBuilder/planetology/mountainProperties",
+		    contentType : "application/json",
+		    dataType : "json"
 		}).done(function() {
 			self.getMountainProperties();
 		});
 	}
-	self.createMountainProperty = function () {
+	self.createMountainProperty = function() {
 		self.hideNewMountainPropertyModal();
 		var data = ko.toJS(self.editMountainProperty);
 		$.ajax({
-			method: "PUT",
-			data: JSON.stringify(data),
-			url: "/tools/worldBuilder/planetology/mountainProperties",
-			contentType: "application/json",
-			dataType: "json"
+		    method : "PUT",
+		    data : JSON.stringify(data),
+		    url : "/tools/worldBuilder/planetology/mountainProperties",
+		    contentType : "application/json",
+		    dataType : "json"
 		}).done(function() {
 			self.getMountainProperties();
 		});
 	}
-	self.removeMountainProperty = function (data) {
+	self.removeMountainProperty = function(data) {
 		$.ajax({
-			method: "DELETE",
-			url: "/tools/worldBuilder/planetology/mountainPlacements/" + data.id,
-			contentType: "application/json",
-			dataType: "json"
-		}).done(function (data) {
+		    method : "DELETE",
+		    url : "/tools/worldBuilder/planetology/mountainPlacements/" + data.id,
+		    contentType : "application/json",
+		    dataType : "json"
+		}).done(function(data) {
 			self.getMountainProperties();
 		});
 	}
 
-	self.generateHydrography = function () {
+	self.generateHydrography = function() {
 		$.ajax({
-			method: "POST",
-			url: "/tools/worldBuilder/continentsgeography/hydrographies/generate?times=" + self.times(),
-			contentType: "application/json",
-			dataType: "json"
-		}).done(function (data) {
+		    method : "POST",
+		    url : "/tools/worldBuilder/continentsgeography/hydrographies/generate?times=" + self.times(),
+		    contentType : "application/json",
+		    dataType : "json"
+		}).done(function(data) {
 			self.results(data);
 			self.massResults([]);
-			data.forEach(function (d) {
+			data.forEach(function(d) {
 				self.generateLandWaterMasses(d);
 			});
 		});
 	}
 
-	self.getMountainPlacements = function () {
-		$.getJSON("/tools/worldBuilder/planetology/mountainPlacements", function (data) {
+	self.getMountainPlacements = function() {
+		$.getJSON("/tools/worldBuilder/planetology/mountainPlacements", function(data) {
 			var mapped = $.map(data, function(item) {
 				return new MountainPlacement(item)
 			});
 			self.mountainPlacements(mapped);
 		});
 	}
-	self.getMountainProperties = function () {
-		$.getJSON("/tools/worldBuilder/planetology/mountainProperties", function (data) {
+	self.getMountainProperties = function() {
+		$.getJSON("/tools/worldBuilder/planetology/mountainProperties", function(data) {
 			var mapped = $.map(data, function(item) {
 				return new MountainProperty(item)
 			});

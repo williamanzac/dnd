@@ -42,64 +42,64 @@ function NamesViewModel() {
 		self.editSet().names(a);
 		self.newName('');
 	}
-	self.updateSet = function () {
+	self.updateSet = function() {
 		self.hideEditNameSetModal();
 		var data = {
-			"id": parseInt(self.editSet().id),
-			"type": self.editSet().type(),
-			"names": self.editSet().names()
+		    "id" : parseInt(self.editSet().id),
+		    "type" : self.editSet().type(),
+		    "names" : self.editSet().names()
 		};
 		$.ajax({
-			method: "PUT",
-			data: JSON.stringify(data),
-			url: "/tools/names",
-			contentType: "application/json",
-			dataType: "json"
+		    method : "PUT",
+		    data : JSON.stringify(data),
+		    url : "/tools/names",
+		    contentType : "application/json",
+		    dataType : "json"
 		}).done(function() {
 			self.getNameSets();
 		});
 	}
-	self.createSet = function () {
+	self.createSet = function() {
 		self.hideNewNameSetModal();
 		var data = {
-			"type": self.editSet().type(),
-			"names": self.editSet().names()
+		    "type" : self.editSet().type(),
+		    "names" : self.editSet().names()
 		};
 		$.ajax({
-			method: "POST",
-			data: JSON.stringify(data),
-			url: "/tools/names",
-			contentType: "application/json",
-			dataType: "json"
+		    method : "POST",
+		    data : JSON.stringify(data),
+		    url : "/tools/names",
+		    contentType : "application/json",
+		    dataType : "json"
 		}).done(function() {
 			self.getNameSets();
 		});
 	}
 
-	self.generate = function (nameSet) {
+	self.generate = function(nameSet) {
 		$.ajax({
-			method: "POST",
-			url: "/tools/names/" + nameSet.id + "/generate?numOf=" + self.numOf(),
-			contentType: "application/json",
-			dataType: "json"
-		}).done(function (data) {
+		    method : "POST",
+		    url : "/tools/names/" + nameSet.id + "/generate?numOf=" + self.numOf(),
+		    contentType : "application/json",
+		    dataType : "json"
+		}).done(function(data) {
 			self.names(data);
 		});
 	}
 
-	self.remove = function (nameSet) {
+	self.remove = function(nameSet) {
 		$.ajax({
-			method: "DELETE",
-			url: "/tools/names/" + nameSet.id,
-			contentType: "application/json",
-			dataType: "json"
-		}).done(function (data) {
+		    method : "DELETE",
+		    url : "/tools/names/" + nameSet.id,
+		    contentType : "application/json",
+		    dataType : "json"
+		}).done(function(data) {
 			self.getNameSets();
 		});
 	}
 
-	self.getNameSets = function () {
-		$.getJSON("/tools/names", function (data) {
+	self.getNameSets = function() {
+		$.getJSON("/tools/names", function(data) {
 			var mapped = $.map(data, function(item) {
 				return new NameSet(item)
 			});

@@ -1,5 +1,5 @@
-define(['jquery', 'knockout', 'Modal', '../components/heightWeight', 'knockstrap'], function($, ko,
-		Modal, HeightWeight) {
+define([ 'jquery', 'knockout', 'Modal', '../components/heightWeight', 'knockstrap' ], function($, ko, Modal,
+        HeightWeight) {
 	return function HeightWeightViewModel() {
 		var self = this;
 		self.result = ko.observableArray();

@@ -13,15 +13,15 @@ define([ 'jquery', 'knockout', 'Modal', '../components/pack', '../components/pac
 		self.showNewPackModal = function() {
 			self.newPackModal.show(new Pack());
 		}
-		
+
 		self.updatePack = function() {
 			self.editPack().update();
 			self.editPackModal.hide();
 			self.getPacks();
 		}
 		self.createPack = function() {
-			//self.editPack().create();
-			//self.newPackModal.hide();
+			// self.editPack().create();
+			// self.newPackModal.hide();
 			self.newPack().create();
 			self.getPacks();
 			self.newPack(new Pack());

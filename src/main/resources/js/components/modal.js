@@ -1,5 +1,4 @@
-define([ 'knockout', 'text!../components/modal.html', '../lib/modal',
-		'../lib/knockstrap' ], function(ko, html, Modal) {
+define([ 'knockout', 'text!../components/modal.html', '../lib/modal', '../lib/knockstrap' ], function(ko, html, Modal) {
 	function ViewModel(params) {
 		var self = this;
 		self.label = params.label;
@@ -9,7 +8,7 @@ define([ 'knockout', 'text!../components/modal.html', '../lib/modal',
 	}
 
 	return {
-		viewModel : ViewModel,
-		template : html
+	    viewModel : ViewModel,
+	    template : html
 	};
 })

@@ -53,11 +53,11 @@ define([ 'jquery', 'knockout' ], function($, ko) {
 
 	WorldSize.generate = function(list, times) {
 		$.ajax({
-			method: "POST",
-			url: baseurl + "/generate?times=" + times,
-			contentType: "application/json",
-			dataType: "json"
-		}).done(function (data) {
+		    method : "POST",
+		    url : baseurl + "/generate?times=" + times,
+		    contentType : "application/json",
+		    dataType : "json"
+		}).done(function(data) {
 			list(data);
 		});
 	}

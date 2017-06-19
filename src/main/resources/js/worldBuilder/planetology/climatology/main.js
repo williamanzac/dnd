@@ -7,7 +7,7 @@ requirejs.config({
         'bootstrap' : '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min'
     },
     shim : {
-        'bootstrap' : [ 'jquery' ],
+	    'bootstrap' : [ 'jquery' ],
     }
 });
 

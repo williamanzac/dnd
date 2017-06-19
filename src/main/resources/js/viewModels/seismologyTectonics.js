@@ -37,45 +37,45 @@ define([ 'jquery', 'knockout', 'Modal', '../components/earthquakeActivity', '../
 		self.newMountainPlacementModal = new Modal(self.editMountainPlacementModal);
 		self.newMountainPropertyModal = new Modal(self.editMountainProperty);
 
-		self.updatePlateMovement = function () {
+		self.updatePlateMovement = function() {
 			self.editPlateMovement().update();
 		}
-		self.createPlateMovement = function () {
+		self.createPlateMovement = function() {
 			self.editPlateMovement().create();
 		}
 
-		self.updateWorldSize = function () {
+		self.updateWorldSize = function() {
 			self.editWorldSize().update();
 		}
-		self.createWorldSize = function () {
+		self.createWorldSize = function() {
 			self.editWorldSize().create();
 		}
 
-		self.updateVolcanicActivity = function () {
+		self.updateVolcanicActivity = function() {
 			self.editVolcanicActivity().update();
 		}
-		self.createVolcanicActivity = function () {
+		self.createVolcanicActivity = function() {
 			self.editVolcanicActivity().create();
 		}
 
-		self.updateEarthquakeActivity = function () {
+		self.updateEarthquakeActivity = function() {
 			self.editEarthquakeActivity().update();
 		}
-		self.createEarthquakeActivity = function () {
+		self.createEarthquakeActivity = function() {
 			self.editEarthquakeActivity().create();
 		}
 
-		self.updateMountainPlacement = function () {
+		self.updateMountainPlacement = function() {
 			self.editMountainPlacement().update();
 		}
-		self.createMountainPlacement = function () {
+		self.createMountainPlacement = function() {
 			self.editMountainPlacement().create();
 		}
 
-		self.updateMountainProperty = function () {
+		self.updateMountainProperty = function() {
 			self.editMountainProperty().update();
 		}
-		self.createMountainProperty = function () {
+		self.createMountainProperty = function() {
 			self.editMountainProperty().create();
 		}
 

@@ -15,7 +15,7 @@ function Hydrography(data) {
 function HydrographyViewModel() {
 	var self = this;
 	self.hydrographies = ko.observableArray([]);
-	
+
 	self.times = ko.observable(3);
 	self.results = ko.observableArray([]);
 
@@ -39,60 +39,60 @@ function HydrographyViewModel() {
 		self.newHydrographyModalVisible(false);
 	};
 
-	self.updateHydrography = function () {
+	self.updateHydrography = function() {
 		self.hideEditHydrographyModal();
 		var data = ko.toJS(self.editHydrography());
 		$.ajax({
-			method: "PUT",
-			data: JSON.stringify(data),
-			url: "/tools/worldBuilder/continentsgeography/hydrographies",
-			contentType: "application/json",
-			dataType: "json"
+		    method : "PUT",
+		    data : JSON.stringify(data),
+		    url : "/tools/worldBuilder/continentsgeography/hydrographies",
+		    contentType : "application/json",
+		    dataType : "json"
 		}).done(function() {
 			self.getHydrographies();
 		});
 	}
-	self.createHydrography = function () {
+	self.createHydrography = function() {
 		self.hideNewHydrographyModal();
 		var data = ko.toJS(self.editHydrography());
 		$.ajax({
-			method: "POST",
-			data: JSON.stringify(data),
-			url: "/tools/worldBuilder/continentsgeography/hydrographies",
-			contentType: "application/json",
-			dataType: "json"
+		    method : "POST",
+		    data : JSON.stringify(data),
+		    url : "/tools/worldBuilder/continentsgeography/hydrographies",
+		    contentType : "application/json",
+		    dataType : "json"
 		}).done(function() {
 			self.getHydrographies();
 		});
 	}
-	self.removeHydrography = function (data) {
+	self.removeHydrography = function(data) {
 		$.ajax({
-			method: "DELETE",
-			url: "/tools/worldBuilder/continentsgeography/hydrographies/" + data.id,
-			contentType: "application/json",
-			dataType: "json"
-		}).done(function (data) {
+		    method : "DELETE",
+		    url : "/tools/worldBuilder/continentsgeography/hydrographies/" + data.id,
+		    contentType : "application/json",
+		    dataType : "json"
+		}).done(function(data) {
 			self.getHydrographies();
 		});
 	}
 
-	self.generateHydrography = function () {
+	self.generateHydrography = function() {
 		$.ajax({
-			method: "POST",
-			url: "/tools/worldBuilder/continentsgeography/hydrographies/generate?times=" + self.times(),
-			contentType: "application/json",
-			dataType: "json"
-		}).done(function (data) {
+		    method : "POST",
+		    url : "/tools/worldBuilder/continentsgeography/hydrographies/generate?times=" + self.times(),
+		    contentType : "application/json",
+		    dataType : "json"
+		}).done(function(data) {
 			self.results(data);
 			self.massResults([]);
-			data.forEach(function (d) {
+			data.forEach(function(d) {
 				self.generateLandWaterMasses(d);
 			});
 		});
 	}
 
-	self.getHydrographies = function () {
-		$.getJSON("/tools/worldBuilder/continentsgeography/hydrographies", function (data) {
+	self.getHydrographies = function() {
+		$.getJSON("/tools/worldBuilder/continentsgeography/hydrographies", function(data) {
 			var mapped = $.map(data, function(item) {
 				return new Hydrography(item)
 			});
