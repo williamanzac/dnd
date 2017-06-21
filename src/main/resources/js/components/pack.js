@@ -3,7 +3,7 @@ define([ 'jquery', 'knockout', '../components/packItem' ], function($, ko, PackI
 
 	function Pack(data) {
 		var self = this;
-		self.id = data && data.id || null;
+		self.id = ko.observable(data && data.id || null);
 		self.name = ko.observable(data && data.name || null);
 		self.costGP = ko.observable(data && data.costGP || null);
 		self.items = ko.observableArray([]);

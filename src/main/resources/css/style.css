@@ -47,3 +47,7 @@
 	overflow-y: auto;
 	max-height: 20em;
 }
+
+select:invalid {
+	color: grey;
+}

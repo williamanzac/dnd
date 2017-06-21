@@ -4,7 +4,8 @@ define([ 'jquery', 'knockout' ], function($, ko) {
 			var span = $(element);
 			var input = $('<input />', {
 			    'type' : 'text',
-			    'style' : 'display:none'
+			    'style' : 'display:none',
+			    'class' : 'form-control input-sm'
 			});
 			span.after(input);
 
@@ -15,8 +16,8 @@ define([ 'jquery', 'knockout' ], function($, ko) {
 				text : valueAccessor()
 			});
 
-			span.click(function() {
-				input.width(span.width());
+			span.dblclick(function() {
+				//input.width(span.width());
 				span.hide();
 				input.show();
 				input.focus();
