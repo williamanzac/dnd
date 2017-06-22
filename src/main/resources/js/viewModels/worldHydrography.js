@@ -1,6 +1,6 @@
 define(
-        [ 'jquery', 'knockout', 'Modal', '../components/worldHydrography', '../components/displayType',
-                '../components/landWaterDistribution', '../components/landWaterMass', '../components/regionType',
+        [ 'jquery', 'knockout', 'Modal', '../models/worldHydrography', '../models/displayType',
+                '../models/landWaterDistribution', '../models/landWaterMass', '../models/regionType',
                 'knockstrap' ], function($, ko, Modal, WorldHydrography, DisplayType, LandWaterDistribution,
                 LandWaterMass, RegionType) {
 	        return function HydrographyViewModel() {

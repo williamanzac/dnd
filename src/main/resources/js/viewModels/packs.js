@@ -1,4 +1,4 @@
-define([ 'jquery', 'knockout', 'Modal', '../components/pack', '../components/packItem', '../components/gear',
+define([ 'jquery', 'knockout', 'Modal', '../models/pack', '../models/packItem', '../models/gear',
         'knockstrap' ], function($, ko, Modal, Pack, PackItem, Gear) {
 	return function PackViewModel() {
 		var self = this;

@@ -1,4 +1,4 @@
-define([ 'jquery', 'knockout', 'Modal', '../components/planetaryTemperature', '../components/seasonalVariation',
+define([ 'jquery', 'knockout', 'Modal', '../models/planetaryTemperature', '../models/seasonalVariation',
         'knockstrap' ], function($, ko, Modal, PlanetaryTemperature, SeasonalVariation) {
 	return function ClimatologyViewModel() {
 		var self = this;

@@ -1,4 +1,4 @@
-define([ 'jquery', 'knockout', 'Modal', '../components/worldHook', '../components/worldHookCategory', 'knockstrap' ],
+define([ 'jquery', 'knockout', 'Modal', '../models/worldHook', '../models/worldHookCategory', 'knockstrap' ],
         function($, ko, Modal, WorldHook, Category) {
 	        return function WorldHookViewModel() {
 		        var self = this;

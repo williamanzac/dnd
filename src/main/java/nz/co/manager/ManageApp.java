@@ -9,6 +9,7 @@ import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.hibernate.ScanningHibernateBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.dropwizard.views.ViewBundle;
 
 public class ManageApp extends Application<ManageAppConfiguration> {
 
@@ -30,7 +31,8 @@ public class ManageApp extends Application<ManageAppConfiguration> {
 		bootstrap.addBundle(hibernate);
 		bootstrap.addBundle(new AssetsBundle("/js", "/js", null, "js"));
 		bootstrap.addBundle(new AssetsBundle("/css", "/css", null, "css"));
-		bootstrap.addBundle(new AssetsBundle("/ui", "/ui", "index.html"));
+		// bootstrap.addBundle(new AssetsBundle("/ui", "/ui", "index.html"));
+		bootstrap.addBundle(new ViewBundle<ManageAppConfiguration>());
 	}
 
 	@Override

@@ -1,6 +1,6 @@
-define([ 'jquery', 'knockout', 'Modal', '../components/earthquakeActivity', '../components/mountainPlacement',
-        '../components/mountainProperty', '../components/plateMovement', '../components/volcanicActivity',
-        '../components/worldSize', 'knockstrap' ], function($, ko, Modal, EarthquakeActivity, MountainPlacement,
+define([ 'jquery', 'knockout', 'Modal', '../models/earthquakeActivity', '../models/mountainPlacement',
+        '../models/mountainProperty', '../models/plateMovement', '../models/volcanicActivity',
+        '../models/worldSize', 'knockstrap' ], function($, ko, Modal, EarthquakeActivity, MountainPlacement,
         MountainProperty, PlateMovement, VolcanicActivity, WorldSize) {
 	return function SeismologyViewModel() {
 		var self = this;

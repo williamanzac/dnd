@@ -1,4 +1,4 @@
-define([ 'jquery', 'knockout', 'Modal', '../components/heightWeight', 'knockstrap' ], function($, ko, Modal,
+define([ 'jquery', 'knockout', 'Modal', '../models/heightWeight', 'knockstrap' ], function($, ko, Modal,
         HeightWeight) {
 	return function HeightWeightViewModel() {
 		var self = this;

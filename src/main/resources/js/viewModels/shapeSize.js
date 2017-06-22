@@ -1,4 +1,4 @@
-define([ 'jquery', 'knockout', 'Modal', '../components/worldShape', '../components/worldSize', 'knockstrap' ],
+define([ 'jquery', 'knockout', 'Modal', '../models/worldShape', '../models/worldSize', 'knockstrap' ],
         function($, ko, Modal, WorldShape, WorldSize) {
 	        return function WorldShapeViewModel() {
 		        var self = this;
