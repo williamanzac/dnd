@@ -1,14 +1,21 @@
-define([ 'jquery', 'knockout' ], function($, ko) {
+define([ 'jquery', 'knockout', '../models/region' ], function($, ko, Region) {
 	var baseurl = "/tools/worldBuilder/planetology/displayTypes";
-
+	
 	function DisplayType(data) {
 		var self = this;
 		self.id = data && data.id || null;
 		self.name = ko.observable(data && data.name || null);
+		self.numRegions = ko.observable(data && data.numRegions || null);
 		self.selected = ko.observable(false);
+		self.regions = ko.observableArray([]);
+		var mapped = $.map(data && data.regions || [], function(item) {
+			return new Region(item)
+		});
+		self.regions(mapped);
 
 		self.update = function() {
 			var data = ko.toJS(self);
+			delete data.selected;
 			$.ajax({
 			    method : "PUT",
 			    data : JSON.stringify(data),
@@ -19,6 +26,7 @@ define([ 'jquery', 'knockout' ], function($, ko) {
 		}
 		self.create = function() {
 			var data = ko.toJS(self);
+			delete data.selected;
 			$.ajax({
 			    method : "POST",
 			    data : JSON.stringify(data),

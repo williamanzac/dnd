@@ -18,6 +18,16 @@ public class DiceService {
 
 	public static final Pattern ROLL_PATTERN = Pattern.compile("(\\d+)d(\\d+)([\\+-]\\d+)?");
 
+	/**
+	 * Parse the number of dice and generate some random numbers May not be unique values.
+	 * 
+	 * @param data
+	 *            the number and type of dice to roll (\\d+)d(\\d+)([\\+-]\\d+)?
+	 * @param times
+	 *            how many time to roll the dice
+	 * @return the generated random numbers
+	 * @throws ServiceException
+	 */
 	public List<Integer> roll(final String data, final int times) throws ServiceException {
 		final Matcher matcher = ROLL_PATTERN.matcher(data);
 		final List<Integer> values = new ArrayList<>();
@@ -42,11 +52,24 @@ public class DiceService {
 		throw new ServiceException("Unable to process the dice data:" + data);
 	}
 
+	/**
+	 * Generate random numbers from 1 to the value specified. Numbers should be unique.
+	 * 
+	 * @param data
+	 *            the maximum value for the random number
+	 * @param times
+	 *            how many numbers to generate.
+	 * @return a list of the random numbers
+	 * @throws ServiceException
+	 */
 	public List<Integer> roll(final int data, final int times) throws ServiceException {
 		final Random random = new Random();
 		final List<Integer> values = new ArrayList<>();
 		for (int t = 0; t < times; t++) {
-			final int value = random.nextInt(data) + 1;
+			int value = random.nextInt(data) + 1;
+			while (values.contains(value)) { // this could cause an infinite loop
+				value = random.nextInt(data) + 1;
+			}
 			values.add(value);
 		}
 		return values;

@@ -1,8 +1,8 @@
 define(
         [ 'jquery', 'knockout', 'Modal', '../models/worldHydrography', '../models/displayType',
-                '../models/landWaterDistribution', '../models/landWaterMass', '../models/regionType',
+                '../models/landWaterDistribution', '../models/landWaterMass', '../models/regionType', '../models/region',
                 'knockstrap' ], function($, ko, Modal, WorldHydrography, DisplayType, LandWaterDistribution,
-                LandWaterMass, RegionType) {
+                LandWaterMass, RegionType, Region) {
 	        return function HydrographyViewModel() {
 		        var self = this;
 		        self.displayTypes = ko.observableArray([]);
@@ -25,6 +25,7 @@ define(
 		            hydrography : null
 		        }));
 		        self.editLandWaterMass = ko.observable(new LandWaterMass());
+		        self.editRegion = ko.observable(new Region());
 
 		        self.setSelectedDisplayType = function(data) {
 			        self.selectedDisplayType(data);

@@ -1,5 +1,5 @@
 <#-- @ftlvariable name="" type="nz.co.manager.views.GenericView" -->
-<#import "../../layout.ftl" as layout>
+<#import "../../../../layout.ftl" as layout>
 <@layout.layout breadcrumbs=breadcrumbs path=path>
     <div class="container">
 		<@layout.breadcrumbs breadcrumbs=breadcrumbs />

@@ -1,5 +1,5 @@
 <#-- @ftlvariable name="" type="nz.co.manager.views.GenericView" -->
-<#import "../../layout.ftl" as layout>
+<#import "../../../../layout.ftl" as layout>
 <@layout.layout breadcrumbs=breadcrumbs path=path>
     <!-- Edit Hydrography Modal -->
     <div
@@ -131,9 +131,7 @@
                                 <td data-bind="text: percent"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default"
-                                            data-bind="click: $root.editHydrographyModal.show"
-                                        >
+                                        <button type="button" class="btn btn-default" data-bind="click: $root.editHydrographyModal.show">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                         <button type="button" class="btn btn-warning" data-bind="click: remove">
@@ -167,9 +165,7 @@
                                 <td data-bind="text: name"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default"
-                                            data-bind="click: $root.editRegionTypeModal.show"
-                                        >
+                                        <button type="button" class="btn btn-default" data-bind="click: $root.editRegionTypeModal.show">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                         <button type="button" class="btn btn-warning" data-bind="click: remove">
@@ -182,13 +178,14 @@
                     </table>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="panel panel-default">
                     <div class="panel-heading">Display Types</div>
                     <table class="table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Num Regions</th>
                                 <th>
                                     <div class="btn-group btn-group-xs" role="group">
                                         <button class="btn btn-success" data-bind="click: newDisplayTypeModal.show">
@@ -201,11 +198,10 @@
                         <tbody data-bind="foreach: displayTypes">
                             <tr>
                                 <td data-bind="text: name"></td>
+                                <td data-bind="text: numRegions"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default"
-                                            data-bind="click: $root.editDisplayTypeModal.show"
-                                        >
+                                        <button type="button" class="btn btn-default" data-bind="click: $root.editDisplayTypeModal.show">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                         <button type="button" class="btn btn-warning" data-bind="click: remove">
@@ -225,7 +221,7 @@
                         <thead>
                             <tr>
                                 <th># Regions</th>
-                                <th>Nummber of masses</th>
+                                <th>Number of masses</th>
                                 <th>Size of Masses</th>
                                 <th>
                                     <div class="btn-group btn-group-xs" role="group">
@@ -243,9 +239,7 @@
                                 <td data-bind="text: minSize() + '-' + maxSize()"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default"
-                                            data-bind="click: $root.editLandWaterMassModal.show"
-                                        >
+                                        <button type="button" class="btn btn-default" data-bind="click: $root.editLandWaterMassModal.show">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                         <button type="button" class="btn btn-warning" data-bind="click: remove">
@@ -287,19 +281,19 @@
                                     <!-- ko with: $root.findNumRegions($parents[1].name(), $parents[0].name(), percent()) -->
                                     <span data-bind="text: numRegions"></span>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button class="btn btn-default"
-                                            data-bind="click: $root.editLandWaterDistributionModal.show"
-                                        >
+                                        <button class="btn btn-default" data-bind="click: $root.editLandWaterDistributionModal.show">
                                             <i class="fa fa-pencil"></i>
                                         </button>
-                                    </div> <!-- /ko --> <!-- /ko --> <!-- ko ifnot: $root.findNumRegions($parents[1].name(), $parents[0].name(), percent()) -->
+                                    </div>
+                                    <!-- /ko -->
+                                    <!-- /ko -->
+                                    <!-- ko ifnot: $root.findNumRegions($parents[1].name(), $parents[0].name(), percent()) -->
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button class="btn btn-success"
-                                            data-bind="click: $root.showNewLandWaterDistributionModal.bind($parents[2], $parents[1], $parents[0])"
-                                        >
+                                        <button class="btn btn-success" data-bind="click: $root.showNewLandWaterDistributionModal.bind($parents[2], $parents[1], $parents[0])">
                                             <i class="fa fa-plus"></i>
                                         </button>
-                                    </div> <!-- /ko -->
+                                    </div>
+                                    <!-- /ko -->
                                 </td>
                                 <!-- /ko -->
                                 <!-- /ko -->
@@ -335,11 +329,24 @@
     </script>
 
     <script type="text/html" id="editDisplayTypeModalTemplate">
-        <div class="clearfix">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Name" autofocus data-bind="value: $root.editDisplayType().name" />
-            </div> <!-- /input-group -->
-        </div>
+        <input type="text" class="form-control" placeholder="Name" autofocus data-bind="value: $root.editDisplayType().name" />
+        <input type="text" class="form-control" placeholder="Num Regions" data-bind="value: $root.editDisplayType().numRegions" />
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Adjacent Regions</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: $root.editDisplayType().regions">
+                <tr>
+                    <td data-bind="text: number"></td>
+                    <td>
+                        <input type="text" class="form-control input-sm" data-bind="value: adjacentRegions.formatted" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </script>
 
     <script type="text/html" id="editLandWaterDistributionModalTemplate">
