@@ -17,7 +17,6 @@ define([ 'jquery', 'knockout' ], function($, ko) {
 			});
 
 			span.dblclick(function() {
-				//input.width(span.width());
 				span.hide();
 				input.show();
 				input.focus();

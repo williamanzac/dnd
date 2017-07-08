@@ -53,3 +53,7 @@
 select:invalid {
 	color: grey;
 }
+
+.navbar-nav .dropdown-menu .caret {
+	transform: rotate(-90deg);
+}
