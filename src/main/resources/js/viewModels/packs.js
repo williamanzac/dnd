@@ -22,8 +22,6 @@ define([ 'jquery', 'knockout', 'Modal', '../models/pack', '../models/packItem', 
 			self.getPacks();
 		}
 		self.createPack = function() {
-			// self.editPack().create();
-			// self.newPackModal.hide();
 			self.newPack().create();
 			self.getPacks();
 			self.newPack(new Pack());

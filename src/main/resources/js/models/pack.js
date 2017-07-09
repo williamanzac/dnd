@@ -40,6 +40,14 @@ define([ 'jquery', 'knockout', '../models/packItem' ], function($, ko, PackItem)
 			    dataType : "json"
 			});
 		}
+
+		self.inlineSubscribe = function(value) {
+			if (self.id()) {
+				self.update();
+			}
+		}
+		self.name.subscribe(self.inlineSubscribe);
+		self.costGP.subscribe(self.inlineSubscribe);
 	}
 
 	Pack.list = function(list) {
