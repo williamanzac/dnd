@@ -101,12 +101,6 @@
     }"
     ></div>
 
-    <div class="container">
-		<@layout.breadcrumbs breadcrumbs=breadcrumbs />
-		<div class="row">
-			<#assign l=breadcrumbs?size />
-			<h1>${breadcrumbs[l - 1]}</h1>
-		</div>
         <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -303,7 +297,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <script type="text/html" id="editHydrographyModalTemplate">
 		<div class="clearfix">

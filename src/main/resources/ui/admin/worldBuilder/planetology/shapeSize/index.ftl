@@ -41,12 +41,6 @@
     }"
     ></div>
 
-    <div class="container">
-		<@layout.breadcrumbs breadcrumbs=breadcrumbs />
-		<div class="row">
-			<#assign l=breadcrumbs?size />
-			<h1>${breadcrumbs[l - 1]}</h1>
-		</div>
         <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -71,9 +65,7 @@
                                 <td data-bind="text: name"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default"
-                                            data-bind="click: $root.editWorldShapeModal.show"
-                                        >
+                                        <button type="button" class="btn btn-default" data-bind="click: $root.editWorldShapeModal.show">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                         <button type="button" class="btn btn-warning" data-bind="click: remove">
@@ -113,9 +105,7 @@
                                 <td data-bind="text: regionMapSize"></td>
                                 <td>
                                     <div class="btn-group btn-group-xs" role="group">
-                                        <button type="button" class="btn btn-default"
-                                            data-bind="click: $root.editWorldSizeModal.show"
-                                        >
+                                        <button type="button" class="btn btn-default" data-bind="click: $root.editWorldSizeModal.show">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </button>
                                         <button type="button" class="btn btn-warning" data-bind="click: remove">
@@ -129,7 +119,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <script type="text/html" id="editWorldShapeModalTemplate">
 		<div class="clearfix">

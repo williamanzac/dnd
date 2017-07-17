@@ -17,12 +17,6 @@
 	    footer: { data: { action: createSet, closeLabel: 'Cancel', primaryLabel: 'Create' } }
     }"></div>
 
-	<div class="container">
-		<@layout.breadcrumbs breadcrumbs=breadcrumbs />
-		<div class="row">
-			<#assign l=breadcrumbs?size />
-			<h1>${breadcrumbs[l - 1]}</h1>
-		</div>
 		<div class="row">
 			<div class="col-md-3">
 				<div class="form-inline row">
@@ -62,7 +56,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
     <script type="text/html" id="editNameSetModalTemplate">
 		<div class="clearfix">

@@ -60,9 +60,11 @@ public class GenericView extends View {
 	private final String path;
 	private final String title;
 	private final List<MenuNode> menuNodes;
+	private final String templatePath;
 
 	public GenericView(final String templatePath) {
 		super("/" + templatePath + "/index.ftl");
+		this.templatePath = templatePath;
 		final String[] parts = templatePath.split("/");
 		final StringBuilder p = new StringBuilder();
 		for (int i = 0; i < parts.length; i++) {
@@ -92,5 +94,9 @@ public class GenericView extends View {
 
 	public List<MenuNode> getMenuNodes() {
 		return menuNodes;
+	}
+
+	public String getTemplatePath() {
+		return templatePath;
 	}
 }

@@ -1,12 +1,6 @@
 <#-- @ftlvariable name="" type="nz.co.manager.views.GenericView" -->
 <#import "../../layout.ftl" as layout>
 <@layout.layout breadcrumbs=breadcrumbs path=path>
-	<div class="container">
-		<@layout.breadcrumbs breadcrumbs=breadcrumbs />
-		<div class="row">
-			<#assign l=breadcrumbs?size />
-			<h1>${breadcrumbs[l - 1]}</h1>
-		</div>
 		<div class="row">
 			<div class="col-md-4">
                 <div class="panel panel-default">
@@ -91,5 +85,4 @@
                 </div>
             </div>
 		</div>
-	</div>
 </@layout.layout>

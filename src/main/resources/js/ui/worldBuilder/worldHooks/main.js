@@ -11,8 +11,8 @@ requirejs.config({
     }
 });
 
-require([ 'jquery', 'bootstrap', 'knockout', '../viewModels/worldHook', 'domReady!' ], function($, bootstrap, ko,
-        ViewModel) {
+require([ 'jquery', 'bootstrap', 'knockout', '../viewModels/worldHook', 'domReady!', '../lib/menu' ], function($,
+        bootstrap, ko, ViewModel) {
 	ko.components.register('breadcrumbs', {
 		require : '../components/breadcrumbs'
 	});

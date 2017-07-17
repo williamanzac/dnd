@@ -7,14 +7,14 @@ requirejs.config({
         'bootstrap' : '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min'
     },
     shim : {
-        'bootstrap' : [ 'jquery' ]
+	    'bootstrap' : [ 'jquery' ]
     }
 });
 
-require([ 'jquery', 'bootstrap', 'knockout', '../viewModels/seismologyTectonics', 'domReady!' ], function($, bootstrap,
-        ko, ViewModel) {
-	ko.components.register('breadcrumbs', {
-		require : '../components/breadcrumbs'
-	});
-	ko.applyBindings(new ViewModel());
-});
+require([ 'jquery', 'bootstrap', 'knockout', '../viewModels/seismologyTectonics', 'domReady!', '../lib/menu' ],
+        function($, bootstrap, ko, ViewModel) {
+	        ko.components.register('breadcrumbs', {
+		        require : '../components/breadcrumbs'
+	        });
+	        ko.applyBindings(new ViewModel());
+        });

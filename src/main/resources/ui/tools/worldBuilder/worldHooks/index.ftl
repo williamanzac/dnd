@@ -41,12 +41,6 @@
     }"
     ></div>
 
-    <div class="container">
-		<@layout.breadcrumbs breadcrumbs=breadcrumbs />
-		<div class="row">
-			<#assign l=breadcrumbs?size />
-			<h1>${breadcrumbs[l - 1]}</h1>
-		</div>
         <div class="row">
             <div class="col-md-4">
                 <div class="form-inline row">
@@ -70,14 +64,10 @@
                         </div>
                         <div class="col-md-3">
                             <div class="btn-group btn-group-xs pull-right row" role="group">
-                                <button type="button" class="btn btn-success"
-                                    data-bind="click: function(){$root.editWorldHook().categoryId($data.id); $root.newWorldHookModal.show($root.editWorldHook());}"
-                                >
+                                <button type="button" class="btn btn-success" data-bind="click: function(){$root.editWorldHook().categoryId($data.id); $root.newWorldHookModal.show($root.editWorldHook());}">
                                     <i class="fa fa-plus"></i>
                                 </button>
-                                <button type="button" class="btn btn-default"
-                                    data-bind="click: $root.editCategoryModal.show"
-                                >
+                                <button type="button" class="btn btn-default" data-bind="click: $root.editCategoryModal.show">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
                                 <button type="button" class="btn btn-warning" data-bind="click: remove">
@@ -93,9 +83,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="btn-group btn-group-xs pull-right row" role="group">
-                                <button type="button" class="btn btn-default"
-                                    data-bind="click: $root.editWorldHookModal.show"
-                                >
+                                <button type="button" class="btn btn-default" data-bind="click: $root.editWorldHookModal.show">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button>
                                 <button type="button" class="btn btn-warning" data-bind="click: remove">
@@ -115,7 +103,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <script type="text/html" id="editCategoryModalTemplate">
 		<div class="clearfix">

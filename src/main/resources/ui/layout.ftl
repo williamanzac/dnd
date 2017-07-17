@@ -38,7 +38,7 @@
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
 	        <#list menuNodes as node>
-	        	<@menuNode node />
+	        	<@menuNode node '/ui' breadcrumbs />
 	        </#list>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
@@ -47,7 +47,12 @@
 	    </div>
 	  </div>
 	</nav>
-    <#nested/>
+    <div class="container">
+		<breadcrumbs params="crumbs: [<#list breadcrumbs as crumb>'${crumb}'<#sep>, </#list>]"></breadcrumbs>
+		<#assign l=breadcrumbs?size />
+		<h1>${breadcrumbs[l - 1]}</h1>
+	    <#nested/>
+    </div>
     <footer class="container text-center">
     	<p>Footer Text</p>
 	</footer>
@@ -55,20 +60,28 @@
 </body>
 </html>
 </#macro>
-<#macro breadcrumbs breadcrumbs>
-<breadcrumbs params="crumbs: [<#list breadcrumbs as crumb>'${crumb}'<#sep>, </#list>]"></breadcrumbs>
-</#macro>
-<#macro menuNode node>
+<#macro menuNode node parentPath breadcrumbs>
+	<#local url=parentPath + '/' + node.name />
+	<#local active=('/'+templatePath)?index_of(url) &gt; -1 />
 	<#list node.nodes>
+		<#if active>
+		<li class="active">
+		<#else>
 		<li>
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown">${node.name?capitalize} <span class="caret"></span></a>
+		</#if>
+			<a href="${url}" class="dropdown-toggle" data-toggle="dropdown">${node.name?capitalize} <span class="caret"></span></a>
 			<ul class="dropdown-menu">
 				<#items as node>
-					<@menuNode node />
+					<@menuNode node url breadcrumbs />
 				</#items>
 			</ul>
 		</li>
 	<#else>
-		<li><a href="#">${node.name?capitalize}</a></li>
+		<#if active>
+		<li class="active">
+		<#else>
+		<li>
+		</#if>
+		<a href="${url}">${node.name?capitalize}</a></li>
 	</#list>
 </#macro>

@@ -11,19 +11,6 @@
     }"
     ></div>
 
-    <div class="container-fluid">
-		<div class="row">
-		    <div class="col-sm-2 sidenav">
-		      <p><a href="#">Link</a></p>
-		      <p><a href="#">Link</a></p>
-		      <p><a href="#">Link</a></p>
-		    </div>
-		    <div class="col-sm-10">
-				<@layout.breadcrumbs breadcrumbs=breadcrumbs />
-				<div class="row">
-					<#assign l=breadcrumbs?size />
-					<h1>${breadcrumbs[l - 1]}</h1>
-				</div>
 		        <div class="row">
 		            <div class="col-md-4">
 		                <div class="panel panel-default">
@@ -116,9 +103,6 @@
 		                </div>
 		            </div>
 		        </div>
-	        </div>
-        </div>
-    </div>
 
     <template id="editPackModalTemplate">
         <div class="clearfix">

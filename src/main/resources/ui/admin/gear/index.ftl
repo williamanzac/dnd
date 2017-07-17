@@ -19,12 +19,6 @@
 	    footer: { data: { action: createGear, closeLabel: 'Cancel', primaryLabel: 'Create' } }
     }"></div>
 
-	<div class="container">
-		<@layout.breadcrumbs breadcrumbs=breadcrumbs />
-		<div class="row">
-			<#assign l=breadcrumbs?size />
-			<h1>${breadcrumbs[l - 1]}</h1>
-		</div>
 		<div class="row">
 			<table class="table table-striped table-hover table-bordered">
 				<thead>
@@ -64,7 +58,6 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
 
 	<script type="text/html" id="editGearModalTemplate">
 		<div class="clearfix">
