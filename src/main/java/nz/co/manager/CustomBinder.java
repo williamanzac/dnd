@@ -66,6 +66,7 @@ public final class CustomBinder extends AbstractBinder {
 		bind(PackService.class).to(PackService.class);
 		bind(PlanetaryTemperatureService.class).to(PlanetaryTemperatureService.class);
 		bind(PlateMovementService.class).to(PlateMovementService.class);
+		bind(new RandomService()).to(RandomService.class);
 		bind(RegionalHydrographyService.class).to(RegionalHydrographyService.class);
 		bind(RegionTypeService.class).to(RegionTypeService.class);
 		bind(SchoolService.class).to(SchoolService.class);

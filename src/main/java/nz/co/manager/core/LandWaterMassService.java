@@ -6,29 +6,33 @@ import javax.inject.Inject;
 
 import org.jvnet.hk2.annotations.Service;
 
+import nz.co.manager.api.DisplayType;
 import nz.co.manager.api.LandWaterDistribution;
 import nz.co.manager.api.LandWaterMass;
 import nz.co.manager.api.LandWaterMassResults;
 import nz.co.manager.api.WorldHydrography;
+import nz.co.manager.jdbi.DisplayTypeDAO;
 import nz.co.manager.jdbi.LandWaterDistributionDAO;
 import nz.co.manager.jdbi.LandWaterMassDAO;
 import nz.co.manager.jdbi.WorldHydrographyDAO;
 
 @Service
 public class LandWaterMassService extends CRUDService<LandWaterMass> {
-	private static final int NUM_REGIONS_POLYHEDRAL = 20;
 
 	private final DiceService diceService;
 	private final LandWaterDistributionDAO landWaterDistributionDAO;
 	private final WorldHydrographyDAO worldHydrographyDAO;
+	private final DisplayTypeDAO displayTypeDAO;
 
 	@Inject
 	public LandWaterMassService(final LandWaterMassDAO dao, final DiceService diceService,
-			final LandWaterDistributionDAO landWaterDistributionDAO, final WorldHydrographyDAO worldHydrographyDAO) {
+			final LandWaterDistributionDAO landWaterDistributionDAO, final WorldHydrographyDAO worldHydrographyDAO,
+			final DisplayTypeDAO displayTypeDAO) {
 		super(dao);
 		this.diceService = diceService;
 		this.landWaterDistributionDAO = landWaterDistributionDAO;
 		this.worldHydrographyDAO = worldHydrographyDAO;
+		this.displayTypeDAO = displayTypeDAO;
 	}
 
 	public LandWaterMassResults generate(final int hydrographyId, final int displayTypeId) throws ServiceException {
@@ -47,7 +51,8 @@ public class LandWaterMassService extends CRUDService<LandWaterMass> {
 			rolls = diceService.roll(results.getMass().getMaxSize(), 1);
 		}
 		final int numMasses = rolls.get(0);
-		final List<Integer> positions = diceService.roll(NUM_REGIONS_POLYHEDRAL, numMasses);
+		final DisplayType displayType = displayTypeDAO.find(displayTypeId);
+		final List<Integer> positions = diceService.roll(displayType.getNumRegions(), numMasses);
 		results.setPositions(positions);
 		final List<Integer> sizes = diceService.roll(results.getMass().getMaxSize(), numMasses);
 		results.setSizes(sizes);

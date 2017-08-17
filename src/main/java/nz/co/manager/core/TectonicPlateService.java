@@ -22,7 +22,7 @@ public class TectonicPlateService {
 
 	public List<PlateResults> generate(final int times) throws ServiceException {
 		final List<PlateResults> results = new ArrayList<>();
-		final List<Integer> rolls = new DiceService().roll("4d4", times);
+		final List<Integer> rolls = diceService.roll("4d4", times);
 		for (final int numPlates : rolls) {
 			final PlateResults result = new PlateResults();
 			final List<Integer> positions = diceService.roll(NUM_REGIONS_POLYHEDRAL, numPlates);

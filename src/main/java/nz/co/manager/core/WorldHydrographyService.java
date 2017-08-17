@@ -12,10 +12,12 @@ import nz.co.manager.jdbi.WorldHydrographyDAO;
 
 @Service
 public class WorldHydrographyService extends CRUDService<WorldHydrography> {
+	private final DiceService diceService;
 
 	@Inject
-	public WorldHydrographyService(final WorldHydrographyDAO dao) {
+	public WorldHydrographyService(final WorldHydrographyDAO dao, final DiceService diceService) {
 		super(dao);
+		this.diceService = diceService;
 	}
 
 	public List<WorldHydrography> generate(final int times) throws ServiceException {
@@ -25,7 +27,6 @@ public class WorldHydrographyService extends CRUDService<WorldHydrography> {
 		final WorldHydrography lastHydrography = hydrographies.get(hydrographies.size() - 1);
 		final int max = lastHydrography.getMax();
 
-		final DiceService diceService = new DiceService();
 		final List<Integer> randomHydrographies = diceService.roll(max, times);
 
 		for (final int i : randomHydrographies) {

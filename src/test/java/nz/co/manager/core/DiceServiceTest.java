@@ -18,7 +18,7 @@ public class DiceServiceTest {
 
 	@Before
 	public void setup() {
-		cut = new DiceService();
+		cut = new DiceService(new RandomService());
 	}
 
 	@Test

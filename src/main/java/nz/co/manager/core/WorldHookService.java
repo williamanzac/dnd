@@ -16,17 +16,19 @@ import nz.co.manager.jdbi.WorldHookDAO;
 public class WorldHookService extends CRUDService<WorldHook> {
 
 	private final WorldHookCategoryDAO worldHookCategoryDAO;
+	private final DiceService diceService;
 
 	@Inject
-	public WorldHookService(final WorldHookDAO worldHookDAO, final WorldHookCategoryDAO worldHookCategoryDAO) {
+	public WorldHookService(final WorldHookDAO worldHookDAO, final WorldHookCategoryDAO worldHookCategoryDAO,
+			final DiceService diceService) {
 		super(worldHookDAO);
 		this.worldHookCategoryDAO = worldHookCategoryDAO;
+		this.diceService = diceService;
 	}
 
 	public List<WorldHook> generate(final int times) throws ServiceException {
 		final List<WorldHookCategory> categories = worldHookCategoryDAO.list();
 		final WorldHookCategory lastCategory = categories.get(categories.size() - 1);
-		final DiceService diceService = new DiceService();
 		final int max = lastCategory.getMax();
 		final List<WorldHook> values = new ArrayList<>();
 		final List<Integer> randomCats = diceService.roll(max, times);

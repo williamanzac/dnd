@@ -57,3 +57,8 @@ select:invalid {
 .navbar-nav .dropdown-menu .caret {
 	transform: rotate(-90deg);
 }
+
+svg text {
+    color: white;
+    fill: white;
+}

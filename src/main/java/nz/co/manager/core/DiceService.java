@@ -5,9 +5,10 @@ import static nz.co.manager.api.Die.getForSides;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.inject.Inject;
 
 import org.jvnet.hk2.annotations.Service;
 
@@ -17,6 +18,13 @@ import nz.co.manager.api.Die;
 public class DiceService {
 
 	public static final Pattern ROLL_PATTERN = Pattern.compile("(\\d+)d(\\d+)([\\+-]\\d+)?");
+
+	private final RandomService randomService;
+
+	@Inject
+	public DiceService(RandomService randomService) {
+		this.randomService = randomService;
+	}
 
 	/**
 	 * Parse the number of dice and generate some random numbers May not be unique values.
@@ -42,7 +50,7 @@ public class DiceService {
 			for (int t = 0; t < times; t++) {
 				int value = 0;
 				for (int i = 0; i < numDice; i++) {
-					value += die.roll();
+					value += randomService.nextInt(die.getNumSides()) + 1;
 				}
 				value += add;
 				values.add(value);
@@ -63,12 +71,11 @@ public class DiceService {
 	 * @throws ServiceException
 	 */
 	public List<Integer> roll(final int data, final int times) throws ServiceException {
-		final Random random = new Random();
 		final List<Integer> values = new ArrayList<>();
 		for (int t = 0; t < times; t++) {
-			int value = random.nextInt(data) + 1;
+			int value = randomService.nextInt(data) + 1;
 			while (values.contains(value)) { // this could cause an infinite loop
-				value = random.nextInt(data) + 1;
+				value = randomService.nextInt(data) + 1;
 			}
 			values.add(value);
 		}

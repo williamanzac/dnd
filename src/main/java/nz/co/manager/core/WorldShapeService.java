@@ -12,10 +12,12 @@ import nz.co.manager.jdbi.WorldShapeDAO;
 
 @Service
 public class WorldShapeService extends CRUDService<WorldShape> {
+	private final DiceService diceService;
 
 	@Inject
-	public WorldShapeService(final WorldShapeDAO dao) {
+	public WorldShapeService(final WorldShapeDAO dao, final DiceService diceService) {
 		super(dao);
+		this.diceService = diceService;
 	}
 
 	public List<WorldShape> generate(final int times) throws ServiceException {
@@ -25,7 +27,6 @@ public class WorldShapeService extends CRUDService<WorldShape> {
 		final WorldShape lastShape = shapes.get(shapes.size() - 1);
 		final int max = lastShape.getMax();
 
-		final DiceService diceService = new DiceService();
 		final List<Integer> randomShapes = diceService.roll(max, times);
 
 		for (final int i : randomShapes) {
