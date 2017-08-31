@@ -1,21 +1,21 @@
 package nz.co.manager.api;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Embeddable
 public class ClassLevel {
-	@Column
-	private int level;
+	@OneToOne
+	private CharacterAdvancement level;
 	@ManyToOne
 	private CharacterClass characterClass;
 
-	public int getLevel() {
+	public CharacterAdvancement getLevel() {
 		return level;
 	}
 
-	public void setLevel(final int level) {
+	public void setLevel(final CharacterAdvancement level) {
 		this.level = level;
 	}
 

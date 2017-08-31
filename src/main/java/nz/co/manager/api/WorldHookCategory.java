@@ -7,10 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import nz.co.manager.jdbi.Idable;
 
 @Entity
 @Table(name = "worldhookcategory")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class WorldHookCategory extends Idable {
 	@Column
 	private String name;

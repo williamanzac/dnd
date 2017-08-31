@@ -59,6 +59,20 @@ select:invalid {
 }
 
 svg text {
-    color: white;
-    fill: white;
+	color: white;
+	fill: white;
+}
+
+.border-top {
+	border-top: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.character-info {
+	height: 4em;
+	background-color: #353a41;
+}
+
+.table>tbody>tr>td.character-info {
+	border: none;
+	vertical-align: bottom;
 }

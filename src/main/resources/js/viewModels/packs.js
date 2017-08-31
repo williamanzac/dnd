@@ -10,7 +10,7 @@ define([ 'jquery', 'knockout', 'Modal', '../models/pack', '../models/packItem', 
 		self.newPackItem = ko.observable(new PackItem());
 
 		self.editPackModal = new Modal(self.editPack);
-		self.newPackModal = new Modal(self.editPack);
+		self.newPackModal = new Modal(self.newPack);
 
 		self.showNewPackModal = function() {
 			self.newPackModal.show(new Pack());

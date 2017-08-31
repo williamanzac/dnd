@@ -54,7 +54,7 @@
 	    <#nested/>
     </div>
     <footer class="container text-center">
-    	<p>Footer Text</p>
+    	<p>&copy; 2017</p>
 	</footer>
     <script src="/js/require.js" data-main="/js${path}/main"></script>
 </body>

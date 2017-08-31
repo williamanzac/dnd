@@ -6,6 +6,7 @@ import org.jvnet.hk2.annotations.Service;
 
 @Service
 public class LandformService {
+	@SuppressWarnings("unused")
 	private final DiceService diceService;
 
 	@Inject
