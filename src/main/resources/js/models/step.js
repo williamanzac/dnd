@@ -1,5 +1,8 @@
-define([ 'jquery', 'knockout' ], function($, ko) {
-	
+define([ 'jquery', 'knockout', 'knockout-amd-helpers' ], function($, ko) {
+
+	ko.amdTemplateEngine.defaultPath = "../steps";
+	ko.amdTemplateEngine.defaultSuffix = ".step.html";
+
 	function Step(id, name, template, model, isValid) {
 		var self = this;
 		self.id = id;
