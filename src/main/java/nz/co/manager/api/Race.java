@@ -19,6 +19,8 @@ public class Race extends Idable {
 	private Set<AbilityScoreAdjustment> abilityScoreAdjustments;
 	@ManyToOne
 	private Race parent;
+	@ElementCollection
+	private Set<Language> languages;
 
 	public String getName() {
 		return name;
@@ -42,5 +44,13 @@ public class Race extends Idable {
 
 	public void setParent(final Race parent) {
 		this.parent = parent;
+	}
+
+	public Set<Language> getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(final Set<Language> languages) {
+		this.languages = languages;
 	}
 }

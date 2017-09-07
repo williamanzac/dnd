@@ -32,6 +32,7 @@
 						<tr>
 							<th>Name</th>
 							<th>Adjustments</th>
+							<th>Languages</th>
 							<th>
 								<div class="btn-group btn-group-xs" role="group">
 									<button class="btn btn-success" data-bind="click: showNewRaceModal">
@@ -50,6 +51,13 @@
 								<div class="col-sm-6" data-bind="text: $data.ability().name"></div>
 								<div class="col-sm-6" data-bind="text: $data.modifier"></div>
 								<!-- /ko -->
+								<!-- /ko -->
+							</td>
+							<td>
+								<!-- ko if: $data.languages -->
+								<ul data-bind="foreach: $data.languages">
+									<li data-bind="text: name"></li>
+								</ul>
 								<!-- /ko -->
 							</td>
 							<td style="min-width: 82px;">
@@ -77,6 +85,7 @@
 								<!-- /ko -->
 								<!-- /ko -->
 							</td>
+							<td></td>
 							<td>
 								<div class="btn-group btn-group-xs" role="group">
 									<button class="btn btn-default" data-bind="click: $root.editRaceModal.show">
@@ -122,6 +131,39 @@
 						<tr>
 							<td data-bind="text: $data.ability() && $data.ability().name"></th>
 							<td data-bind="text: $data.modifier"></td>
+							<td>
+								<div class="btn-group btn-group-xs" role="group">
+									<button class="btn btn-default" data-bind="">
+										<i class="fa fa-pencil"></i>
+									</button>
+									<button class="btn btn-warning">
+										<i class="fa fa-times"></i>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div>
+				<table class="table table-striped table-hover table-bordered">
+					<thead>
+						<tr>
+							<td>
+								<select class="form-control" data-bind="value: $root.newLanguageId, options: $root.languages, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Language'"></select>
+							</td>
+							<td>
+								<div class="btn-group btn-group-xs" role="group">
+									<button class="btn btn-success" data-bind="click: $root.addLanguage">
+										<i class="fa fa-plus"></i>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</thead>
+					<tbody data-bind="foreach: $root.editRace().languages">
+						<tr>
+							<td data-bind="text: name"></th>
 							<td>
 								<div class="btn-group btn-group-xs" role="group">
 									<button class="btn btn-default" data-bind="">

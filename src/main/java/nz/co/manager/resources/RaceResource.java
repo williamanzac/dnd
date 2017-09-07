@@ -1,6 +1,7 @@
 package nz.co.manager.resources;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -13,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import io.dropwizard.hibernate.UnitOfWork;
+import nz.co.manager.api.Language;
 import nz.co.manager.api.Race;
 import nz.co.manager.core.RaceService;
 
@@ -44,5 +46,13 @@ public class RaceResource extends CRUDResource<Race> {
 	public Response create(final @PathParam("id") int id, final Race entity) {
 		final Race created = getService().addSubRace(id, entity);
 		return Response.ok(created).build();
+	}
+
+	@GET
+	@Path("/{id}/languages")
+	@UnitOfWork
+	public Response listLanguages(final @PathParam("id") int id) {
+		final Set<Language> languages = getService().read(id).getLanguages();
+		return Response.ok(languages).build();
 	}
 }

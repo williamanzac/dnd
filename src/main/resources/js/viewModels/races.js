@@ -1,10 +1,12 @@
 define([ 'jquery', 'knockout', 'Modal', '../models/race', '../models/abilityScoreAdjustment', '../models/ability',
-        'knockstrap' ], function($, ko, Modal, Race, AbilityScoreAdjustment, Ability) {
+        '../models/Language', 'knockstrap' ], function($, ko, Modal, Race, AbilityScoreAdjustment, Ability, Language) {
 	return function RaceViewModel() {
 		var self = this;
 		self.races = ko.observableArray([]);
 		self.newAbilityScoreAdjustment = ko.observable(new AbilityScoreAdjustment());
 		self.abilities = ko.observableArray([]);
+		self.languages = ko.observableArray([]);
+		self.newLanguageId = ko.observable();
 
 		self.editRace = ko.observable(new Race());
 		self.editSubRace = ko.observable(new Race());
@@ -15,11 +17,14 @@ define([ 'jquery', 'knockout', 'Modal', '../models/race', '../models/abilityScor
 
 		self.addAbilityScoreAdjustment = function() {
 			var score = self.newAbilityScoreAdjustment();
-			var temp = ko.toJS(score);
-			temp = ko.toJS(self.editRace().abilityScoreAdjustments);
 			self.editRace().abilityScoreAdjustments.push(score);
-			temp = ko.toJS(self.editRace().abilityScoreAdjustments);
 			self.newAbilityScoreAdjustment(new AbilityScoreAdjustment());
+		}
+		self.addLanguage = function() {
+			var selected = self.languages().filter(function(item) {
+				return item.id === self.newLanguageId();
+			})[0];
+			self.editRace().languages.push(selected);
 		}
 
 		self.showNewRaceModal = function() {
@@ -56,8 +61,12 @@ define([ 'jquery', 'knockout', 'Modal', '../models/race', '../models/abilityScor
 		self.getAbilities = function() {
 			Ability.list(self.abilities);
 		}
+		self.getLanguages = function() {
+			Language.list(self.languages);
+		}
 
 		self.getRaces();
 		self.getAbilities();
+		self.getLanguages();
 	}
 });

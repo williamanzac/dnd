@@ -1,4 +1,5 @@
-define([ 'jquery', 'knockout', '../models/abilityScoreAdjustment' ], function($, ko, AbilityScoreAdjustment) {
+define([ 'jquery', 'knockout', '../models/abilityScoreAdjustment', '../models/language' ], function($, ko,
+        AbilityScoreAdjustment, Language) {
 	var baseurl = "/admin/races";
 
 	function Race(data) {
@@ -22,7 +23,14 @@ define([ 'jquery', 'knockout', '../models/abilityScoreAdjustment' ], function($,
 		}
 		self.parent = ko.observable(data && data.parent || null);
 		self.subRaces = ko.observableArray([]);
- 
+		self.languages = ko.observableArray([]);
+		if (data && data.languages) {
+			var mapped = $.map(data.languages, function(item) {
+				return new Language(item)
+			});
+			self.languages(mapped);
+		}
+
 		self.getSubRaces = function() {
 			var parent = self.parent();
 			if (self.id && parent === null) {
@@ -35,7 +43,7 @@ define([ 'jquery', 'knockout', '../models/abilityScoreAdjustment' ], function($,
 			}
 		}
 		self.getSubRaces();
-		
+
 		self.update = function() {
 			var data = ko.toJS(self);
 			delete data.subRaces;
