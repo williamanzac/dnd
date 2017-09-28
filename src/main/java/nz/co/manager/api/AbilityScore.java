@@ -11,7 +11,6 @@ import nz.co.manager.jdbi.Idable;
 public class AbilityScore extends Idable {
 	@Column
 	private Integer score;
-
 	@Column
 	private Integer modifier;
 

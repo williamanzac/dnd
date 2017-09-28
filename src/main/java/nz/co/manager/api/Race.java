@@ -1,6 +1,6 @@
 package nz.co.manager.api;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -16,11 +16,13 @@ public class Race extends Idable {
 	@Column
 	private String name;
 	@ElementCollection
-	private Set<AbilityScoreAdjustment> abilityScoreAdjustments;
+	private List<AbilityScoreAdjustment> abilityScoreAdjustments;
 	@ManyToOne
 	private Race parent;
 	@ElementCollection
-	private Set<Language> languages;
+	private List<String> languages;
+	@Column
+	private Integer speed;
 
 	public String getName() {
 		return name;
@@ -30,11 +32,11 @@ public class Race extends Idable {
 		this.name = name;
 	}
 
-	public Set<AbilityScoreAdjustment> getAbilityScoreAdjustments() {
+	public List<AbilityScoreAdjustment> getAbilityScoreAdjustments() {
 		return abilityScoreAdjustments;
 	}
 
-	public void setAbilityScoreAdjustments(final Set<AbilityScoreAdjustment> abilityScoreAdjustments) {
+	public void setAbilityScoreAdjustments(final List<AbilityScoreAdjustment> abilityScoreAdjustments) {
 		this.abilityScoreAdjustments = abilityScoreAdjustments;
 	}
 
@@ -46,11 +48,19 @@ public class Race extends Idable {
 		this.parent = parent;
 	}
 
-	public Set<Language> getLanguages() {
+	public List<String> getLanguages() {
 		return languages;
 	}
 
-	public void setLanguages(final Set<Language> languages) {
+	public void setLanguages(final List<String> languages) {
 		this.languages = languages;
+	}
+
+	public Integer getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(final Integer speed) {
+		this.speed = speed;
 	}
 }

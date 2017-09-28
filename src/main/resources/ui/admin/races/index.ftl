@@ -33,6 +33,7 @@
 							<th>Name</th>
 							<th>Adjustments</th>
 							<th>Languages</th>
+							<th>Speed</th>
 							<th>
 								<div class="btn-group btn-group-xs" role="group">
 									<button class="btn btn-success" data-bind="click: showNewRaceModal">
@@ -56,10 +57,11 @@
 							<td>
 								<!-- ko if: $data.languages -->
 								<ul data-bind="foreach: $data.languages">
-									<li data-bind="text: name"></li>
+									<li data-bind="text: $data"></li>
 								</ul>
 								<!-- /ko -->
 							</td>
+							<td data-bind="text: speed"></td>
 							<td style="min-width: 82px;">
 								<div class="btn-group btn-group-xs" role="group">
 									<button class="btn btn-default" data-bind="click: $root.editRaceModal.show">
@@ -85,7 +87,14 @@
 								<!-- /ko -->
 								<!-- /ko -->
 							</td>
-							<td></td>
+							<td>
+								<!-- ko if: $data.languages -->
+								<ul data-bind="foreach: $data.languages">
+									<li data-bind="text: $data"></li>
+								</ul>
+								<!-- /ko -->
+							</td>
+							<td data-bind="text: speed"></td>
 							<td>
 								<div class="btn-group btn-group-xs" role="group">
 									<button class="btn btn-default" data-bind="click: $root.editRaceModal.show">
@@ -107,6 +116,9 @@
 		<div class="clearfix">
 			<div class="input-group">
 				<input class="form-control" placeholder="Name" autofocus type="text" data-bind="value: $root.editRace().name" />
+			</div> <!-- /input-group -->
+			<div class="input-group">
+				<input class="form-control" placeholder="Speed" type="number" data-bind="value: $root.editRace().speed" />
 			</div> <!-- /input-group -->
 			<div>
 				<table class="table table-striped table-hover table-bordered">
@@ -150,7 +162,7 @@
 					<thead>
 						<tr>
 							<td>
-								<select class="form-control" data-bind="value: $root.newLanguageId, options: $root.languages, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Language'"></select>
+								<select class="form-control" data-bind="value: $root.newLanguage, options: $root.languages, optionsText: 'name', optionsValue: 'name', optionsCaption: 'Language'"></select>
 							</td>
 							<td>
 								<div class="btn-group btn-group-xs" role="group">
@@ -163,7 +175,7 @@
 					</thead>
 					<tbody data-bind="foreach: $root.editRace().languages">
 						<tr>
-							<td data-bind="text: name"></th>
+							<td data-bind="text: $data"></th>
 							<td>
 								<div class="btn-group btn-group-xs" role="group">
 									<button class="btn btn-default" data-bind="">

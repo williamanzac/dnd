@@ -4,6 +4,7 @@ define([ 'jquery', 'knockout', '../models/ability' ], function($, ko, Ability) {
 	function AbilityScoreAdjustment(data) {
 		var self = this;
 		self.ability = ko.observable(new Ability(data && data.ability || null));
+		self.editable = !(data && data.ability);
 		self.modifier = ko.observable(data && data.modifier || null);
 		self.abilityId = ko.pureComputed({
 	        read: function () {

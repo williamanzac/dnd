@@ -8,7 +8,6 @@ import javax.persistence.OneToOne;
 public class AbilityScoreAdjustment {
 	@OneToOne
 	private Ability ability;
-
 	@Column
 	private Integer modifier;
 

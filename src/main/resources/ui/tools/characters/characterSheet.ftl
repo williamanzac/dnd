@@ -86,7 +86,7 @@
 												<div class="col-md-3" style="background-color: #353a41;">&nbsp;</div>
 												<div class="col-md-9">
 													<span data-bind="text: name"></span>
-													<span class="text-muted">(<span data-bind="text: ability().name().substr(3)"></span>)</span>
+													<span class="text-muted">(<span data-bind="text: ability().name().substr(0, 3)"></span>)</span>
 												</div>
 											</div>
 											<div class="panel-footer">Skills</div>
@@ -105,7 +105,11 @@
 							<div class="col-md-12">
 								<div class="panel panel-default">
 									<div class="panel-body">
-										<div class="col-md-12" style="background-color: #353a41; min-height: 10em;">&nbsp;</div>
+										<div class="col-md-12" style="background-color: #353a41; min-height: 10em;">
+											<ul data-bind="foreach: characterSheet.languages">
+												<li data-bind="text: name"></li>
+											</ul>
+										</div>
 									</div>
 									<div class="panel-footer">Other Proficiencies & Languages</div>
 								</div>
@@ -133,7 +137,7 @@
 							<div class="col-md-4">
 								<div class="panel panel-default">
 									<div class="panel-body">
-										<div class="col-md-12 character-info">&nbsp;</div>
+										<div class="col-md-12 character-info" data-bind="text: characterSheet.speed"></div>
 									</div>
 									<div class="panel-footer">Speed</div>
 								</div>

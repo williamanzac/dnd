@@ -30,6 +30,7 @@ public class RaceDAO extends HibernateDAO<Race> {
 		race.setAbilityScoreAdjustments(entity.getAbilityScoreAdjustments());
 		race.setName(entity.getName());
 		race.setLanguages(entity.getLanguages());
+		race.setSpeed(entity.getSpeed());
 		super.update(race);
 	}
 

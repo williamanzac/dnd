@@ -6,7 +6,7 @@ define([ 'jquery', 'knockout', 'Modal', '../models/race', '../models/abilityScor
 		self.newAbilityScoreAdjustment = ko.observable(new AbilityScoreAdjustment());
 		self.abilities = ko.observableArray([]);
 		self.languages = ko.observableArray([]);
-		self.newLanguageId = ko.observable();
+		self.newLanguage = ko.observable();
 
 		self.editRace = ko.observable(new Race());
 		self.editSubRace = ko.observable(new Race());
@@ -21,10 +21,7 @@ define([ 'jquery', 'knockout', 'Modal', '../models/race', '../models/abilityScor
 			self.newAbilityScoreAdjustment(new AbilityScoreAdjustment());
 		}
 		self.addLanguage = function() {
-			var selected = self.languages().filter(function(item) {
-				return item.id === self.newLanguageId();
-			})[0];
-			self.editRace().languages.push(selected);
+			self.editRace().languages.push(self.newLanguage());
 		}
 
 		self.showNewRaceModal = function() {

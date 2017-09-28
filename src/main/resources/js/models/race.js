@@ -13,23 +13,22 @@ define([ 'jquery', 'knockout', '../models/abilityScoreAdjustment', '../models/la
 			});
 			self.abilityScoreAdjustments(mapped);
 		}
-		if (data && data.parent && data.parent.abilityScoreAdjustments) {
-			var mapped = $.map(data.parent.abilityScoreAdjustments, function(item) {
-				return new AbilityScoreAdjustment(item)
-			});
-			mapped.forEach(function(item) {
-				self.abilityScoreAdjustments.push(item);
-			});
-		}
+		self.allAbilityScoreAdjustments = ko.pureComputed(function() {
+			var list = self.abilityScoreAdjustments();
+			if (self.parent()) {
+				var mapped = $.map(self.parent().abilityScoreAdjustments, function(item) {
+					return new AbilityScoreAdjustment(item)
+				});
+				mapped.forEach(function(item) {
+					list.push(item);
+				});
+			}
+			return list;
+		});
 		self.parent = ko.observable(data && data.parent || null);
 		self.subRaces = ko.observableArray([]);
 		self.languages = ko.observableArray([]);
-		if (data && data.languages) {
-			var mapped = $.map(data.languages, function(item) {
-				return new Language(item)
-			});
-			self.languages(mapped);
-		}
+		self.speed = ko.observable(data && data.speed || null);
 
 		self.getSubRaces = function() {
 			var parent = self.parent();
@@ -42,11 +41,25 @@ define([ 'jquery', 'knockout', '../models/abilityScoreAdjustment', '../models/la
 				});
 			}
 		}
+		self.getLanguages = function() {
+			$.getJSON(baseurl + "/" + self.id + "/languages", function(data) {
+				var mapped = $.map(data, function(item) {
+					return new Language(item)
+				});
+				self.languages(mapped);
+			});
+		}
 		self.getSubRaces();
+		self.getLanguages();
 
 		self.update = function() {
 			var data = ko.toJS(self);
 			delete data.subRaces;
+			delete data.allAbilityScoreAdjustments;
+			delete data.allLanguages;
+			data.abilityScoreAdjustments.forEach(function(item) {
+				delete item.editable;
+			});
 			$.ajax({
 			    method : "PUT",
 			    data : JSON.stringify(data),
@@ -58,6 +71,11 @@ define([ 'jquery', 'knockout', '../models/abilityScoreAdjustment', '../models/la
 		self.create = function() {
 			var data = ko.toJS(self);
 			delete data.subRaces;
+			delete data.allAbilityScoreAdjustments;
+			delete data.allLanguages;
+			data.abilityScoreAdjustments.forEach(function(item) {
+				delete item.editable;
+			});
 			$.ajax({
 			    method : "POST",
 			    data : JSON.stringify(data),

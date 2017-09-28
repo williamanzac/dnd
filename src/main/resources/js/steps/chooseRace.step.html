@@ -1,49 +1,84 @@
-		<div class="row">
-			<div class="col-md-6">
-				<ul class="list-group" data-bind="foreach: $parent.races">
-					<!-- ko if: $data.subRaces().length > 0 -->
-					<!-- ko foreach: $data.subRaces -->
-					<li class="list-group-item name" data-bind="click: $root.selectRace, css: {selected: $root.characterSheet.race() && $data.id == $root.characterSheet.race().id}">
-						<div data-bind="text: name"></div>
-					</li>
-					<!-- /ko -->
-					<!-- /ko -->
-					<!-- ko if: $data.subRaces().length == 0 -->
-					<li class="list-group-item name" data-bind="click: $root.selectRace, css: {selected: $root.characterSheet.race() && $data.id == $root.characterSheet.race().id}">
-						<div data-bind="text: name"></div>
-					</li>
-					<!-- /ko -->
-				</ul>
-			</div>
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Traits</div>
-					<div class="panel-body">
-						<div class="row" data-bind="if: $data.race()">
-							<div class="col-md-12">
-								<div class="panel panel-default">
-									<div class="panel-heading">Ability Score Adjustments</div>
-									<div class="panel-body">
-										<table class="table table-bordered">
-											<tbody data-bind="foreach: $root.characterSheet.abilityScoreAdjustments">
-												<tr>
-													<!-- ko if: $data.ability() && $data.ability().id -->
-													<td data-bind="text: $data.ability() && $data.ability().name"></td>
-													<!-- /ko -->
-													<!-- ko ifnot: $data.ability() && $data.ability().id -->
-													<td>
-														<select class="form-control" data-bind="value: $data.abilityId, options: $root.selectableAbilities, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Ability'"></select>
-													</td>
-													<!-- /ko -->
-													<td data-bind="text: $data.modifier"></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
+<div class="row">
+	<div class="col-md-6">
+		<ul class="list-group" data-bind="foreach: $data.races">
+			<!-- ko if: $data.subRaces().length > 0 -->
+			<!-- ko foreach: $data.subRaces -->
+			<li class="list-group-item name" data-bind="click: $parents[1].selectRace, css: {selected: $parents[1].model().race() && $data.id == $parents[1].model().race().id}">
+				<div data-bind="text: name"></div>
+			</li>
+			<!-- /ko -->
+			<!-- /ko -->
+			<!-- ko if: $data.subRaces().length == 0 -->
+			<li class="list-group-item name" data-bind="click: $parent.selectRace, css: {selected: $parent.model().race() && $data.id == $parent.model().race().id}">
+				<div data-bind="text: name"></div>
+			</li>
+			<!-- /ko -->
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">Traits</div>
+			<div class="panel-body">
+				<div class="row" data-bind="if: $data.model().race()">
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">Ability Score Adjustments</div>
+							<div class="panel-body">
+								<table class="table table-bordered">
+									<tbody data-bind="foreach: $data.model().abilityScoreAdjustments">
+										<tr>
+											<!-- ko if: $data.ability() && $data.ability().name -->
+											<td>
+												<span data-bind="text: $data.ability() && $data.ability().name"></span>
+												<!-- ko if: $data.editable -->
+												<a>
+													<i class="fa fa-pencil" aria-hidden="true"></i>
+												</a>
+												<!-- /ko -->
+											</td>
+											<!-- /ko -->
+											<!-- ko ifnot: $data.ability() && $data.ability().name -->
+											<td>
+												<select class="form-control" data-bind="value: $data.abilityId, options: $parent.selectableAbilities, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Ability', valueAllowUnset: true"></select>
+											</td>
+											<!-- /ko -->
+											<td data-bind="text: $data.modifier"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">Speed</div>
+							<div class="panel-body" data-bind="text: $data.model().speed"></div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">Languages</div>
+							<div class="panel-body">
+								<table class="table table-bordered">
+									<tbody data-bind="foreach: $data.model().languages">
+										<tr>
+											<!-- ko if: $data -->
+											<td>
+												<span data-bind="text: name"></span>
+												<a>
+													<i class="fa fa-pencil" aria-hidden="true"></i>
+												</a>
+											</td>
+											<!-- /ko -->
+											<!-- ko ifnot: $data -->
+											<td>
+												<select class="form-control" data-bind="value: $parent.model().languages()[$index()], options: $parent.selectableLanguages, optionsText: 'name', optionsCaption: 'Language', valueAllowUnset: true"></select>
+											</td>
+											<!-- /ko -->
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>

@@ -52,7 +52,7 @@ public class RaceResource extends CRUDResource<Race> {
 	@Path("/{id}/languages")
 	@UnitOfWork
 	public Response listLanguages(final @PathParam("id") int id) {
-		final Set<Language> languages = getService().read(id).getLanguages();
+		final Set<Language> languages = getService().getLanguages(id);
 		return Response.ok(languages).build();
 	}
 }

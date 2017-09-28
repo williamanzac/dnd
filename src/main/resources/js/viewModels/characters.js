@@ -4,20 +4,8 @@ define([ 'jquery', 'knockout', '../models/step', '../models/characterSheet', '..
 	return function CharactersViewModel() {
 		var self = this;
 		self.characterSheet = new CharacterSheet();
-		self.races = ko.observableArray([]);
 		self.abilities = ko.observableArray([]);
 		self.skills = ko.observableArray([]);
-		self.selectableAbilities = ko.pureComputed(function() {
-			if (self.abilities().length == 0) {
-				return [];
-			}
-			var ids = $.map(self.characterSheet.abilityScoreAdjustments(), function(item) {
-				return item.ability().id;
-			});
-			return self.abilities().filter(function(item) {
-				return ids.indexOf(item.id) < 0;
-			});
-		});
 
 		self.steps = ko.observableArray([ new ChooseRaceStep(self.characterSheet),
 		        new ChooseClassStep(self.characterSheet) ]);
@@ -67,16 +55,6 @@ define([ 'jquery', 'knockout', '../models/step', '../models/characterSheet', '..
 			}
 		}
 
-		self.selectRace = function(data) {
-			self.characterSheet.race(data);
-			// copy ability score adjustments
-			var adjustments = data.abilityScoreAdjustments();
-			self.characterSheet.abilityScoreAdjustments(adjustments);
-		}
-
-		self.getRaces = function() {
-			Race.list(self.races);
-		}
 		self.getAbilities = function() {
 			Ability.list(self.abilities);
 		}
@@ -84,7 +62,6 @@ define([ 'jquery', 'knockout', '../models/step', '../models/characterSheet', '..
 			Skill.list(self.skills);
 		}
 
-		self.getRaces();
 		self.getAbilities();
 		self.getSkills();
 	}

@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="panel panel-default">
 			<div class="panel-heading" data-bind="text: step().name"></div>
-			<div class="panel-body" data-bind="template: {name: getTemplate, data: step().model}">
+			<div class="panel-body" data-bind="template: {name: getTemplate, data: step}"> 
 			</div>
 			<div class="panel-footer">
 				<div class="btn-group">

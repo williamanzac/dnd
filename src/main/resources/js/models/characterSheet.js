@@ -3,6 +3,8 @@ define([ 'jquery', 'knockout' ], function($, ko) {
 		var self = this;
 		self.race = ko.observable();
 		self.abilityScoreAdjustments = ko.observableArray([]);
+		self.speed = ko.observable();
+		self.languages = ko.observableArray([]);
 
 		self.class1 = ko.observable();
 		self.class2 = ko.observable();
