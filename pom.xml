@@ -87,6 +87,6 @@
 		</dependency>
 	</dependencies>
 	<properties>
-		<dropwizard.version>2.1.2</dropwizard.version>
+		<dropwizard.version>2.1.5</dropwizard.version>
 	</properties>
 </project>
